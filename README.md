@@ -1,9 +1,7 @@
 # MolMiner
-MolMiner is a library and command-line interface for extracting compounds (called "_chemical entities_") from scientific literature. It's written in Python (currently supporting only Python 3). Actually it's a wrapper around several open-source tools for chemical information retrieval, namely [ChemSpot][1], [OSRA][2] and [OPSIN][3].
+MolMiner is a library and command-line interface for extracting compounds (called "_chemical entities_") from scientific literature. It's written in Python (currently supporting only Python 3). It should work on all platforms, but problem is that some dependencies are very hard to compile on Windows. Actually it's a wrapper around several open-source tools for chemical information retrieval, namely [ChemSpot][1], [OSRA][2] and [OPSIN][3], using their command-line interface and adding some extended functionality.
 # Overview
-MolMiner is able to extract chemical entities from various sources of scientific literature including PDF and scanned images. It extracts entities both from text and 2D structures. Text is normalized using part of code from [ChemDataExtractor](https://github.com/mcs07/ChemDataExtractor/blob/master/chemdataextractor/text/normalize.py). Text entities are assigned by [ChemSpot][1] to one of classes: "SYSTEMATIC", "IDENTIFIER", "FORMULA", "TRIVIAL", "ABBREVIATION", "FAMILY", "MULTIPLE". IUPAC names can be converted to computer-readable format like SMILES or InChI with [OPSIN][3]. 2D stuctures are recognised in document and converted to computer-readable format with [OSRA][2]. Entities successfully converted to computer-readable format are standardized using [MolVS](https://github.com/mcs07/MolVS) library. Entities are also annotated in PubChem and ChemSpider databases using [PubChemPy](https://github.com/mcs07/PubChemPy) and [ChemSpiPy](https://github.com/mcs07/ChemSpiPy).
-
-For processing of PDF files is used [GraphicsMagick][4] and for OCR [Tesseract][4].
+MolMiner is able to extract chemical entities from scientific literature in various formats including PDF and scanned images. It extracts entities both from text and 2D structures. Text is normalized using part of code from [ChemDataExtractor](https://github.com/mcs07/ChemDataExtractor/blob/master/chemdataextractor/text/normalize.py). Text entities are assigned by [ChemSpot][1] to one of classes: "SYSTEMATIC", "IDENTIFIER", "FORMULA", "TRIVIAL", "ABBREVIATION", "FAMILY", "MULTIPLE". IUPAC names can be converted to computer-readable format like SMILES or InChI with [OPSIN][3]. 2D stuctures are recognised in document and converted to computer-readable format with [OSRA][2]. Entities successfully converted to computer-readable format are standardized using [MolVS](https://github.com/mcs07/MolVS) library. Entities are also annotated in PubChem and ChemSpider databases using [PubChemPy](https://github.com/mcs07/PubChemPy) and [ChemSpiPy](https://github.com/mcs07/ChemSpiPy). For processing of PDF files is used [GraphicsMagick][4] and for OCR [Tesseract][4].
 # Installation
 MolMiner self is written in Python, but it uses several binaries and some of them have complicated compilation dependencies. So the easiest way is to install MolMiner including dependencies as a [conda][6] package hosted on [Anaconda Cloud](https://anaconda.org/).
 
@@ -25,7 +23,7 @@ To install MolMiner without dependencies just download this repository and run `
 ### Binaries
 You need all these binaries for MolMiner. They should be installed so path to them is in `$PATH` environment variable (like `/usr/local/bin`). I haven't tried to compile these dependencies on Windows, but that doesn't mean it's impossible.
 - [OSRA][2]. This is probably the most complicated binary. Official information is [here](https://sourceforge.net/p/osra/wiki/Dependencies/) and [here](https://github.com/gorgitko/molminer/blob/master/docs/osra-readme.txt). My installation notes are [here](https://github.com/gorgitko/molminer/blob/master/docs/osra-installation.txt).
-  - Compile GraphicsMagick with as many supported image formats as possible ([dependencies](http://wiki.octave.org/GraphicsMagick#Main_dependencies)). Besided OSRA it's used for converting PDF to images and for image edit/transformation.
+  - Compile GraphicsMagick with as many supported image formats as possible ([dependencies](http://wiki.octave.org/GraphicsMagick#Main_dependencies)). It's also used for converting PDF to images and for image editing/transformation.
   - Use Tesseract version 4 and up.
   - [Patched version](https://sourceforge.net/projects/osra/files/openbabel-patched/) of OpenBabel is needed.
   - Put OSRA data files (`spelling.txt`, `superatom.txt`) to some directory and add this directory to `$OSRA_DATA_PATH` environment variable.
@@ -59,15 +57,25 @@ MolMiner has four commands (you can view them with `$ molminer --help`):
 
 To each command you can view its options with `$ molminer COMMAND --help`
 
+## Input
+- Input can be single PDF, image or text file. Type of input file will be automatically determined, but you can specify it with `-i [pdf|pdf_scan|image|text]` option (`text` value is of course not supported by OSRA, resp. `ocsr` command). Only PDF containing scanned papers cannot be identified so you must pass `-i pdf_scan` option.
+- Input from stdin is also supported. You can use it together with `ner` and `convert` command. For `convert` a list of IUPAC names is expected, each name on single line.
+- If you know that your text is paged, i.e. contains page separators -- ASCII control character 12 (Form Feed, '\f'), you can pass `--paged-text` flag and to each entity will be assigned page. This is automatically done when input is PDF file.
+
 ## Output
-Result is a CSV file. Defaultly, MolMiner will write result to stdout. If you want to write result to file, use `-o <file>` option. Chemical entities, which were successfully converted to computer-readable format, can be also written to SDF file by specifying `--sdf-output <file>` option. If you don't want to create new SDF file and just append to it, use `--sdf-append` flag.
+- Result is a CSV file. Defaultly, MolMiner will write result to stdout. If you want to write result to file, use `-o <file>` option. To change CSV file delimiter use `-d <delimiter>` option.
+- Chemical entities, which were successfully converted to computer-readable format, can be also written to SDF file by specifying `--sdf-output <file>` option. If you don't want to create new SDF file and just append to it, use `--sdf-append` flag.
 
 ## Defaultly enabled features
 By default, these features are enabled:
 - Conversion of PDF files to temporary PNG images using GraphicsMagick (GM). OSRA itself can handle PDF files, but using this is more reliable, because OSRA (v2.1.0) is showing wrong information when converting directly from PDF (namely: coordinates, bond length and possibly more ones) and also there are sometimes incorrectly recognised structures. Also it seems that this is sometimes a little bit faster (internally each temporary image is processed in parallel and results are then joined). Use `--no-use-gm` flag to disable it.
 - Standardization of chemical entities converted to computer-readable format. See [MolVS documentation](http://molvs.readthedocs.io/en/latest/guide/standardize.html) for explanation.
 - Annotation of chemical entities in PubChem and ChemSpider. This will try to assign compound IDs by searching separately with different identifiers (entity name, SMILES etc.). If single result is found by searching with entity name, missing indentifiers are added. InChI-key is preffered in searching. To annotate using ChemSpider you need ChemSpider API token. You can get it by signing up on their [website](http://www.chemspider.com/). Then provide this token with `--chemspider-token <token>` option.
+- Normalization of text. This is strongly recommended to keep as is, because sometimes is ChemSpot producing weird and unparsable results. Use `--no-normalize-text` flag to disable it.
 - Parallel processing will use all available cores. Use `-j <#cores>` option to change it. '-1' to use all CPU cores. '-2' to use all CPU cores minus one.
+
+# Notes
+- ChemSpot itself is very memory-consuming so dictionary and ID lookup is disabled by default. Only CRF, OpenNLP sentence and multiclass models will be used by default. Maximum memory used by Java process is set to 8 GB by default. It is strongly recommended to use swap file on SSD disk when available memory is under 8 GB (see https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04 for more details). If you want to use dictionary and ID lookop in ChemSpot, pass `--chs-dict dict.zip` and `--chs-ids ids.zip` options. If you are using MolMiner library, pass `path_to_dict="dict.zip"` and `path_to_ids="ids.zip"` to ChemSpot class constructor.
 
 [1]: https://www.informatik.hu-berlin.de/de/forschung/gebiete/wbi/resources/chemspot/chemspot
 [2]: https://sourceforge.net/p/osra/wiki/Home/
