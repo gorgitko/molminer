@@ -40,7 +40,7 @@ class ChemSpot(AbstractLinker):
     ChemSpot is very memory-consuming so dictionary and ID lookup is disabled by default. Only CRF, OpenNLP sentence and
     multiclass models will be used by default.
     Maximum memory used by Java process is set to 8 GB by default. It is strongly recommended to use swap file on SSD disk when
-    available memory is under 8 GB (see https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04) for more details.
+    available memory is under 8 GB (see https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04 for more details).
 
     To show the meaning of options:
         chemspot = ChemSpot()
