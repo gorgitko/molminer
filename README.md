@@ -75,7 +75,7 @@ By default, these features are enabled:
 - Parallel processing will use all available cores. Use `-j <#cores>` option to change it. '-1' to use all CPU cores. '-2' to use all CPU cores minus one.
 
 # Notes
-- ChemSpot itself is very memory-consuming so dictionary and ID lookup is disabled by default. Only CRF, OpenNLP sentence and multiclass models will be used by default. Maximum memory used by Java process is set to 8 GB by default. It is strongly recommended to use swap file on SSD disk when available memory is under 8 GB (see https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04) for more details. If you want to use dictionary and ID lookop in ChemSpot, pass `--chs-dict dict.zip` and `--chs-ids ids.zip` options. If you are using MolMiner library, pass `path_to_dict="dict.zip"` and `path_to_ids="ids.zip"` to ChemSpot class constructor.
+- ChemSpot itself is very memory-consuming so dictionary and ID lookup is disabled by default. Only CRF, OpenNLP sentence and multiclass models will be used by default. Maximum memory used by Java process is set to 8 GB by default. It is strongly recommended to use swap file on SSD disk when available memory is under 8 GB (see https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04 for more details). If you want to use dictionary and ID lookop in ChemSpot, pass `--chs-dict dict.zip` and `--chs-ids ids.zip` options. If you are using MolMiner library, pass `path_to_dict="dict.zip"` and `path_to_ids="ids.zip"` to ChemSpot class constructor.
 
 [1]: https://www.informatik.hu-berlin.de/de/forschung/gebiete/wbi/resources/chemspot/chemspot
 [2]: https://sourceforge.net/p/osra/wiki/Home/
