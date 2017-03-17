@@ -1,0 +1,55 @@
+-- OSRA DEPENDENCIES --
+
+- OSRA version: 2.1.0
+
+> graphicsmagick | http://www.graphicsmagick.org/
+    - version 1.3.21+
+    - must copy from downloaded archive: Magick++/lib/Magick++.h and Magick++/lib/Magick++ to /usr/include/GraphicsMagick
+    - add /usr/local/lib/ to LD_LIBRARY_PATH
+    - dependencies: http://wiki.octave.org/GraphicsMagick#Main_dependencies
+    $ sudo ldconfig && ./configure --enable-shared; make -j4; sudo make install
+
+> potrace | http://potrace.sourceforge.net/
+    - version 1.9+
+    $ ./configure --with-libpotrace --disable-shared; make -j4; sudo make install
+
+> gocr/jocr | http://jocr.sourceforge.net/
+    - special patched version: https://cactus.nci.nih.gov/osra/gocr-0.50pre-patched.tgz
+    $ ./configure; make -j4 libs; sudo make install
+
+> ocrad | http://www.gnu.org/software/ocrad/ocrad.html
+    - version 0.23
+    $ ./configure; make -j4; sudo make install
+
+> tclap | http://tclap.sourceforge.net/
+    - version 1.2.1
+    $ ./configure; make -j4; sudo make install
+
+> openbabel | http://openbabel.sourceforge.net/
+    - version: openbabel-2.3.2-patched.tgz (https://sourceforge.net/projects/osra/files/openbabel-patched/)
+    - bug fix in include/openbabel/shared_ptr.h:
+        #if __GNUC__ >= 4  //&& __GNUC_MINOR__ < 3
+    - also don't compile with c++11
+    - deprecated: $ sudo apt-get install openbabel libopenbabel-dev
+
+> Poppler | https://poppler.freedesktop.org/
+    - version 0.51.0 (but OSRA readme suggests 0.41.0) 
+    $ ./configure --disable-libtiff --disable-libjpeg --disable-libpng --disable-cairo-output --disable-poppler-glib --disable-poppler-qt4  --disable-poppler-qt5 --disable-gtk-test --disable-utils --disable-shared
+
+-- OPTIONAL DEPENDENCIES --
+
+> libjpg.so.62, libpng
+    $ sudo apt-get install libjpg62 libjpg62-dev libpng16-dev
+
+> tesseract | https://github.com/tesseract-ocr/tesseract
+
+    $ sudo apt-get install tesseract libtesseract-dev
+
+> cuneiform
+
+    $ sudo apt-get install cuneiform libcuneiform-dev
+
+-- INSTALLATION --
+
+    $ ./configure --with-tesseract --with-cuneiform; make -j4; sudo make install
+    - osra_reaction.cpp compile manually without "-std=gnu++11" (see the g++ command which failed and run it manually without "-std=gnu++11")
