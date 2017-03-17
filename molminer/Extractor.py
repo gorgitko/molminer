@@ -286,7 +286,7 @@ class Extractor(object):
             ner = self.chemspot.process(input_text=text, remove_duplicates=remove_entity_duplicates,
                                         output_file=output_file_ner, paged_text=True, annotate=annotate,
                                         annotation_sleep=annotation_sleep, chemspider_token=chemspider_token,
-                                        opsin_types=opsin_types, convert_ions=convert_ions)
+                                        opsin_types=[], convert_ions=convert_ions, standardize_mols=standardize_mols)
         else:
             # Parallelization is not working for larger documents.
             # See http://stackoverflow.com/questions/21641887/python-multiprocessing-process-hangs-on-join-for-large-queue
@@ -333,7 +333,7 @@ class Extractor(object):
             ner = self.chemspot.process(input_text=text, remove_duplicates=remove_entity_duplicates,
                                         output_file=output_file_ner, paged_text=True if input_type == "pdf" else False,
                                         annotate=annotate, annotation_sleep=annotation_sleep, convert_ions=convert_ions,
-                                        chemspider_token=chemspider_token, opsin_types=opsin_types)
+                                        chemspider_token=chemspider_token, opsin_types=[], standardize_mols=standardize_mols)
 
         to_convert = [x["entity"] for x in ner["content"] if x["type"] in opsin_types]
         opsin_converted = []
@@ -342,7 +342,8 @@ class Extractor(object):
             self.logger.info("Converting chemical entities with OPSIN...")
             opsin_converted = self.opsin.process(input=to_convert,
                                                  output_formats=["smiles", "inchi", "inchikey"], output_file=output_file_opsin,
-                                                 output_file_sdf=output_file_sdf_opsin, sdf_append=sdf_append)
+                                                 output_file_sdf=output_file_sdf_opsin, sdf_append=sdf_append,
+                                                 standardize_mols=standardize_mols)
             if not separated_output:
                 opsin_converted = iter(opsin_converted["content"])
         else:
