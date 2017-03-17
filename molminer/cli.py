@@ -59,7 +59,7 @@ OPTS_COMMON_OCSR_EXTRACT = [
     click.option("--no-use-gm", show_default=True, is_flag=True, default=False,
                  help="Don't use GraphicsMagick to convert PDF to temporary PNG images before processing. Then will OSRA use "
                       "it's own conversion of PDF to image. "
-                      "Using GM is more reliable since OSRA (v2.1.0) is showing wrong information "
+                      "Using GM is more reliable, because OSRA (v2.1.0) is showing wrong information "
                       "when converting directly from PDF (namely: coordinates, bond length and possibly more ones) and also there are sometimes "
                       "incorrectly recognised structures."),
     click.option("-j", "--jobs", show_default=True, default=-1, type=click.INT,
@@ -385,7 +385,7 @@ def ocsr(**kwargs):
         print(dict_to_csv(result["content"], csv_delimiter=kwargs["delimiter"], write_header=kwargs["no_header"]))
 
 @cli.command(help="Use OPSIN to convert IUPAC names to linear notation (SMILES etc.). One name per line in input file.\n"
-                     "You can also send stdin.")
+                  "You can also send stdin.")
 @add_options(OPTS_CONVERT_INIT)
 @add_options(OPTS_CONVERT_PROCESS)
 @add_options(OPTS_COMMON_OCSR_CONVERT)
@@ -409,8 +409,8 @@ def convert(**kwargs):
     if not stdin.isatty():
         kwargs["input_file"] = ""
         input_text = click.get_text_stream("stdin").read().strip()
-        if not input_text and not kwargs["input_file"]:
-            raise click.UsageError("Cannot do conversion: stdin is empty and input file is not provided.")
+    if not input_text and not kwargs["input_file"]:
+        raise click.UsageError("Cannot do conversion: stdin is empty and input file is not provided.")
 
     init_kwargs = get_kwargs(kwargs, KWARGS_OPSIN_INIT)
     process_kwargs = get_kwargs(kwargs, KWARGS_OPSIN_PROCESS)
