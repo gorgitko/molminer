@@ -198,6 +198,7 @@ class ChemSpot(AbstractLinker):
                 paged_text: bool = False,
                 format_output: bool = True,
                 opsin_types: list = None,
+                standardize_mols: bool = True,
                 convert_ions: bool = True,
                 write_header: bool = True,
                 iob_format: bool = False,
@@ -239,6 +240,8 @@ class ChemSpot(AbstractLinker):
             OPSIN is designed to convert IUPAC names to linear notation (SMILES etc.) so default value of `opsin_types`
             is ["SYSTEMATIC"] (these should be only IUPAC names).
             ChemSpot entity types: "SYSTEMATIC", "IDENTIFIER", "FORMULA", "TRIVIAL", "ABBREVIATION", "FAMILY", "MULTIPLE"
+        standardize_mols : bool
+            If True, use molvs (https://github.com/mcs07/MolVS) to standardize molecules converted by OPSIN.
         convert_ions : bool
             If True, try to convert ion entities (e.g. "Ni(II)") to SMILES. Entities matching ion regex won't be converted
             with OPSIN.
@@ -395,7 +398,8 @@ class ChemSpot(AbstractLinker):
 
                 if to_convert:
                     opsin = OPSIN(verbosity=self.verbosity)
-                    opsin_converted = opsin.process(input=to_convert, output_formats=["smiles", "inchi", "inchikey"])
+                    opsin_converted = opsin.process(input=to_convert, output_formats=["smiles", "inchi", "inchikey"],
+                                                    standardize_mols=standardize_mols)
                     opsin_converted = iter(opsin_converted["content"])
                 else:
                     self.logger.info("Nothing to convert with OPSIN.")
