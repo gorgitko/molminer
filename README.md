@@ -5,7 +5,7 @@ MolMiner is able to extract chemical entities from scientific literature in vari
 # Installation
 MolMiner self is written in Python, but it uses several binaries and some of them have complicated compilation dependencies. So the easiest way is to install MolMiner including dependencies as a [conda][6] package hosted on [Anaconda Cloud](https://anaconda.org/).
 
-To install MolMiner without dependencies just download this repository and run `python setup.py install`. MolMiner will be then available from shell as `molminer` and also as a Python library.
+To install MolMiner without dependencies just download this repository and run `$ python setup.py install`. MolMiner will be then available from shell as `molminer` and also as a Python library.
 
 ## Conda package (currently only for linux64)
 [Conda][6] is a package, dependency and environment management for any language including Python. MolMiner package includes precompiled dependencies and data files. It also manages all the needed envinronment variables and enables bash auto-completion.
