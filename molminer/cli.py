@@ -37,6 +37,11 @@ OPTS_COMMON_OCSR_NER_CONVERT = [
 ]
 
 OPTS_COMMON_NER_EXTRACT = [
+    click.option("--opsin-types", type=click.STRING, show_default=True, default="SYSTEMATIC",
+                 help="ChemSpot entity types, separated by commas (','). Entities of these types will be converted with OPSIN. "
+                      "OPSIN is designed to convert IUPAC names to linear notation (SMILES etc.) so default value is "
+                      "'SYSTEMATIC' (these should be only IUPAC names). "
+                      "ChemSpot entity types: 'SYSTEMATIC', 'IDENTIFIER', 'FORMULA', 'TRIVIAL', 'ABBREVIATION', 'FAMILY', 'MULTIPLE'"),
     click.option("--remove-duplicates", show_default=True, is_flag=True, default=False,
                  help="Remove duplicated chemical entities."),
     click.option("--lang", type=click.STRING, show_default=True, default="eng",
@@ -49,8 +54,6 @@ OPTS_COMMON_NER_EXTRACT = [
 ]
 
 OPTS_COMMON_OCSR_CONVERT_EXTRACT = [
-    click.option("--no-standardize", show_default=True, default=False, is_flag=True,
-                 help="Don't standardize molecules using MolVS (https://github.com/mcs07/MolVS)."),
     click.option("--sdf-append", show_default=True, is_flag=True, default=False,
                  help="Append new molecules to existing SDF file or create new one if doesn't exist.")
 ]
@@ -72,6 +75,8 @@ OPTS_COMMON_OCSR_CONVERT = [
 ]
 
 OPTS_COMMON_OCSR_NER_EXTRACT = [
+    click.option("--no-standardize", show_default=True, default=False, is_flag=True,
+                 help="Don't standardize molecules using MolVS (https://github.com/mcs07/MolVS)."),
     click.option("--chemspider-token", type=click.STRING, default="", show_default=True,
                  help="Your personal token for accessing the ChemSpider API (needed for annotation). Make account there to obtain it."),
     click.option("--no-annotation", show_default=True, is_flag=True, default=False,
@@ -148,7 +153,9 @@ OPTS_NER_PROCESS = [
                  help="Don't normalize text before performing NER (strongly not recommended)."),
     click.option("--paged-text", show_default=True, is_flag=True, default=False,
                  help="If 'input_type' is \"text\", try to assign pages to chemical entities. "
-                      "ASCII control character 12 (Form Feed, '\\f') is expected between pages.")
+                      "ASCII control character 12 (Form Feed, '\\f') is expected between pages."),
+    click.option("--no-convert-ions", show_default=True, is_flag=True, default=False,
+                 help="Don't try to convert ion entities (e.g. 'Ni(II)') to SMILES. Entities matching ion regex won't be converted with OPSIN.")
 ]
 
 KWARGS_CHS_INIT = {
@@ -169,6 +176,9 @@ KWARGS_CHS_PROCESS = {
     "input_type": "input_type",
     "lang": "lang",
     "paged_text": "paged_text",
+    "opsin_types": "opsin_types",
+    "no_standardize": "standardize_mols",
+    "no_convert_ions": "convert_ions",
     "no_header": "write_header",
     "chs_iob": "iob_format",
     "dry_run": "dry_run",
@@ -253,12 +263,7 @@ OPTS_EXTRACT = [
                       "'-o / --output' must be set."),
     click.option("--sdf-output", type=click.STRING, default="", show_default=True,
                  help="File to write SDF output in. This will write SDF file separately from OSRA and OPSIN, with '-osra.sdf' and "
-                      "'-opsin.sdf' suffixes."),
-    click.option("--opsin-types", type=click.STRING, show_default=True, default="SYSTEMATIC",
-                 help="ChemSpot entity types, separated by commas (','). Entities of these types will be converted with OPSIN. "
-                      "OPSIN is designed to convert IUPAC names to linear notation (SMILES etc.) so default value is "
-                      "'SYSTEMATIC' (these should be only IUPAC names). "
-                      "ChemSpot entity types: 'SYSTEMATIC', 'IDENTIFIER', 'FORMULA', 'TRIVIAL', 'ABBREVIATION', 'FAMILY', 'MULTIPLE'")
+                      "'-opsin.sdf' suffixes.")
 ]
 
 KWARGS_EXTRACT_INIT = {
@@ -312,6 +317,8 @@ def cli(**kwargs):
 @add_options(OPTS_COMMON_ALL)
 @ARG_INPUT_FILE
 def ner(**kwargs):
+    kwargs["no_standardize"] = not kwargs["no_standardize"]
+    kwargs["no_convert_ions"] = not kwargs["no_convert_ions"]
     kwargs["no_header"] = not kwargs["no_header"]
     kwargs["no_normalize_text"] = not kwargs["no_normalize_text"]
     kwargs["no_annotation"] = not kwargs["no_annotation"]
@@ -325,6 +332,8 @@ def ner(**kwargs):
         input_text = click.get_text_stream("stdin").read().strip()
         if not input_text and not kwargs["input_file"]:
             raise click.UsageError("Cannot perform NER: stdin is empty and input file is not provided.")
+
+    kwargs["opsin_types"] = get_opsin_types(kwargs["opsin_types"])
 
     init_kwargs = get_kwargs(kwargs, KWARGS_CHS_INIT)
     process_kwargs = get_kwargs(kwargs, KWARGS_CHS_PROCESS)
@@ -455,14 +464,7 @@ def extract(**kwargs):
     kwargs["opsin_no_allow_uninterpretable_stereo"] = not kwargs["opsin_no_allow_uninterpretable_stereo"]
     kwargs["no_annotation"] = not kwargs["no_annotation"]
 
-    valid_opsin_types = ["SYSTEMATIC", "IDENTIFIER", "FORMULA", "TRIVIAL", "ABBREVIATION", "FAMILY", "MULTIPLE"]
-    opsin_types = [_.upper() for _ in kwargs["opsin_types"].split(",")]
-    opsin_types = [_ for _ in opsin_types if _ in valid_opsin_types]
-
-    if not opsin_types:
-        opsin_types = ["SYSTEMATIC"]
-
-    kwargs["opsin_types"] = opsin_types
+    kwargs["opsin_types"] = get_opsin_types(kwargs["opsin_types"])
 
     is_output_file = bool(kwargs["output"])
 
@@ -481,6 +483,16 @@ def extract(**kwargs):
     if not is_output_file:
         print(dict_to_csv(result, csv_delimiter=kwargs["delimiter"], write_header=kwargs["no_header"]))
 
+
+def get_opsin_types(types):
+    valid_opsin_types = ["SYSTEMATIC", "IDENTIFIER", "FORMULA", "TRIVIAL", "ABBREVIATION", "FAMILY", "MULTIPLE"]
+    opsin_types = [_.upper() for _ in types.split(",")]
+    opsin_types = [_ for _ in opsin_types if _ in valid_opsin_types]
+
+    if not opsin_types:
+        opsin_types = ["SYSTEMATIC"]
+
+    return opsin_types
 
 if __name__ == "__main__":
     cli()
