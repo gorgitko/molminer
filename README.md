@@ -7,6 +7,8 @@ For processing of PDF files is used [GraphicsMagick][4] and for OCR [Tesseract][
 # Installation
 MolMiner self is written in Python, but it uses several binaries and some of them have complicated compilation dependencies. So the easiest way is to install MolMiner including dependencies as a [conda][6] package hosted on [Anaconda Cloud](https://anaconda.org/).
 
+To install MolMiner without dependencies just download this repository and run `python setup.py install`. MolMiner will be then available from shell as `molminer` and also as a Python library.
+
 ## Conda package (currently only for linux64)
 [Conda][6] is a package, dependency and environment management for any language including Python.
 
@@ -19,14 +21,30 @@ MolMiner self is written in Python, but it uses several binaries and some of the
 4. Install MolMiner: `$ conda install -c lich molminer`
 5. Use MolMiner: `$ molminer --help`
 --->
-## From source (linux64)
+## From source (linux)
 ### Binaries
-You need all these binaries for MolMiner. They should be installed so path to them is in `$PATH` environment variable (like `/usr/local/bin`).
+You need all these binaries for MolMiner. They should be installed so path to them is in `$PATH` environment variable (like `/usr/local/bin`). I haven't tried to compile these dependencies on Windows, but that doesn't mean it's impossible.
 - [OSRA][2]. This is probably the most complicated binary. Official information is [here](https://sourceforge.net/p/osra/wiki/Dependencies/) and [here](https://github.com/gorgitko/molminer/blob/master/docs/osra-readme.txt). My installation notes are [here](https://github.com/gorgitko/molminer/blob/master/docs/osra-installation.txt).
-  - Compile GraphicsMagick with as many supported image formats as possible.
+  - Compile GraphicsMagick with as many supported image formats as possible ([dependencies](http://wiki.octave.org/GraphicsMagick#Main_dependencies)). Besided OSRA it's used for converting PDF to images and for image edit/transformation.
   - Use Tesseract version 4 and up.
   - [Patched version](https://sourceforge.net/projects/osra/files/openbabel-patched/) of OpenBabel is needed.
-- [ChemSpot][1]. Just download
+  - Put OSRA data files (`spelling.txt`, `superatom.txt`) to some directory and add this directory to `$OSRA_DATA_PATH` environment variable.
+- [ChemSpot][1]. Just download it and:
+  - Put ChemSpot JAR file to directory accesible from `$PATH` and rename it to `chemspot.jar`.
+  - Also put there [this bash script](https://github.com/gorgitko/molminer/blob/master/scripts/chemspot). It's used for running ChemSpot. Its first argument is maximum amount of memory for ChemSpot process. Subsequent arguments are forwarded to ChemSpot CLI.
+  - Put ChemSpot data files (`dict.zip`, `ids.zip`, `multiclass.bin`) to some directory and add this directory to `$CHEMSPOT_DATA_PATH` environment variable.
+- [OPSIN][3]. Just download it and:
+  - Put OPSIN JAR file to directory accesible from `$PATH` and rename it to `opsin.jar`.
+  - Also put there [this bash script](https://github.com/gorgitko/molminer/blob/master/scripts/opsin). It's used for running ChemSpot. All arguments are forwarded to OPSIN CLI.
+- [GraphicsMagick][4]. OSRA needs it for compilation, but it's binary is also directly used by MolMiner. Compile it with as many supported image formats as possible ([dependencies](http://wiki.octave.org/GraphicsMagick#Main_dependencies).
+- [Tesseract][5]. OSRA needs it for compilation, but it's binary is also directly used by MolMiner. Use version 4 and up.
+  - Tesseract needs language data files. Download them [here](https://github.com/tesseract-ocr/tessdata), put them to some directory and this directory to `$TESSDATA_PREFIX` environment variable.
+- [poppler-utils](https://en.wikipedia.org/wiki/Poppler_(software)#poppler-utils). Utils for PDF files built on top of [Poppler](https://poppler.freedesktop.org/) library.
+  - Ubuntu (or any OS with `apt` packaging): `$ sudo apt-get install poppler-utils`
+- [libmagic](https://github.com/threatstack/libmagic). Reads the magic bytes of file and determine it's MIME type.
+  - Ubuntu (or any OS with `apt` packaging): `$ sudo apt-get install libmagic1 libmagic-dev`
+### Python dependencies
+Dependencies listed in `setup.py` will be installed automatically.
 
 [1]: https://www.informatik.hu-berlin.de/de/forschung/gebiete/wbi/resources/chemspot/chemspot
 [2]: https://sourceforge.net/p/osra/wiki/Home/
