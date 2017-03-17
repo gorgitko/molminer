@@ -1,5 +1,5 @@
 # MolMiner
-MolMiner is a library and command-line interface for extracting compounds from scientific literature written in Python (currently supporting only Python 3). Actually it's a wrapper around several open-source tools for chemical information retrieval, namely [ChemSpot][1], [OSRA][2] and [OPSIN][3].
+MolMiner is a library and command-line interface for extracting compounds (called "_chemical entities_") from scientific literature written in Python (currently supporting only Python 3). Actually it's a wrapper around several open-source tools for chemical information retrieval, namely [ChemSpot][1], [OSRA][2] and [OPSIN][3].
 # Overview
 MolMiner is able to extract chemical entities from various sources of scientific literature including PDF and scanned images. It extracts entities both from text and 2D structures. Text is normalized using part of code from [ChemDataExtractor](https://github.com/mcs07/ChemDataExtractor/blob/master/chemdataextractor/text/normalize.py). Text entities are assigned by [ChemSpot][1] to one of classes: "SYSTEMATIC", "IDENTIFIER", "FORMULA", "TRIVIAL", "ABBREVIATION", "FAMILY", "MULTIPLE". IUPAC names can be converted to computer-readable format like SMILES or InChI with [OPSIN][3]. 2D stuctures are recognised in document and converted to computer-readable format with [OSRA][2]. Entities successfully converted to computer-readable format are standardized using [MolVS](https://github.com/mcs07/MolVS) library. Entities are also annotated in PubChem and ChemSpider databases using [PubChemPy](https://github.com/mcs07/PubChemPy) and [ChemSpiPy](https://github.com/mcs07/ChemSpiPy).
 
@@ -10,7 +10,7 @@ MolMiner self is written in Python, but it uses several binaries and some of the
 To install MolMiner without dependencies just download this repository and run `python setup.py install`. MolMiner will be then available from shell as `molminer` and also as a Python library.
 
 ## Conda package (currently only for linux64)
-[Conda][6] is a package, dependency and environment management for any language including Python.
+[Conda][6] is a package, dependency and environment management for any language including Python. MolMiner package includes precompiled dependencies and data files. It also manages all the needed envinronment variables and enables bash auto-completion.
 
 **TO BE DONE**
 
@@ -41,10 +41,28 @@ You need all these binaries for MolMiner. They should be installed so path to th
   - Tesseract needs language data files. Download them [here](https://github.com/tesseract-ocr/tessdata), put them to some directory and this directory to `$TESSDATA_PREFIX` environment variable.
 - [poppler-utils](https://en.wikipedia.org/wiki/Poppler_(software)#poppler-utils). Utils for PDF files built on top of [Poppler](https://poppler.freedesktop.org/) library.
   - Ubuntu (or any OS with `apt` packaging): `$ sudo apt-get install poppler-utils`
-- [libmagic](https://github.com/threatstack/libmagic). Reads the magic bytes of file and determine it's MIME type.
+- [libmagic](https://github.com/threatstack/libmagic). Reads the magic bytes of file and determine its MIME type.
   - Ubuntu (or any OS with `apt` packaging): `$ sudo apt-get install libmagic1 libmagic-dev`
 ### Python dependencies
-Dependencies listed in `setup.py` will be installed automatically.
+Dependencies listed in `setup.py` will be installed automatically when you run `$ python setup.py install`. Unfortunately, there is a complicated dependency [RDKit](http://www.rdkit.org/). It's best to install it as a [conda package](https://anaconda.org/rdkit/rdkit).
+
+# Usage
+Basic syntax is: `molminer [OPTIONS] COMMAND [ARGS]`
+
+MolMiner has four commands (you can view them with `$ molminer --help`):
+- `ocsr`: Extract 2D structures with OSRA. OCSR stands for _Optical Chemical Structure Recognition_.
+- `ner`: Extract textual chemical entities with ChemSpot. NER stands for _Named Entity Recognition_.
+- `convert`: Convert IUPAC names to computer-readable format with OPSIN.
+- `extract`: Combine all the previous commands.
+
+To each command you can view its options with `$ molminer COMMAND --help`
+
+Defaultly, MolMiner will write result to stdout. Result is a CSV file. If you want to write result to file, use `-o <path>` option.
+
+By default, these features are enabled:
+- Conversion of PDF files to temporary PNG images using GraphicsMagick (GM). OSRA itself can handle PDF files, but using this is more reliable, because OSRA (v2.1.0) is showing wrong information when converting directly from PDF (namely: coordinates, bond length and possibly more ones) and also there are sometimes incorrectly recognised structures. Also it seems that this is sometimes a little bit faster (internally each temporary image is processed in parallel and results are then joined). Use `--no-use-gm` to disable it.
+- Standardization of chemical entities converted to computer-readable format. See [MolVS documentation](http://molvs.readthedocs.io/en/latest/guide/standardize.html) for explanation.
+- Annotation of chemical entities in PubChem and ChemSpider. This will try to assign compound IDs by searching separately with different identifiers (entity name, SMILES etc.). If single result is found by searching with entity name, missing indentifiers are added. InChI-key is preffered in searching.
 
 [1]: https://www.informatik.hu-berlin.de/de/forschung/gebiete/wbi/resources/chemspot/chemspot
 [2]: https://sourceforge.net/p/osra/wiki/Home/
