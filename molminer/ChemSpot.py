@@ -33,6 +33,8 @@ class ChemSpot(AbstractLinker):
     ChemSpot version: 2.0
 
     ChemSpot is a software for chemical Named Entity Recognition.
+    It assigns to each chemical entity one of this classes:
+    "SYSTEMATIC", "IDENTIFIER", "FORMULA", "TRIVIAL", "ABBREVIATION", "FAMILY", "MULTIPLE"
     More information here: https://www.informatik.hu-berlin.de/de/forschung/gebiete/wbi/resources/chemspot/chemspot
 
     ChemSpot is very memory-consuming so dictionary and ID lookup is disabled by default. Only CRF, OpenNLP sentence and
