@@ -33,7 +33,7 @@ You need all these binaries for MolMiner. They should be installed so path to th
   - Put ChemSpot data files (`dict.zip`, `ids.zip`, `multiclass.bin`) to some directory and add this directory to `CHEMSPOT_DATA_PATH` environmental variable.
 - [OPSIN][3]. Just download it and:
   - Put OPSIN JAR file to directory accesible from `PATH` and rename it to `opsin.jar`.
-  - Also put there [this bash script](https://github.com/gorgitko/molminer/blob/master/scripts/opsin). It's used for running ChemSpot. All arguments are forwarded to OPSIN CLI.
+  - Also put there [this bash script](https://github.com/gorgitko/molminer/blob/master/scripts/opsin). It's used for running OPSIN. All arguments are forwarded to OPSIN CLI.
 - [GraphicsMagick][4]. OSRA needs it for compilation, but it's binary is also directly used by MolMiner. Compile it with as many supported image formats as possible ([dependencies](http://wiki.octave.org/GraphicsMagick#Main_dependencies).
 - [Tesseract][5]. OSRA needs it for compilation, but it's binary is also directly used by MolMiner. Use version 4 and up.
   - Tesseract needs language data files. Download them [here](https://github.com/tesseract-ocr/tessdata), put them to some directory and this directory to `TESSDATA_PREFIX` environmental variable.
