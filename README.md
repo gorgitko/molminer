@@ -108,7 +108,12 @@ pprint(extracted)
 ```
 
 # Notes
-- ChemSpot itself is very memory-consuming so dictionary and ID lookup is disabled by default. Only CRF, OpenNLP sentence and multiclass models will be used by default. Maximum memory used by Java process is set to 8 GB by default. It is strongly recommended to use swap file on SSD disk when available memory is under 8 GB (see https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04 for more details). If you want to use dictionary and ID lookop in ChemSpot, pass `--chs-dict dict.zip` and `--chs-ids ids.zip` options. If you are using MolMiner library, pass `path_to_dict="dict.zip"` and `path_to_ids="ids.zip"` to ChemSpot class constructor.
+- ChemSpot itself is very memory-consuming so dictionary and ID lookup is disabled by default. Only CRF, OpenNLP sentence and multiclass models will be used by default. Maximum memory used by Java process is set to 8 GB by default. It is strongly recommended to use swap file on SSD disk when available memory is under 8 GB (see https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04 for more details). If you want to use dictionary and ID lookup in ChemSpot, pass `--chs-dict dict.zip` and `--chs-ids ids.zip` options. If you are using MolMiner library, pass `path_to_dict="dict.zip"` and `path_to_ids="ids.zip"` to ChemSpot class constructor.
+- Unfortunately, there wasn't enough time to write unit tests. I hope I will find time in future to do it.
+- We also wanted to test MolMiner's quality. That means mainly the completeness of extraction and ratio of false positives. Unfortunately, there aren't complex test data which will cover both textual and 2D structure chemical entities. We don't have enough time to prepare such a complex dataset manually, so for now you can separately look at [ChemSpot][1] and [OSRA](https://sourceforge.net/p/osra/wiki/Validation/) test results.
+
+# Support
+Feel free to open issue ticket. This is the prefered way since we don't have mailing list.
 
 # Acknowledgement
 MolMiner was the job description of my diploma thesis at [University of chemical technology in Prague](http://www.vscht.cz/?jazyk=en), [Laboratory of chemistry and informatics](http://ich.vscht.cz/). I would like to thank my supervisor Daniel Svozil for leading the work and Martin Sicho for helping me with conda distribution of MolMiner.
