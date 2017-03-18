@@ -1,8 +1,8 @@
 __pycache__/
 tests/
 *egg-info/
-build/
-dist/
+/build/
+/dist/
 molminer/__pycache__/
 molminer/temp/
 molminer/testdata/
