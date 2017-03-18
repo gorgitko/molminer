@@ -193,6 +193,8 @@ class ChemSpot(AbstractLinker):
                 input_text: str = "",
                 input_file: str = "",
                 output_file: str = "",
+                output_file_sdf: str = "",
+                sdf_append: bool = False,
                 input_type: str = "",
                 lang: str = "eng",
                 paged_text: bool = False,
@@ -221,6 +223,10 @@ class ChemSpot(AbstractLinker):
             Path to file to be processed by ChemSpot.
         output_file : str
             File to write output in.
+        output_file_sdf : str
+            File to write SDF output in. SDF is from OPSIN converted entities.
+        sdf_append : bool
+            If True, append new molecules to existing SDF file or create new one if doesn't exist. SDF is from OPSIN converted entities.
         input_type : str
             When empty, input (MIME) type will be determined from magic bytes.
             Or you can specify "pdf", "pdf_scan", "image" or "text" and magic bytes check will be skipped.
@@ -399,7 +405,8 @@ class ChemSpot(AbstractLinker):
                 if to_convert:
                     opsin = OPSIN(verbosity=self.verbosity)
                     opsin_converted = opsin.process(input=to_convert, output_formats=["smiles", "inchi", "inchikey"],
-                                                    standardize_mols=standardize_mols)
+                                                    standardize_mols=standardize_mols, output_file_sdf=output_file_sdf,
+                                                    sdf_append=sdf_append)
                     opsin_converted = iter(opsin_converted["content"])
                 else:
                     self.logger.info("Nothing to convert with OPSIN.")
