@@ -65,11 +65,12 @@ To each command you can view its options with `$ molminer COMMAND --help`
 ## Output
 - Result is a CSV file. Defaultly, MolMiner will write result to stdout. If you want to write result to file, use `-o <file>` option. To change CSV file delimiter use `-d <delimiter>` option.
 - Chemical entities, which were successfully converted to computer-readable format, can be also written to SDF file by specifying `--sdf-output <file>` option. If you don't want to create new SDF file and just append to it, use `--sdf-append` flag.
+- When using `extract` command, you can also output CSV files separately from OSRA, ChemSpot and OPSIN by using the `--separated-output` flag.
 
 ## Defaultly enabled features
 By default, these features are enabled:
 - Conversion of PDF files to temporary PNG images using GraphicsMagick (GM). OSRA itself can handle PDF files, but using this is more reliable, because OSRA (v2.1.0) is showing wrong information when converting directly from PDF (namely: coordinates, bond length and possibly more ones) and also there are sometimes incorrectly recognised structures. Also it seems that this is sometimes a little bit faster (internally each temporary image is processed in parallel and results are then joined). Use `--no-use-gm` flag to disable it.
-- Standardization of chemical entities converted to computer-readable format. See [MolVS documentation](http://molvs.readthedocs.io/en/latest/guide/standardize.html) for explanation.
+- Standardization of chemical entities converted to computer-readable format. See [MolVS documentation](http://molvs.readthedocs.io/en/latest/guide/standardize.html) for explanation. Use `--no-standardization` flag to disable it.
 - Annotation of chemical entities in PubChem and ChemSpider. This will try to assign compound IDs by searching separately with different identifiers (entity name, SMILES etc.). If single result is found by searching with entity name, missing indentifiers are added. InChI-key is preffered in searching. To annotate using ChemSpider you need ChemSpider API token. You can get it by signing up on their [website](http://www.chemspider.com/). Then provide this token with `--chemspider-token <token>` option.
 - Normalization of text. This is strongly recommended to keep as is, because sometimes is ChemSpot producing weird and unparsable results. Use `--no-normalize-text` flag to disable it.
 - Parallel processing will use all available cores. Use `-j <#cores>` option to change it. '-1' to use all CPU cores. '-2' to use all CPU cores minus one.
