@@ -3,3 +3,7 @@ tests/
 *egg-info/
 build/
 dist/
+molminer/__pycache__/
+molminer/temp/
+molminer/testdata/
+molminer/test_*
