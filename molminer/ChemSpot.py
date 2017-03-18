@@ -406,7 +406,7 @@ class ChemSpot(AbstractLinker):
                     opsin = OPSIN(verbosity=self.verbosity)
                     opsin_converted = opsin.process(input=to_convert, output_formats=["smiles", "inchi", "inchikey"],
                                                     standardize_mols=standardize_mols, output_file_sdf=output_file_sdf,
-                                                    sdf)
+                                                    sdf_append=sdf_append)
                     opsin_converted = iter(opsin_converted["content"])
                 else:
                     self.logger.info("Nothing to convert with OPSIN.")
