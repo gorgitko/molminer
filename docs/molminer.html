@@ -1,0 +1,1513 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>molminer package &mdash; MolMiner 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+    <link rel="canonical" href="http://domain.tld/latest/docs/molminer.html"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="MolMiner 1.0.0 documentation" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> MolMiner
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">molminer package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-molminer.AbstractLinker">molminer.AbstractLinker module</a></li>
+<li><a class="reference internal" href="#module-molminer.ChemSpot">molminer.ChemSpot module</a></li>
+<li><a class="reference internal" href="#module-molminer.Extractor">molminer.Extractor module</a></li>
+<li><a class="reference internal" href="#module-molminer.OPSIN">molminer.OPSIN module</a></li>
+<li><a class="reference internal" href="#module-molminer.OSRA">molminer.OSRA module</a></li>
+<li><a class="reference internal" href="#module-molminer.cli">molminer.cli module</a></li>
+<li><a class="reference internal" href="#module-molminer.normalize">molminer.normalize module</a><ul>
+<li><a class="reference internal" href="#chemdataextractor-text-normalize">chemdataextractor.text.normalize</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-molminer.utils">molminer.utils module</a></li>
+<li><a class="reference internal" href="#module-molminer">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MolMiner</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>molminer package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/molminer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="molminer-package">
+<h1>molminer package<a class="headerlink" href="#molminer-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-molminer.AbstractLinker">
+<span id="molminer-abstractlinker-module"></span><h2>molminer.AbstractLinker module<a class="headerlink" href="#module-molminer.AbstractLinker" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="molminer.AbstractLinker.AbstractLinker">
+<em class="property">class </em><code class="descclassname">molminer.AbstractLinker.</code><code class="descname">AbstractLinker</code><a class="headerlink" href="#molminer.AbstractLinker.AbstractLinker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">abc.ABC</span></code></p>
+<p>Act as a linker between Python and command-line interface of various SW.</p>
+<dl class="attribute">
+<dt id="molminer.AbstractLinker.AbstractLinker._OPTIONS_REAL">
+<code class="descname">_OPTIONS_REAL</code><a class="headerlink" href="#molminer.AbstractLinker.AbstractLinker._OPTIONS_REAL" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> &#8211; Internal dict which maps the passed options to real SW command-line arguments.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.AbstractLinker.AbstractLinker.options">
+<code class="descname">options</code><a class="headerlink" href="#molminer.AbstractLinker.AbstractLinker.options" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> &#8211; Dict of SW&#8217;s command-line parameters.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.AbstractLinker.AbstractLinker.options_internal">
+<code class="descname">options_internal</code><a class="headerlink" href="#molminer.AbstractLinker.AbstractLinker.options_internal" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> &#8211; Dict of internal options.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="molminer.AbstractLinker.AbstractLinker.process">
+<code class="descname">process</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#molminer.AbstractLinker.AbstractLinker.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process the input file with SW.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="molminer.AbstractLinker.AbstractLinker.build_commands">
+<code class="descname">build_commands</code><span class="sig-paren">(</span><em>options</em>, <em>_OPTIONS_REAL</em>, <em>path_to_sw</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.AbstractLinker.AbstractLinker.build_commands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the internal parameters to real SW&#8217;s command-line parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="molminer.AbstractLinker.AbstractLinker.help">
+<code class="descname">help</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#molminer.AbstractLinker.AbstractLinker.help" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return SW&#8217;s help.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt>
+<em class="property">static </em><code class="descname">build_commands</code><span class="sig-paren">(</span><em>options: dict</em>, <em>options_real: dict</em>, <em>path_to_sw: str</em><span class="sig-paren">)</span> &#x2192; list</dt>
+<dd><p>Convert the internal parameters to real SW&#8217;s command-line parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>options</strong> (<em>dict</em>) &#8211; Options to build commands from.</li>
+<li><strong>options_real</strong> (<em>dict</em>) &#8211; Dict which maps internal parameters to real SW&#8217;s ones.</li>
+<li><strong>path_to_sw</strong> (<em>str</em>) &#8211; Path to SW&#8217;s binary.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List of commands for calling the subprocess, dict of parameters, dict of internal parameters.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(list, dict, dict)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">help</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str</dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">SW&#8217;s help message.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">process</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span> &#x2192; &lt;function namedtuple at 0x7f5c4f92d9d8&gt;</dt>
+<dd><p>Process the input with given SW.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>kwargs</strong> &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">OrderedDict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="molminer.AbstractLinker.AbstractLinker.set_options">
+<code class="descname">set_options</code><span class="sig-paren">(</span><em>options: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.AbstractLinker.AbstractLinker.set_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the options passed in dict. Keys are the same as optional parameters in child&#8217;s constructor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>options</strong> &#8211; Dict of new options.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-molminer.ChemSpot">
+<span id="molminer-chemspot-module"></span><h2>molminer.ChemSpot module<a class="headerlink" href="#module-molminer.ChemSpot" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="molminer.ChemSpot.ChemSpot">
+<em class="property">class </em><code class="descclassname">molminer.ChemSpot.</code><code class="descname">ChemSpot</code><span class="sig-paren">(</span><em>path_to_binary: str = 'chemspot'</em>, <em>path_to_crf: str = ''</em>, <em>path_to_nlp: str = ''</em>, <em>path_to_dict: str = ''</em>, <em>path_to_ids: str = ''</em>, <em>path_to_multiclass: str = 'multiclass.bin'</em>, <em>tessdata_path: str = ''</em>, <em>max_memory: int = 8</em>, <em>verbosity: int = 1</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.ChemSpot.ChemSpot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#molminer.AbstractLinker.AbstractLinker" title="molminer.AbstractLinker.AbstractLinker"><code class="xref py py-class docutils literal"><span class="pre">molminer.AbstractLinker.AbstractLinker</span></code></a></p>
+<p>Represents the ChemSpot software and acts as a linker between Python and command-line interface of ChemSpot.
+ChemSpot version: 2.0</p>
+<p>ChemSpot is a software for chemical Named Entity Recognition. It assigns to each chemical entity one of this classes:</p>
+<p>&#8220;SYSTEMATIC&#8221;, &#8220;IDENTIFIER&#8221;, &#8220;FORMULA&#8221;, &#8220;TRIVIAL&#8221;, &#8220;ABBREVIATION&#8221;, &#8220;FAMILY&#8221;, &#8220;MULTIPLE&#8221;</p>
+<p>More information here: <a class="reference external" href="https://www.informatik.hu-berlin.de/de/forschung/gebiete/wbi/resources/chemspot/chemspot">https://www.informatik.hu-berlin.de/de/forschung/gebiete/wbi/resources/chemspot/chemspot</a></p>
+<p>ChemSpot is very memory-consuming so dictionary and ID lookup is disabled by default. Only CRF, OpenNLP sentence and
+multiclass models will be used by default.
+Maximum memory used by Java process is set to 8 GB by default. It is strongly recommended to use swap file on SSD disk when
+available memory is under 8 GB (see <a class="reference external" href="https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04</a> for more details).</p>
+<p><strong>To show the meaning of options:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">chemspot</span> <span class="o">=</span> <span class="n">ChemSpot</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">chemspot</span><span class="o">.</span><span class="n">help</span><span class="p">())</span>  <span class="c1"># this will show the output of &quot;$ chemspot -h&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">chemspot</span><span class="o">.</span><span class="n">_OPTIONS_REAL</span><span class="p">)</span>  <span class="c1"># this will show the mapping between ChemSpot class and real ChemSpot parameters</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="molminer.ChemSpot.ChemSpot._OPTIONS_REAL">
+<code class="descname">_OPTIONS_REAL</code><a class="headerlink" href="#molminer.ChemSpot.ChemSpot._OPTIONS_REAL" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> &#8211; Internal dict which maps the passed options to real ChemSpot command-line arguments. Static attribute.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.ChemSpot.ChemSpot.options">
+<code class="descname">options</code><a class="headerlink" href="#molminer.ChemSpot.ChemSpot.options" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> &#8211; Get or set options.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.ChemSpot.ChemSpot.options_internal">
+<code class="descname">options_internal</code><a class="headerlink" href="#molminer.ChemSpot.ChemSpot.options_internal" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> &#8211; Return dict with options having internal names.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.ChemSpot.ChemSpot.path_to_binary">
+<code class="descname">path_to_binary</code><a class="headerlink" href="#molminer.ChemSpot.ChemSpot.path_to_binary" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> &#8211; Path to ChemSpot binary.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="molminer.ChemSpot.ChemSpot.process">
+<code class="descname">process</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#molminer.ChemSpot.ChemSpot.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process the input file with ChemSpot.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="molminer.ChemSpot.ChemSpot.help">
+<code class="descname">help</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#molminer.ChemSpot.ChemSpot.help" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return ChemSpot help message.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.ChemSpot.ChemSpot.RE_CHARGE">
+<code class="descname">RE_CHARGE</code><em class="property"> = re.compile('(?P&lt;roman&gt;i+|I+)|(?P&lt;digit&gt;\\d+)|(?P&lt;signs&gt;^\\++|-+$)')</em><a class="headerlink" href="#molminer.ChemSpot.ChemSpot.RE_CHARGE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.ChemSpot.ChemSpot.RE_ION">
+<code class="descname">RE_ION</code><em class="property"> = re.compile('^\\s*(?P&lt;ion&gt;[A-Z][a-z]?)\\s*\\((?P&lt;charge&gt;-?\\+?i+\\+?-?|-?\\+?I+\\+?-?|\\d+\\+|\\d+-|\\+\\d+|-\\d+|\\++|-+)\\)\\s*$')</em><a class="headerlink" href="#molminer.ChemSpot.ChemSpot.RE_ION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">help</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str</dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">ChemSpot help message.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.ChemSpot.ChemSpot.logger">
+<code class="descname">logger</code><em class="property"> = &lt;logging.Logger object&gt;</em><a class="headerlink" href="#molminer.ChemSpot.ChemSpot.logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="molminer.ChemSpot.ChemSpot.normalize_text">
+<em class="property">static </em><code class="descname">normalize_text</code><span class="sig-paren">(</span><em>input_file_path: str = ''</em>, <em>text: str = ''</em>, <em>output_file_path: str = ''</em>, <em>encoding: str = 'utf-8'</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#molminer.ChemSpot.ChemSpot.normalize_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalize the text. Operations:</p>
+<blockquote>
+<div><ul class="simple">
+<li>remove numbers of entities which points somewhere in the text, e.g. &#8220;N-octyl- (2b)&#8221; -&gt; &#8220;N-octyl-&#8220;</li>
+<li>replace &#8220;-n &#8221; with &#8220;&#8221;</li>
+</ul>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>input_file_path</strong> (<em>str</em>) &#8211; </li>
+<li><strong>text</strong> (<em>str</em>) &#8211; </li>
+<li><strong>output_file_path</strong> (<em>str</em>) &#8211; </li>
+<li><strong>encoding</strong> (<em>str</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Normalized text.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>One of <cite>input_file_path</cite> or <cite>text</cite> parameters must be set.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="molminer.ChemSpot.ChemSpot.parse_chemspot">
+<em class="property">static </em><code class="descname">parse_chemspot</code><span class="sig-paren">(</span><em>file_path: str = ''</em>, <em>text: str = ''</em>, <em>encoding: str = 'utf-8'</em><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#molminer.ChemSpot.ChemSpot.parse_chemspot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the output from ChemSpot.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>file_path</strong> (<em>str</em>) &#8211; Path to file.</li>
+<li><strong>text</strong> (<em>str</em>) &#8211; Text to normalize.</li>
+<li><strong>encoding</strong> (<em>str</em>) &#8211; File encoding.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><div class="line-block">
+<div class="line">List of lists. Each sublist is one row from input file and contains:</div>
+<div class="line">start position, end position, name of entity, type</div>
+<div class="line">Type means a type of detected entity, e.g. SYSTEMATIC, FAMILY etc.</div>
+</div>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="molminer.ChemSpot.ChemSpot.parse_chemspot_iob">
+<em class="property">static </em><code class="descname">parse_chemspot_iob</code><span class="sig-paren">(</span><em>file_path: str = ''</em>, <em>text: str = ''</em>, <em>encoding: str = 'utf-8'</em><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#molminer.ChemSpot.ChemSpot.parse_chemspot_iob" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">process</code><span class="sig-paren">(</span><em>input_text: str = ''</em>, <em>input_file: str = ''</em>, <em>output_file: str = ''</em>, <em>output_file_sdf: str = ''</em>, <em>sdf_append: bool = False</em>, <em>input_type: str = ''</em>, <em>lang: str = 'eng'</em>, <em>paged_text: bool = False</em>, <em>format_output: bool = True</em>, <em>opsin_types: list = None</em>, <em>standardize_mols: bool = True</em>, <em>convert_ions: bool = True</em>, <em>write_header: bool = True</em>, <em>iob_format: bool = False</em>, <em>dry_run: bool = False</em>, <em>csv_delimiter: str = ';'</em>, <em>normalize_text: bool = True</em>, <em>remove_duplicates: bool = False</em>, <em>annotate: bool = True</em>, <em>annotation_sleep: int = 2</em>, <em>chemspider_token: str = ''</em><span class="sig-paren">)</span> &#x2192; collections.OrderedDict</dt>
+<dd><p>Process the input file with ChemSpot.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>input_text</strong> (<em>str</em>) &#8211; String to be processed by ChemSpot.</li>
+<li><strong>input_file</strong> (<em>str</em>) &#8211; Path to file to be processed by ChemSpot.</li>
+<li><strong>output_file</strong> (<em>str</em>) &#8211; File to write output in.</li>
+<li><strong>output_file_sdf</strong> (<em>str</em>) &#8211; File to write SDF output in. SDF is from OPSIN converted entities.</li>
+<li><strong>sdf_append</strong> (<em>bool</em>) &#8211; If True, append new molecules to existing SDF file or create new one if doesn&#8217;t exist. SDF is from OPSIN converted entities.</li>
+<li><strong>input_type</strong> (<em>str</em>) &#8211; <div class="line-block">
+<div class="line">When empty, input (MIME) type will be determined from magic bytes.</div>
+<div class="line">Or you can specify &#8220;pdf&#8221;, &#8220;pdf_scan&#8221;, &#8220;image&#8221; or &#8220;text&#8221; and magic bytes check will be skipped.</div>
+</div>
+</li>
+<li><strong>lang</strong> (<em>str</em>) &#8211; <div class="line-block">
+<div class="line">Language which will Tesseract use for OCR. Available languages: <a class="reference external" href="https://github.com/tesseract-ocr/tessdata">https://github.com/tesseract-ocr/tessdata</a></div>
+<div class="line">Multiple languages can be specified with &#8220;+&#8221; character, i.e. &#8220;eng+bul+fra&#8221;.</div>
+</div>
+</li>
+<li><strong>paged_text</strong> (<em>bool</em>) &#8211; If True and <cite>input_type</cite> is &#8220;text&#8221; or <cite>input_text</cite> is provided, try to assign pages to chemical entities.
+ASCII control character 12 (Form Feed, &#8216;f&#8217;) is expected between pages.</li>
+<li><strong>format_output</strong> (<em>bool</em>) &#8211; <div class="line-block">
+<div class="line">If True, the value of &#8220;content&#8221; key of returned dict will be list of OrderedDicts.</div>
+<div class="line">If True and <cite>output_file</cite> is set, the CSV file will be written.</div>
+<div class="line">If False, the value of &#8220;content&#8221; key of returned dict will be None.</div>
+</div>
+</li>
+<li><strong>opsin_types</strong> (<em>list</em>) &#8211; <div class="line-block">
+<div class="line">List of ChemSpot entity types. Entities of types in this list will be converted with OPSIN. If you don&#8217;t want
+to convert entities, pass empty list.</div>
+<div class="line">OPSIN is designed to convert IUPAC names to linear notation (SMILES etc.) so default value of <cite>opsin_types</cite>
+is [&#8220;SYSTEMATIC&#8221;] (these should be only IUPAC names).</div>
+<div class="line">ChemSpot entity types: &#8220;SYSTEMATIC&#8221;, &#8220;IDENTIFIER&#8221;, &#8220;FORMULA&#8221;, &#8220;TRIVIAL&#8221;, &#8220;ABBREVIATION&#8221;, &#8220;FAMILY&#8221;, &#8220;MULTIPLE&#8221;</div>
+</div>
+</li>
+<li><strong>standardize_mols</strong> (<em>bool</em>) &#8211; If True, use molvs (<a class="reference external" href="https://github.com/mcs07/MolVS">https://github.com/mcs07/MolVS</a>) to standardize molecules converted by OPSIN.</li>
+<li><strong>convert_ions</strong> (<em>bool</em>) &#8211; If True, try to convert ion entities (e.g. &#8220;Ni(II)&#8221;) to SMILES. Entities matching ion regex won&#8217;t be converted
+with OPSIN.</li>
+<li><strong>write_header</strong> (<em>bool</em>) &#8211; If True and if <cite>output_file</cite> is set and <cite>output_format</cite> is True, write a CSV write_header:
+&#8220;smiles&#8221;, &#8220;bond_length&#8221;, &#8220;resolution&#8221;, &#8220;confidence&#8221;, &#8220;learn&#8221;, &#8220;page&#8221;, &#8220;coordinates&#8221;</li>
+<li><strong>iob_format</strong> (<em>bool</em>) &#8211; If True, output will be in IOB format.</li>
+<li><strong>dry_run</strong> (<em>bool</em>) &#8211; If True, only return list of commands to be called by subprocess.</li>
+<li><strong>csv_delimiter</strong> (<em>str</em>) &#8211; Delimiter for output CSV file.</li>
+<li><strong>normalize_text</strong> (<em>bool</em>) &#8211; If True, normalize text before performing NER. It is strongly recommended to do so, because without normalization
+can ChemSpot produce unpredictable results which cannot be parsed.</li>
+<li><strong>remove_duplicates</strong> (<em>bool</em>) &#8211; If True, remove duplicated chemical entities. Note that some entities-compounds can have different names, but
+same notation (SMILES, InChI etc.). This will only remove entities with same names. Not applicable for IOB format.</li>
+<li><strong>annotate</strong> (<em>bool</em>) &#8211; <div class="line-block">
+<div class="line">If True, try to annotate entities in PubChem and ChemSpider. Compound IDs will be assigned by searching with
+each identifier, separately for entity name, SMILES etc.</div>
+<div class="line">If entity has InChI key yet, prefer it in searching.</div>
+<div class="line">If &#8220;*&#8221; is present in SMILES, skip annotation.</div>
+<div class="line">If textual entity has single result in DB when searched by name, fill in missing identifiers (SMILES etc.).</div>
+</div>
+</li>
+<li><strong>annotation_sleep</strong> (<em>int</em>) &#8211; How many seconds to sleep between annotation of each entity. It&#8217;s for preventing overloading of databases.</li>
+<li><strong>chemspider_token</strong> (<em>str</em>) &#8211; Your personal token for accessing the ChemSpider API (needed for annotation). Make account there to obtain it.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>Keys</p>
+<ul class="simple">
+<li>stdout: str ... standard output from ChemSpot</li>
+<li>stderr: str ... standard error output from ChemSpot</li>
+<li>exit_code: int ... exit code from ChemSpot</li>
+<li>content<ul>
+<li>list of OrderedDicts ... when <cite>format_output</cite> is True</li>
+<li>None ... when <cite>format_output</cite> is False</li>
+</ul>
+</li>
+<li>normalized_text : str</li>
+</ul>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="molminer.ChemSpot.ChemSpot.set_options">
+<code class="descname">set_options</code><span class="sig-paren">(</span><em>options: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.ChemSpot.ChemSpot.set_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the options passed in dict. Keys are the same as optional parameters in ChemSpot constructor (__init__()).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>options</strong> &#8211; Dict of new options.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="molminer.ChemSpot.ChemSpot.version">
+<em class="property">static </em><code class="descname">version</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#molminer.ChemSpot.ChemSpot.version" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">ChemSpot version.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-molminer.Extractor">
+<span id="molminer-extractor-module"></span><h2>molminer.Extractor module<a class="headerlink" href="#module-molminer.Extractor" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="molminer.Extractor.Extractor">
+<em class="property">class </em><code class="descclassname">molminer.Extractor.</code><code class="descname">Extractor</code><span class="sig-paren">(</span><em>opsin_options: dict = {'allow_acids_without_acid': True</em>, <em>'allow_uninterpretable_stereo': True</em>, <em>'allow_radicals': True</em>, <em>'detailed_failure_analysis': True</em>, <em>'wildcard_radicals': False}</em>, <em>osra_options: dict = {'gray_threshold': 0.0</em>, <em>'jaggy': False</em>, <em>'adaptive': False</em>, <em>'resolution': 0</em>, <em>'size': ''</em>, <em>'spelling_config_path': ''</em>, <em>'negate': False</em>, <em>'rotate': 0</em>, <em>'superatom_config_path': ''</em>, <em>'unpaper': 0}</em>, <em>chemspot_options: dict = {'max_memory': 8</em>, <em>'path_to_nlp': ''</em>, <em>'path_to_ids': &quot;''&quot;</em>, <em>'path_to_multiclass': 'multiclass.bin'</em>, <em>'path_to_dict': &quot;''&quot;</em>, <em>'path_to_crf': ''}</em>, <em>tessdata_path: str = ''</em>, <em>verbosity: int = 1</em>, <em>verbosity_classes: int = 1</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.Extractor.Extractor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Combines the OSRA, ChemSpot and OPSIN to extract chemical entities from article. These include 2D structures converted
+to linear notation and compounds found in text. Entities are converted to linear notation (SMILES etc.) with OPSIN
+(defaultly only IUPAC ones).</p>
+<dl class="method">
+<dt id="molminer.Extractor.Extractor.process">
+<code class="descname">process</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#molminer.Extractor.Extractor.process" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.Extractor.Extractor.chemspot_default_options">
+<code class="descname">chemspot_default_options</code><em class="property"> = {'max_memory': 8, 'path_to_nlp': '', 'path_to_ids': &quot;''&quot;, 'path_to_multiclass': 'multiclass.bin', 'path_to_dict': &quot;''&quot;, 'path_to_crf': ''}</em><a class="headerlink" href="#molminer.Extractor.Extractor.chemspot_default_options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.Extractor.Extractor.logger">
+<code class="descname">logger</code><em class="property"> = &lt;logging.Logger object&gt;</em><a class="headerlink" href="#molminer.Extractor.Extractor.logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.Extractor.Extractor.opsin_default_options">
+<code class="descname">opsin_default_options</code><em class="property"> = {'allow_acids_without_acid': True, 'allow_uninterpretable_stereo': True, 'allow_radicals': True, 'detailed_failure_analysis': True, 'wildcard_radicals': False}</em><a class="headerlink" href="#molminer.Extractor.Extractor.opsin_default_options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.Extractor.Extractor.osra_default_options">
+<code class="descname">osra_default_options</code><em class="property"> = {'gray_threshold': 0.0, 'jaggy': False, 'adaptive': False, 'resolution': 0, 'size': '', 'spelling_config_path': '', 'negate': False, 'rotate': 0, 'superatom_config_path': '', 'unpaper': 0}</em><a class="headerlink" href="#molminer.Extractor.Extractor.osra_default_options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">process</code><span class="sig-paren">(</span><em>input_file: str</em>, <em>output_file: str = ''</em>, <em>output_file_sdf: str = ''</em>, <em>sdf_append: bool = False</em>, <em>write_header: bool = True</em>, <em>separated_output: bool = False</em>, <em>input_type: str = ''</em>, <em>lang: str = 'eng'</em>, <em>use_gm: bool = True</em>, <em>n_jobs: int = -1</em>, <em>opsin_types: list = None</em>, <em>convert_ions: bool = True</em>, <em>standardize_mols: bool = True</em>, <em>remove_entity_duplicates: bool = False</em>, <em>csv_delimiter: str = ';'</em>, <em>annotate: bool = True</em>, <em>annotation_sleep: int = 2</em>, <em>chemspider_token: str = ''</em><span class="sig-paren">)</span> &#x2192; list</dt>
+<dd><p>Process the input file with OSRA and ChemSpot. IUPAC entities found by ChemSpot are converted by OPSIN to linear
+notation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>input_file</strong> (<em>str</em>) &#8211; </li>
+<li><strong>output_file</strong> (<em>str</em>) &#8211; File to write output in.</li>
+<li><strong>output_file_sdf</strong> (<em>str</em>) &#8211; File to write SDF output in. This will write SDF file separately from OSRA and OPSIN, with &#8220;-osra.sdf&#8221; and
+&#8220;-opsin.sdf&#8221; suffixes.</li>
+<li><strong>sdf_append</strong> (<em>bool</em>) &#8211; If True, append new molecules to existing SDF file or create new one if doesn&#8217;t exist.</li>
+<li><strong>write_header</strong> (<em>bool</em>) &#8211; If True and if <cite>output_file</cite> is set and <cite>output_format</cite> is True, write a CSV write_header.</li>
+<li><strong>separated_output</strong> (<em>bool</em>) &#8211; If True, return OrderedDicts from each of OSRA, ChemSpot and OPSIN process methods.
+If True and <cite>output_file</cite> is set, two separated CSV files will be written with suffixes &#8221;.ocsr&#8221;, &#8221;.ner&#8221; and &#8221;.opsin&#8221;.</li>
+<li><strong>input_type</strong> (<em>str</em>) &#8211; Type of input file. Values: &#8220;pdf&#8221;, &#8220;pdf_scan&#8221;, &#8220;image&#8221;
+If &#8220;pdf&#8221;, embedded text will be extracted by Poppler utils (pdftotext).
+If &#8220;pdf_scan&#8221;, PDF will be converted to images and text extracted by OCR (Tesseract).
+If &#8220;image&#8221;, text will be extracted by OCR (Tesseract).
+If empty, input (MIME) type will be determined from magic bytes. Note that &#8220;pdf_scan&#8221; cannot be determined
+from magic bytes, because it looks like a normal PDF.</li>
+<li><strong>lang</strong> (<em>str</em>) &#8211; Language which will Tesseract use for OCR. Available languages: <a class="reference external" href="https://github.com/tesseract-ocr/tessdata">https://github.com/tesseract-ocr/tessdata</a>
+Multiple languages can be specified with &#8220;+&#8221; character, i.e. &#8220;eng+bul+fra&#8221;.</li>
+<li><strong>use_gm</strong> (<em>bool</em>) &#8211; If True, use GraphicsMagick to convert PDF to images and then process each image with OSRA.
+OSRA itself can handle PDF files, but some additional information is then
+invalid and also some structures are wrongly recognised.</li>
+<li><strong>n_jobs</strong> (<em>int</em>) &#8211; Number of jobs for parallel processing with OSRA.
+If -1 all CPUs are used.
+If 1 is given, no parallel computing code is used at all, which is useful for debugging.
+For n_jobs below -1, (n_cpus + 1 + n_jobs) are used. Thus for n_jobs = -2, all CPUs but one are used.</li>
+<li><strong>opsin_types</strong> (<em>list</em>) &#8211; List of ChemSpot entity types. Entities of types in this list will be converted with OPSIN.
+OPSIN is designed to convert IUPAC names to linear notation (SMILES etc.) so default value of <cite>opsin_types</cite>
+is [&#8220;SYSTEMATIC&#8221;] (these should be only IUPAC names).
+ChemSpot entity types: &#8220;SYSTEMATIC&#8221;, &#8220;IDENTIFIER&#8221;, &#8220;FORMULA&#8221;, &#8220;TRIVIAL&#8221;, &#8220;ABBREVIATION&#8221;, &#8220;FAMILY&#8221;, &#8220;MULTIPLE&#8221;</li>
+<li><strong>convert_ions</strong> (<em>bool</em>) &#8211; If True, try to convert ion entities (e.g. &#8220;Ni(II)&#8221;) to SMILES. Entities matching ion regex won&#8217;t be converted
+with OPSIN.</li>
+<li><strong>standardize_mols</strong> (<em>bool</em>) &#8211; If True, use molvs (<a class="reference external" href="https://github.com/mcs07/MolVS">https://github.com/mcs07/MolVS</a>) to standardize molecules.</li>
+<li><strong>remove_entity_duplicates</strong> (<em>bool</em>) &#8211; If True, remove duplicated chemical entities. Note that some entities-compounds can have different names, but
+same notation (SMILES, InChI etc.). This will only remove entities with same names.</li>
+<li><strong>csv_delimiter</strong> (<em>str</em>) &#8211; Delimiter for output CSV file.</li>
+<li><strong>annotate</strong> (<em>bool</em>) &#8211; If True, try to annotate entities in PubChem and ChemSpider. Compound IDs will be assigned by searching with
+each identifier, separately for entity name, SMILES etc.
+If entity has InChI key yet, prefer it in searching.
+If &#8220;*&#8221; is present in SMILES, skip annotation.
+If textual entity has single result in DB when searched by name, fill in missing identifiers (SMILES etc.).</li>
+<li><strong>annotation_sleep</strong> (<em>int</em>) &#8211; How many seconds to sleep between annotation of each entity. It&#8217;s for preventing overloading of databases.</li>
+<li><strong>chemspider_token</strong> (<em>str</em>) &#8211; Your personal token for accessing the ChemSpider API (needed for annotation). Make account there to obtain it.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><em>list of OrderedDicts</em> &#8211; Keys: &#8220;source&#8221;, &#8220;type&#8221;, &#8220;page&#8221;, &#8220;abbreviation&#8221;, &#8220;entity&#8221;, &#8220;smiles&#8221;, &#8220;inchi&#8221;, &#8220;inchikey&#8221;</li>
+<li><em>OrderedDict, OrderedDict, OrderedDict</em> &#8211; From OSRA, ChemSpot and OPSIN if <cite>separated_output</cite> is True.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-molminer.OPSIN">
+<span id="molminer-opsin-module"></span><h2>molminer.OPSIN module<a class="headerlink" href="#module-molminer.OPSIN" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="molminer.OPSIN.OPSIN">
+<em class="property">class </em><code class="descclassname">molminer.OPSIN.</code><code class="descname">OPSIN</code><span class="sig-paren">(</span><em>path_to_binary: str = 'opsin'</em>, <em>allow_acids_without_acid: bool = True</em>, <em>detailed_failure_analysis: bool = True</em>, <em>output_format: str = 'smi'</em>, <em>allow_radicals: bool = True</em>, <em>allow_uninterpretable_stereo: bool = True</em>, <em>opsin_verbose: bool = False</em>, <em>wildcard_radicals: bool = False</em>, <em>plural_pattern: str = None</em>, <em>verbosity: int = 1</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.OPSIN.OPSIN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#molminer.AbstractLinker.AbstractLinker" title="molminer.AbstractLinker.AbstractLinker"><code class="xref py py-class docutils literal"><span class="pre">molminer.AbstractLinker.AbstractLinker</span></code></a></p>
+<p>Represents the OPSIN software and acts as a linker between Python and command-line interface of OPSIN.
+OPSIN version: 2.2.0</p>
+<p>OPSIN is a software for converting IUPAC names to linear notation (SMILES, InCHI etc.). It reads names from stdin
+or from input file where on each line is one IUPAC name.
+More information here: <a class="reference external" href="http://opsin.ch.cam.ac.uk/">http://opsin.ch.cam.ac.uk/</a></p>
+<p><strong>To show the meaning of options:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">opsin</span> <span class="o">=</span> <span class="n">OPSIN</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">opsin</span><span class="o">.</span><span class="n">help</span><span class="p">())</span>  <span class="c1"># this will show the output of &quot;$ opsin -h&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">opsin</span><span class="o">.</span><span class="n">_OPTIONS_REAL</span><span class="p">)</span>  <span class="c1"># this will show the mapping between OPSIN class and real OPSIN parameters</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="molminer.OPSIN.OPSIN._OPTIONS_REAL">
+<code class="descname">_OPTIONS_REAL</code><a class="headerlink" href="#molminer.OPSIN.OPSIN._OPTIONS_REAL" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> &#8211; Internal dict which maps the passed options to real OSRA command-line arguments.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.OPSIN.OPSIN.options">
+<code class="descname">options</code><a class="headerlink" href="#molminer.OPSIN.OPSIN.options" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> &#8211; Get or set options.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.OPSIN.OPSIN.options_internal">
+<code class="descname">options_internal</code><a class="headerlink" href="#molminer.OPSIN.OPSIN.options_internal" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> &#8211; Return dict with options having internal names.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.OPSIN.OPSIN.path_to_binary">
+<code class="descname">path_to_binary</code><a class="headerlink" href="#molminer.OPSIN.OPSIN.path_to_binary" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> &#8211; Path to OPSIN binary (JAR file).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="molminer.OPSIN.OPSIN.process">
+<code class="descname">process</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#molminer.OPSIN.OPSIN.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process the input file with OPSIN.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="molminer.OPSIN.OPSIN.help">
+<code class="descname">help</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#molminer.OPSIN.OPSIN.help" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return OPSINS help message.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.OPSIN.OPSIN.PLURAL_PATTERN">
+<code class="descname">PLURAL_PATTERN</code><em class="property"> = re.compile('(nitrate|bromide|chloride|iodide|amine|ketoxime|ketone|oxime)s', re.IGNORECASE)</em><a class="headerlink" href="#molminer.OPSIN.OPSIN.PLURAL_PATTERN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">help</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str</dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">OPSIN help message.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.OPSIN.OPSIN.logger">
+<code class="descname">logger</code><em class="property"> = &lt;logging.Logger object&gt;</em><a class="headerlink" href="#molminer.OPSIN.OPSIN.logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="molminer.OPSIN.OPSIN.normalize_iupac">
+<code class="descname">normalize_iupac</code><span class="sig-paren">(</span><em>iupac_names: typing.Union[str, list]</em><span class="sig-paren">)</span> &#x2192; typing.Union[str, list]<a class="headerlink" href="#molminer.OPSIN.OPSIN.normalize_iupac" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Normalize IUPAC names:</dt>
+<dd><ul class="first last simple">
+<li>remove plurals (&#8220;nitrates&#8221; -&gt; &#8220;nitrate&#8221;)</li>
+<li>first letter lowercase (&#8220;Ammonium Nitrate&#8221; -&gt; &#8220;ammonium nitrate&#8221;)</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>iupac_names</strong> (<em>str</em><em> or </em><em>list</em>) &#8211; If str, one IUPAC name per line.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str or list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">process</code><span class="sig-paren">(</span><em>input: typing.Union[str</em>, <em>list] = ''</em>, <em>input_file: str = ''</em>, <em>output_file: str = ''</em>, <em>output_file_sdf: str = ''</em>, <em>output_file_cml: str = ''</em>, <em>sdf_append: bool = False</em>, <em>format_output: bool = True</em>, <em>opsin_output_format: str = ''</em>, <em>output_formats: list = None</em>, <em>write_header: bool = True</em>, <em>dry_run: bool = False</em>, <em>csv_delimiter: str = ';'</em>, <em>standardize_mols: bool = True</em>, <em>normalize_plurals: bool = True</em><span class="sig-paren">)</span> &#x2192; collections.OrderedDict</dt>
+<dd><p>Process the input file with OPSIN.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>input</strong> (<em>str</em><em> or </em><em>list</em>) &#8211; str: String with IUPAC names, one per line.
+list: List of IUPAC names.</li>
+<li><strong>input_file</strong> (<em>str</em>) &#8211; Path to file to be processed by OPSIN. One IUPAC name per line.</li>
+<li><strong>output_file</strong> (<em>str</em>) &#8211; File to write output in.</li>
+<li><strong>output_file_sdf</strong> (<em>str</em>) &#8211; File to write SDF output in.</li>
+<li><strong>output_file_cml</strong> (<em>str</em>) &#8211; File to write CML (Chemical Markup Language) output in. <cite>opsin_output_format</cite> must be &#8220;cml&#8221;.
+Not supported by RDKit so standardization and conversion to other formats cannot be done.</li>
+<li><strong>sdf_append</strong> (<em>bool</em>) &#8211; If True, append new molecules to existing SDF file or create new one if doesn&#8217;t exist.</li>
+<li><strong>format_output</strong> (<em>bool</em>) &#8211; <dl class="docutils">
+<dt>If True, the value of &#8220;content&#8221; key of returned dict will be list of OrderedDicts with keys:</dt>
+<dd>&#8220;iupac&#8221;, &lt;output formats&gt;, ..., &#8220;error&#8221;</dd>
+</dl>
+<p>If True and <cite>output_file</cite> is set it will be created as CSV file with columns: &#8220;iupac&#8221;, &lt;output formats&gt;, ..., &#8220;error&#8221;
+If False, the value of &#8220;content&#8221; key of returned dict will be None.</p>
+</li>
+<li><strong>opsin_output_format</strong> (<em>str</em>) &#8211; Output format from OPSIN. Temporarily overrides the option <cite>output_format</cite> set during instantiation (in __init__).
+Choices: &#8220;cml&#8221;, &#8220;smi&#8221;, &#8220;extendedsmi&#8221;, &#8220;inchi&#8221;, &#8220;stdinchi&#8221;, &#8220;stdinchikey&#8221;</li>
+<li><strong>output_formats</strong> (<em>list</em>) &#8211; <p>If True and <cite>format_output</cite> is also True, this specifies which molecule formats will be output.
+You can specify more than one format, but only one format from OPSIN. This format must be also set with <cite>output_format</cite> in __init__
+or with <cite>osra_output_format</cite> here.</p>
+<blockquote>
+<div>&lt;Value&gt;                  &lt;Source&gt;               &lt;Note&gt;
+&#8220;smiles&#8221;                 RDKit                  canonical SMILES
+&#8220;smiles_opsin&#8221;           OPSIN (&#8220;smi&#8221;)          SMILES
+&#8220;smiles_extended_opsin&#8221;  OPSIN (&#8220;extendedsmi&#8221;)  Extended SMILES. Not supported by RDKit.
+&#8220;inchi&#8221;                  RDKit                  Not every molecule can be converted to InChI (it doesn`t support wildcard characters etc.)
+&#8220;inchi_opsin&#8221;            OPSIN (&#8220;inchi&#8221;)        InChI
+&#8220;stdinchi_opsin&#8221;         OPSIN (&#8220;stdinchi&#8221;)     standard InChI
+&#8220;inchikey&#8221;               RDKit                  The same applies as for &#8220;inchi&#8221;. Also molecule cannot be created from InChI-key.
+&#8220;stdinchikey_opsin&#8221;      OPSIN (&#8220;stdinchikey&#8221;)  Standard InChI-key. Cannot be used by RDKit to create molecule.
+&#8220;sdf&#8221;                    RDKit                  If present, an additional SDF file will be created.</div></blockquote>
+<p>Default value: [&#8220;smiles&#8221;]</p>
+</li>
+<li><strong>write_header</strong> (<em>bool</em>) &#8211; If True and if <cite>output_file</cite> is set and <cite>output_format</cite> is True, write a CSV write_header.</li>
+<li><strong>dry_run</strong> (<em>bool</em>) &#8211; If True, only return list of commands to be called by subprocess.</li>
+<li><strong>csv_delimiter</strong> (<em>str</em>) &#8211; Delimiter for output CSV file.</li>
+<li><strong>standardize_mols</strong> (<em>bool</em>) &#8211; If True and <cite>format_output</cite> is also True, use molvs (<a class="reference external" href="https://github.com/mcs07/MolVS">https://github.com/mcs07/MolVS</a>) to standardize molecules.</li>
+<li><strong>normalize_plurals</strong> (<em>bool</em>) &#8211; If True, normalize plurals (&#8220;nitrates&#8221; -&gt; &#8220;nitrate&#8221;). See OPSIN.PLURAL_PATTERNS for relating plurals. You can
+set your own regex pattern with <cite>plural_patterns</cite> in __init__.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
+<dt>Keys:</dt>
+<dd><p class="first">stdout: str ... standard output from OPSIN
+stderr: str ... standard error output from OPSIN
+exit_code: int ... exit code from OPSIN
+content:</p>
+<blockquote class="last">
+<div><p>list of OrderedDicts ... when format_output is True. Fields: &#8220;iupac&#8221;, &lt;output formats&gt;, ..., &#8220;error&#8221;
+None ... when format_output is False</p>
+</div></blockquote>
+</dd>
+</dl>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="molminer.OPSIN.OPSIN.set_options">
+<code class="descname">set_options</code><span class="sig-paren">(</span><em>options: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.OPSIN.OPSIN.set_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the options passed in dict. Keys are the same as optional parameters in OPSIN constructor (__init__()).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>options</strong> &#8211; Dict of new options.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-molminer.OSRA">
+<span id="molminer-osra-module"></span><h2>molminer.OSRA module<a class="headerlink" href="#module-molminer.OSRA" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="molminer.OSRA.OSRA">
+<em class="property">class </em><code class="descclassname">molminer.OSRA.</code><code class="descname">OSRA</code><span class="sig-paren">(</span><em>path_to_binary: str = 'osra'</em>, <em>size: str = ''</em>, <em>osra_verbose: bool = False</em>, <em>debug: bool = False</em>, <em>embedded_format: str = ''</em>, <em>output_format: str = 'can'</em>, <em>adaptive: bool = False</em>, <em>jaggy: bool = False</em>, <em>unpaper: int = 0</em>, <em>gray_threshold: float = 0.0</em>, <em>resolution: int = 300</em>, <em>negate: bool = False</em>, <em>rotate: int = 0</em>, <em>superatom_config_path: str = 'superatom.txt'</em>, <em>spelling_config_path: str = 'spelling.txt'</em>, <em>verbosity: int = 1</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.OSRA.OSRA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#molminer.AbstractLinker.AbstractLinker" title="molminer.AbstractLinker.AbstractLinker"><code class="xref py py-class docutils literal"><span class="pre">molminer.AbstractLinker.AbstractLinker</span></code></a></p>
+<p>Represents the OSRA software and acts as a linker between Python and command-line interface of OSRA.
+OSRA version: 2.1.0</p>
+<p>OSRA is a software for extraction of 2D structures from various formats like PDF and images. It recognizes the
+position of structure in the source and then constructs its linear notation (SMILES, InCHI etc.).
+More information here: <a class="reference external" href="https://sourceforge.net/projects/osra/">https://sourceforge.net/projects/osra/</a> (old website: <a class="reference external" href="https://cactus.nci.nih.gov/osra/">https://cactus.nci.nih.gov/osra/</a>)</p>
+<p><strong>To show the meaning of options:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">osra</span> <span class="o">=</span> <span class="n">OSRA</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">osra</span><span class="o">.</span><span class="n">help</span><span class="p">())</span>  <span class="c1"># this will show the output of &quot;$ osra -h&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">osra</span><span class="o">.</span><span class="n">_OPTIONS_REAL</span><span class="p">)</span>  <span class="c1"># this will show the mapping between OSRA class and real OSRA parameters</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="molminer.OSRA.OSRA._OPTIONS_REAL">
+<code class="descname">_OPTIONS_REAL</code><a class="headerlink" href="#molminer.OSRA.OSRA._OPTIONS_REAL" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> &#8211; Internal dict which maps the passed options to real OSRA command-line arguments.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.OSRA.OSRA.options">
+<code class="descname">options</code><a class="headerlink" href="#molminer.OSRA.OSRA.options" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> &#8211; Get or set options.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.OSRA.OSRA.options_internal">
+<code class="descname">options_internal</code><a class="headerlink" href="#molminer.OSRA.OSRA.options_internal" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> &#8211; Return dict with options having internal names.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.OSRA.OSRA.path_to_binary">
+<code class="descname">path_to_binary</code><a class="headerlink" href="#molminer.OSRA.OSRA.path_to_binary" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> &#8211; Path to OSRA binary.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="molminer.OSRA.OSRA.process">
+<code class="descname">process</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#molminer.OSRA.OSRA.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process the input file with OSRA.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="molminer.OSRA.OSRA.help">
+<code class="descname">help</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#molminer.OSRA.OSRA.help" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return OSRA help message.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="molminer.OSRA.OSRA.version">
+<code class="descname">version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#molminer.OSRA.OSRA.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return OSRA version.</p>
+</dd></dl>
+
+<p class="rubric">Notes</p>
+<p>&#8211;learn parameter is currently not supported, because its output is problematic to parse.</p>
+<dl class="attribute">
+<dt id="molminer.OSRA.OSRA.GM_COMMAND">
+<code class="descname">GM_COMMAND</code><em class="property"> = 'gm convert -density {dpi} {input_file_path} +adjoin {trim} -quality 100 {temp_dir}/{input_file}-%d.png'</em><a class="headerlink" href="#molminer.OSRA.OSRA.GM_COMMAND" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">help</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str</dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">OSRA help message.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.OSRA.OSRA.logger">
+<code class="descname">logger</code><em class="property"> = &lt;logging.Logger object&gt;</em><a class="headerlink" href="#molminer.OSRA.OSRA.logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">process</code><span class="sig-paren">(</span><em>input_file: str</em>, <em>output_file: str = ''</em>, <em>output_file_sdf: str = ''</em>, <em>sdf_append: bool = False</em>, <em>format_output: bool = True</em>, <em>write_header: bool = True</em>, <em>osra_output_format: str = ''</em>, <em>output_formats: list = None</em>, <em>dry_run: bool = False</em>, <em>csv_delimiter: str = ';'</em>, <em>use_gm: bool = True</em>, <em>gm_dpi: int = 300</em>, <em>gm_trim: bool = True</em>, <em>n_jobs: int = -1</em>, <em>input_type: str = ''</em>, <em>standardize_mols: bool = True</em>, <em>annotate: bool = True</em>, <em>chemspider_token: str = ''</em>, <em>custom_page: int = 0</em><span class="sig-paren">)</span> &#x2192; collections.OrderedDict</dt>
+<dd><p>Process the input file with OSRA.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>input_file</strong> (<em>str</em>) &#8211; Path to file to be processed by OSRA.</li>
+<li><strong>output_file</strong> (<em>str</em>) &#8211; File to write output in.</li>
+<li><strong>output_file_sdf</strong> (<em>str</em>) &#8211; File to write SDF output in. &#8220;sdf&#8221; output format hasn&#8217;t to be in <cite>output_formats</cite> to write SDF output.
+If &#8220;sdf_osra&#8221; output format is requested, suffix &#8220;-osra.sdf&#8221; will be added.</li>
+<li><strong>sdf_append</strong> (<em>bool</em>) &#8211; If True, append new molecules to existing SDF file or create new one if doesn&#8217;t exist.</li>
+<li><strong>IMPLEMENTED | images_prefix</strong> (<em>NOT</em>) &#8211; Prefix for images of extracted compounds which will be written.</li>
+<li><strong>format_output</strong> (<em>bool</em>) &#8211; If True, the value of &#8220;content&#8221; key of returned dict will be list of OrderedDicts.
+If True and <cite>output_file</cite> is set, the CSV file will be written.
+If False, the value of &#8220;content&#8221; key of returned dict will be None.</li>
+<li><strong>write_header</strong> (<em>bool</em>) &#8211; If True and if <cite>output_file</cite> is set and <cite>output_format</cite> is True, write a CSV write_header.</li>
+<li><strong>osra_output_format</strong> (<em>str</em>) &#8211; Output format from OSRA. Temporarily overrides the option <cite>output_format</cite> set during instantiation (in __init__).
+Choices: &#8220;smi&#8221;, &#8220;can&#8221;, &#8220;sdf&#8221;
+If &#8220;sdf&#8221;, additional information like coordinates cannot be retrieved (not implemented yet).</li>
+<li><strong>output_formats</strong> (<em>list</em>) &#8211; <p>If True and <cite>format_output</cite> is also True, this specifies which molecule formats will be output.
+You can specify more than one format, but only one format from OSRA. This format must be also set with <cite>output_format</cite> in __init__
+or with <cite>osra_output_format</cite> here.
+When output produces by OSRA is unreadable by RDKit, you can at least have that output from OSRA.</p>
+<blockquote>
+<div>&lt;Value&gt;            &lt;Source&gt;        &lt;Note&gt;
+&#8220;smiles&#8221;           RDKit           canonical SMILES
+&#8220;smiles_osra&#8221;      OSRA (&#8220;smi&#8221;)    SMILES
+&#8220;smiles_can_osra&#8221;  OSRA (&#8220;can&#8221;)    canonical SMILES
+&#8220;inchi&#8221;            RDKit           Not every molecule can be converted to InChI (it doesn`t support wildcard characters etc.)
+&#8220;inchikey&#8221;         RDKit           The same applies as for &#8220;inchi&#8221;.
+&#8220;sdf&#8221;              RDKit           If present, an additional SDF file will be created.
+&#8220;sdf_osra&#8221;         OSRA (&#8220;sdf&#8221;)    If present, an additional SDF file will be created.</div></blockquote>
+<p>Default value: [&#8220;smiles&#8221;]</p>
+</li>
+<li><strong>dry_run</strong> (<em>bool</em>) &#8211; If True, only return list of commands to be called by subprocess.</li>
+<li><strong>csv_delimiter</strong> (<em>str</em>) &#8211; Delimiter for output CSV file.</li>
+<li><strong>use_gm</strong> (<em>bool</em>) &#8211; If True, use GraphicsMagick to convert PDF to temporary PNG images before processing.
+If False, OSRA will use it&#8217;s own conversion of PDF to image.
+Using gm is more reliable since OSRA (v2.1.0) is showing wrong information
+when converting directly from PDF (namely: coordinates, bond length and possibly more ones) and also there are sometimes
+incorrectly recognised structures.</li>
+<li><strong>gm_dpi</strong> (<em>int</em>) &#8211; How many DPI will temporary PNG images have.</li>
+<li><strong>gm_trim</strong> (<em>bool</em>) &#8211; If True, gm will trim the temporary PNG images.</li>
+<li><strong>n_jobs</strong> (<em>int</em>) &#8211; If <cite>use_gm</cite> and input file is PDF, how many jobs to use for OSRA processing of temporary PNG images.
+If -1 all CPUs are used.
+If 1 is given, no parallel computing code is used at all, which is useful for debugging.
+For n_jobs below -1, (n_cpus + 1 + n_jobs) are used. Thus for n_jobs = -2, all CPUs but one are used.</li>
+<li><strong>input_type</strong> (<em>str</em>) &#8211; When empty, input (MIME) type will be determined from magic bytes.
+Or you can specify &#8220;pdf&#8221; or &#8220;image&#8221; and magic bytes check will be skipped.</li>
+<li><strong>standardize_mols</strong> (<em>bool</em>) &#8211; If True and <cite>format_output</cite> is also True, use molvs (<a class="reference external" href="https://github.com/mcs07/MolVS">https://github.com/mcs07/MolVS</a>) to standardize molecules.</li>
+<li><strong>annotate</strong> (<em>bool</em>) &#8211; If True, try to annotate entities in PubChem and ChemSpider. Compound IDs will be assigned by searching with
+each identifier, separately for SMILES, InChI etc.
+If entity has InChI key yet, prefer it in searching.
+If &#8220;*&#8221; is present in SMILES, skip annotation.</li>
+<li><strong>chemspider_token</strong> (<em>str</em>) &#8211; Your personal token for accessing the ChemSpider API. Make account there to obtain it.</li>
+<li><strong>custom_page</strong> (<em>bool</em>) &#8211; When <cite>use_gm</cite> is False, this will set the page for all extracted compounds.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
+<dt>Keys:</dt>
+<dd><p class="first">stdout: str ... standard output from OSRA
+stderr: str ... standard error output from OSRA
+exit_code: int ... exit code from OSRA
+content:</p>
+<blockquote class="last">
+<div><p>list of OrderedDicts ... when <cite>format_output</cite> is True.
+None ... when <cite>format_output</cite> is False</p>
+</div></blockquote>
+</dd>
+</dl>
+<p>If <cite>osra_output_format</cite> is &#8220;sdf&#8221;, additional information like &#8216;bond_length&#8217; cannot be retrieved.
+If <cite>use_gm</cite> is True then stdout, stderr and exit_code will be lists containing items from each temporary image
+extracted by OSRA.</p>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Only with <cite>format_output</cite> set to True you can use molecule standardization and more molecule formats. Otherwise
+you will only get raw stdout from OSRA (which can also be written to file if <cite>output_file</cite> is set).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="molminer.OSRA.OSRA.set_options">
+<code class="descname">set_options</code><span class="sig-paren">(</span><em>options: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.OSRA.OSRA.set_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the options passed in dict. Keys are the same as optional parameters in OSRA constructor (__init__).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>options</strong> &#8211; Dict of new options.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">version</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str</dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">OSRA version.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-molminer.cli">
+<span id="molminer-cli-module"></span><h2>molminer.cli module<a class="headerlink" href="#module-molminer.cli" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="molminer.cli.add_options">
+<code class="descclassname">molminer.cli.</code><code class="descname">add_options</code><span class="sig-paren">(</span><em>options</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.cli.add_options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="molminer.cli.get_kwargs">
+<code class="descclassname">molminer.cli.</code><code class="descname">get_kwargs</code><span class="sig-paren">(</span><em>options</em>, <em>kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.cli.get_kwargs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="molminer.cli.get_opsin_types">
+<code class="descclassname">molminer.cli.</code><code class="descname">get_opsin_types</code><span class="sig-paren">(</span><em>types</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.cli.get_opsin_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-molminer.normalize">
+<span id="molminer-normalize-module"></span><h2>molminer.normalize module<a class="headerlink" href="#module-molminer.normalize" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="chemdataextractor-text-normalize">
+<h3>chemdataextractor.text.normalize<a class="headerlink" href="#chemdataextractor-text-normalize" title="Permalink to this headline">¶</a></h3>
+<p>Tools for normalizing text.
+<a class="reference external" href="https://github.com/mcs07/ChemDataExtractor">https://github.com/mcs07/ChemDataExtractor</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body">Copyright 2016 by Matt Swain.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">license:</th><td class="field-body">MIT, see LICENSE file for more details.</td>
+</tr>
+</tbody>
+</table>
+<dl class="data">
+<dt id="molminer.normalize.ACCENTS">
+<code class="descclassname">molminer.normalize.</code><code class="descname">ACCENTS</code><em class="property"> = {'`', '´'}</em><a class="headerlink" href="#molminer.normalize.ACCENTS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accent characters.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="molminer.normalize.APOSTROPHES">
+<code class="descclassname">molminer.normalize.</code><code class="descname">APOSTROPHES</code><em class="property"> = {'՚', '’', 'ꞌ', 'Ꞌ', &quot;'&quot;, '＇'}</em><a class="headerlink" href="#molminer.normalize.APOSTROPHES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apostrophe characters.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="molminer.normalize.BaseNormalizer">
+<em class="property">class </em><code class="descclassname">molminer.normalize.</code><code class="descname">BaseNormalizer</code><a class="headerlink" href="#molminer.normalize.BaseNormalizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">abc.ABC</span></code></p>
+<p>Abstract normalizer class from which all normalizers inherit.</p>
+<p>Subclasses must implement a <code class="docutils literal"><span class="pre">normalize()</span></code> method.</p>
+<dl class="method">
+<dt id="molminer.normalize.BaseNormalizer.normalize">
+<code class="descname">normalize</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.normalize.BaseNormalizer.normalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalize the text.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>text</strong> (<em>string</em>) &#8211; The text to normalize.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Normalized text.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="data">
+<dt id="molminer.normalize.CONTROLS">
+<code class="descclassname">molminer.normalize.</code><code class="descname">CONTROLS</code><em class="property"> = {'\x04', '\x07', '\x02', '\x06', '\x03', '\x08', '\x01', '\x05'}</em><a class="headerlink" href="#molminer.normalize.CONTROLS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Control characters.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="molminer.normalize.DOUBLE_QUOTES">
+<code class="descclassname">molminer.normalize.</code><code class="descname">DOUBLE_QUOTES</code><em class="property"> = {'‟', '&quot;', '”', '“', '„'}</em><a class="headerlink" href="#molminer.normalize.DOUBLE_QUOTES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Double quote characters.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="molminer.normalize.GREEK">
+<code class="descclassname">molminer.normalize.</code><code class="descname">GREEK</code><em class="property"> = {'Ο', 'Τ', 'β', 'Δ', 'Σ', 'μ', 'Θ', 'Η', 'ν', 'Β', 'υ', 'Ξ', 'η', 'Λ', 'π', 'Υ', 'λ', 'ζ', 'Π', 'Κ', 'Ζ', 'ω', 'ξ', 'Χ', 'δ', 'Ι', 'φ', 'τ', 'κ', 'ρ', 'Ψ', 'α', 'θ', 'σ', 'Φ', 'χ', 'Ρ', 'ε', 'Α', 'γ', 'ι', 'Ν', 'ψ', 'ο', 'Γ', 'Μ', 'Ε', 'Ω'}</em><a class="headerlink" href="#molminer.normalize.GREEK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uppercase and lowercase greek letters.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="molminer.normalize.GREEK_WORDS">
+<code class="descclassname">molminer.normalize.</code><code class="descname">GREEK_WORDS</code><em class="property"> = {'gamma', 'Alpha', 'rho', 'tau', 'Psi', 'chi', 'Zeta', 'theta', 'Epsilon', 'Gamma', 'xi', 'omicron', 'Pi', 'kappa', 'Sigma', 'Delta', 'upsilon', 'Chi', 'alpha', 'Rho', 'Phi', 'mu', 'Theta', 'eta', 'iota', 'phi', 'Kappa', 'Iota', 'psi', 'Omicron', 'pi', 'Omega', 'sigma', 'Lambda', 'Nu', 'delta', 'Xi', 'lamda', 'Tau', 'Mu', 'epsilon', 'omega', 'zeta', 'Upsilon', 'beta', 'nu', 'Beta', 'Eta'}</em><a class="headerlink" href="#molminer.normalize.GREEK_WORDS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Names of greek letters spelled out as words.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="molminer.normalize.HYPHENS">
+<code class="descclassname">molminer.normalize.</code><code class="descname">HYPHENS</code><em class="property"> = {'―', '–', '-', '‑', '⁃', '‐', '—', '‒'}</em><a class="headerlink" href="#molminer.normalize.HYPHENS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hyphen and dash characters.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="molminer.normalize.MINUSES">
+<code class="descclassname">molminer.normalize.</code><code class="descname">MINUSES</code><em class="property"> = {'－', '⁻', '−', '-'}</em><a class="headerlink" href="#molminer.normalize.MINUSES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minus characters.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="molminer.normalize.NAME_SMALL">
+<code class="descclassname">molminer.normalize.</code><code class="descname">NAME_SMALL</code><em class="property"> = {'ste', 'dal', 'la', 'di', 'vel', 'von', 'dí', 'ibn', 'der', 'san', 'da', 'y', 'le', 'bin', 'van', 'st', 'bon', 'abu', 'del', 'de'}</em><a class="headerlink" href="#molminer.normalize.NAME_SMALL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Words that should not be capitalized in names.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="molminer.normalize.NUMBERS">
+<code class="descclassname">molminer.normalize.</code><code class="descname">NUMBERS</code><em class="property"> = {'seventy', 'billion', 'million', 'twelve', 'forty', 'eight', 'thirteen', 'trillion', 'four', 'eighty', 'six', 'thousand', 'nineteen', 'seventeen', 'thirty', 'zero', 'five', 'ten', 'sixteen', 'seven', 'ninety', 'two', 'hundred', 'eighteen', 'fifteen', 'twenty', 'one', 'sixty', 'fourteen', 'fifty', 'three', 'nine', 'eleven'}</em><a class="headerlink" href="#molminer.normalize.NUMBERS" title="Permalink to this definition">¶</a></dt>
+<dd><p>A variety of numbers, spelled out as words.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="molminer.normalize.Normalizer">
+<em class="property">class </em><code class="descclassname">molminer.normalize.</code><code class="descname">Normalizer</code><span class="sig-paren">(</span><em>form='NFKC'</em>, <em>strip=True</em>, <em>collapse=True</em>, <em>hyphens=False</em>, <em>quotes=False</em>, <em>ellipsis=False</em>, <em>slashes=False</em>, <em>tildes=False</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.normalize.Normalizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#molminer.normalize.BaseNormalizer" title="molminer.normalize.BaseNormalizer"><code class="xref py py-class docutils literal"><span class="pre">molminer.normalize.BaseNormalizer</span></code></a></p>
+<p>Main Normalizer class for generic English text.</p>
+<p>Normalize unicode, hyphens, quotes, whitespace.</p>
+<p>By default, the normal form NFKC is used for unicode normalization. This applies a compatibility decomposition,
+under which equivalent characters are unified, followed by a canonical composition. See Python docs for information
+on normal forms: <a class="reference external" href="http://docs.python.org/2/library/unicodedata.html#unicodedata.normalize">http://docs.python.org/2/library/unicodedata.html#unicodedata.normalize</a></p>
+<dl class="method">
+<dt id="molminer.normalize.Normalizer.normalize">
+<code class="descname">normalize</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.normalize.Normalizer.normalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the Normalizer on a string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>text</strong> &#8211; The string to normalize.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="data">
+<dt id="molminer.normalize.PLUSES">
+<code class="descclassname">molminer.normalize.</code><code class="descname">PLUSES</code><em class="property"> = {'+', '⁺', '＋'}</em><a class="headerlink" href="#molminer.normalize.PLUSES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plus characters.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="molminer.normalize.PRIMES">
+<code class="descclassname">molminer.normalize.</code><code class="descname">PRIMES</code><em class="property"> = {'′', '‷', '‴', '‵', '‶', '″', '⁗'}</em><a class="headerlink" href="#molminer.normalize.PRIMES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prime characters.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="molminer.normalize.QUOTES">
+<code class="descclassname">molminer.normalize.</code><code class="descname">QUOTES</code><em class="property"> = {'´', '‴', '‵', '՚', '″', '‟', '&quot;', '“', 'Ꞌ', '„', '⁗', '`', '＇', '”', '‛', '′', '‷', '‘', '‶', 'ꞌ', '‚', &quot;'&quot;, '’'}</em><a class="headerlink" href="#molminer.normalize.QUOTES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quote characters, including apostrophes, single quotes, double quotes, accents and primes.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="molminer.normalize.SINGLE_QUOTES">
+<code class="descclassname">molminer.normalize.</code><code class="descname">SINGLE_QUOTES</code><em class="property"> = {&quot;'&quot;, '’', '‛', '‘', '‚'}</em><a class="headerlink" href="#molminer.normalize.SINGLE_QUOTES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Single quote characters.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="molminer.normalize.SLASHES">
+<code class="descclassname">molminer.normalize.</code><code class="descname">SLASHES</code><em class="property"> = {'∕', '⁄', '/'}</em><a class="headerlink" href="#molminer.normalize.SLASHES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Slash characters.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="molminer.normalize.SMALL">
+<code class="descclassname">molminer.normalize.</code><code class="descname">SMALL</code><em class="property"> = {'on', 'by', 'v', 'en', 'as', 'an', 'vs', 'a', 'or', 'but', 'the', 'if', 'to', 'at', 'and', 'via', 'of', 'in', 'for'}</em><a class="headerlink" href="#molminer.normalize.SMALL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Words that should not be capitalized in titles.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="molminer.normalize.TILDES">
+<code class="descclassname">molminer.normalize.</code><code class="descname">TILDES</code><em class="property"> = {'∼', '˜', '〜', '～', '∽', '⁓', '~', '∿'}</em><a class="headerlink" href="#molminer.normalize.TILDES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tilde characters.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="molminer.normalize.normalize">
+<code class="descclassname">molminer.normalize.</code><code class="descname">normalize</code><em class="property"> = &lt;molminer.normalize.Normalizer object&gt;</em><a class="headerlink" href="#molminer.normalize.normalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default normalize that canonicalizes unicode and fixes whitespace.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="molminer.normalize.strict_normalize">
+<code class="descclassname">molminer.normalize.</code><code class="descname">strict_normalize</code><em class="property"> = &lt;molminer.normalize.Normalizer object&gt;</em><a class="headerlink" href="#molminer.normalize.strict_normalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>More aggressive normalize that also standardizes hyphens, and quotes.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-molminer.utils">
+<span id="molminer-utils-module"></span><h2>molminer.utils module<a class="headerlink" href="#module-molminer.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="molminer.utils.Output">
+<em class="property">class </em><code class="descclassname">molminer.utils.</code><code class="descname">Output</code><span class="sig-paren">(</span><em>stdout</em>, <em>stderr</em>, <em>exit_code</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.utils.Output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">tuple</span></code></p>
+<dl class="attribute">
+<dt id="molminer.utils.Output.exit_code">
+<code class="descname">exit_code</code><a class="headerlink" href="#molminer.utils.Output.exit_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.utils.Output.stderr">
+<code class="descname">stderr</code><a class="headerlink" href="#molminer.utils.Output.stderr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="molminer.utils.Output.stdout">
+<code class="descname">stdout</code><a class="headerlink" href="#molminer.utils.Output.stdout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="molminer.utils.common_subprocess">
+<code class="descclassname">molminer.utils.</code><code class="descname">common_subprocess</code><span class="sig-paren">(</span><em>commands: typing.Union[list, str], stdin: str = '', stdin_encoding: str = 'utf-8'</em><span class="sig-paren">)</span> &#x2192; &lt;function namedtuple at 0x7f5c4f92d9d8&gt;<a class="headerlink" href="#molminer.utils.common_subprocess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the namedtuple with stdout, stderr and exit code from shell command.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>commands</strong> (<em>list</em><em> or </em><em>str</em>) &#8211; List of commands to execute in shell, e.g. [&#8220;ls&#8221;, &#8220;-a&#8221;]
+If string is given, split it to list.</li>
+<li><strong>stdin</strong> (<em>str</em>) &#8211; Stdin to send to shell.</li>
+<li><strong>stdin_encoding</strong> (<em>str</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Fields: &#8220;stdout&#8221;, &#8220;stderr&#8221;, &#8220;exit_code&#8221;</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">namedtuple</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="molminer.utils.dict_to_csv">
+<code class="descclassname">molminer.utils.</code><code class="descname">dict_to_csv</code><span class="sig-paren">(</span><em>dicts: list</em>, <em>output_file: str = ''</em>, <em>csv_delimiter: str = ';'</em>, <em>write_header: bool = True</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.utils.dict_to_csv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="molminer.utils.eprint">
+<code class="descclassname">molminer.utils.</code><code class="descname">eprint</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.utils.eprint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="molminer.utils.get_input_file_type">
+<code class="descclassname">molminer.utils.</code><code class="descname">get_input_file_type</code><span class="sig-paren">(</span><em>input_file: str</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#molminer.utils.get_input_file_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="molminer.utils.get_temp_images">
+<code class="descclassname">molminer.utils.</code><code class="descname">get_temp_images</code><span class="sig-paren">(</span><em>temp_dir</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.utils.get_temp_images" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="molminer.utils.get_text">
+<code class="descclassname">molminer.utils.</code><code class="descname">get_text</code><span class="sig-paren">(</span><em>input_file: str</em>, <em>input_type: str</em>, <em>lang: str = 'en'</em>, <em>tessdata_prefix: str = ''</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#molminer.utils.get_text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="molminer.utils.get_text_from_image">
+<code class="descclassname">molminer.utils.</code><code class="descname">get_text_from_image</code><span class="sig-paren">(</span><em>input_file: str</em>, <em>lang: str = 'eng'</em>, <em>tessdata_prefix: str = ''</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#molminer.utils.get_text_from_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get text from image using Tesseract OCR.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>input_file</strong> (<em>str</em>) &#8211; </li>
+<li><strong>lang</strong> (<em>str</em>) &#8211; Language which will Tesseract use for OCR. Available languages: <a class="reference external" href="https://github.com/tesseract-ocr/tessdata">https://github.com/tesseract-ocr/tessdata</a>
+Multiple languages can be specified with &#8220;+&#8221; character, i.e. &#8220;eng+bul+fra&#8221;.</li>
+<li><strong>tessdata_prefix</strong> (<em>str</em>) &#8211; Path to directory with Tesseract language data. If empty, the TESSDATA_PREFIX environment variable will be used.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="molminer.utils.get_text_from_pdf">
+<code class="descclassname">molminer.utils.</code><code class="descname">get_text_from_pdf</code><span class="sig-paren">(</span><em>input_file: str</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#molminer.utils.get_text_from_pdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get embedded text from PDF using pdftotext binary (part of Poppler tools).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>input_file</strong> (<em>str</em>) &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="molminer.utils.get_text_from_pdf_scan">
+<code class="descclassname">molminer.utils.</code><code class="descname">get_text_from_pdf_scan</code><span class="sig-paren">(</span><em>input_file: str</em>, <em>lang: str = 'eng'</em>, <em>tessdata_prefix: str = ''</em>, <em>tesseract_engine: int = 2</em>, <em>as_page_list: bool = False</em><span class="sig-paren">)</span> &#x2192; typing.Union[str, tempfile.TemporaryDirectory]<a class="headerlink" href="#molminer.utils.get_text_from_pdf_scan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get text from PDF which consists of scanned pages (images). First convert PDF to PNG images (one image per page) and
+then apply Tesseract OCR to get text.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>input_file</strong> (<em>str</em>) &#8211; </li>
+<li><strong>lang</strong> (<em>str</em>) &#8211; Language which will Tesseract use for OCR. Available languages: <a class="reference external" href="https://github.com/tesseract-ocr/tessdata">https://github.com/tesseract-ocr/tessdata</a>
+Multiple languages can be specified with &#8220;+&#8221; character, e.g. &#8220;eng+bul+fra&#8221;.
+Language data files must be stored in directory defined in TESSDATA_PREFIX environmental variable.</li>
+<li><strong>tessdata_prefix</strong> (<em>str</em>) &#8211; Path to directory with Tesseract language data. If empty, the TESSDATA_PREFIX environment variable will be used.</li>
+<li><strong>tesseract_engine</strong> (<em>int</em>) &#8211; <dl class="docutils">
+<dt>OCR Engine modes:</dt>
+<dd>0    Original Tesseract only.
+1    Neural nets LSTM only.
+2    Tesseract + LSTM.
+3    Default, based on what is available.</dd>
+</dl>
+</li>
+<li><strong>as_page_list</strong> (<em>bool</em>) &#8211; If True, return list of text of individual pages.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Text and TemporaryDirectory object, which contains name of temporary directory with converted images.
+This directory will be deleted when script exits, when TemporaryDirectory object is deleted or its method cleanup() is called.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(str, TemporaryDirectory)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="molminer.utils.pdf_to_images">
+<code class="descclassname">molminer.utils.</code><code class="descname">pdf_to_images</code><span class="sig-paren">(</span><em>input_file_path</em>, <em>output_dir</em>, <em>gm_command='gm convert -density {dpi} {input_file_path} +adjoin {trim} -quality 100 {temp_dir}/{input_file}-%d.png'</em>, <em>dpi=300</em>, <em>trim=True</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.utils.pdf_to_images" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="molminer.utils.write_empty_file">
+<code class="descclassname">molminer.utils.</code><code class="descname">write_empty_file</code><span class="sig-paren">(</span><em>file: str</em>, <em>csv_delimiter: str = ';'</em>, <em>header: list = None</em>, <em>write_header: bool = False</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.utils.write_empty_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-molminer">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-molminer" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Jiri Novotny.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
