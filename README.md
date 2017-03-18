@@ -116,7 +116,7 @@ pprint(extracted)
 Feel free to open issue ticket. This is the prefered way since we don't have mailing list.
 
 # Acknowledgement
-MolMiner was the job description of my diploma thesis at [University of chemical technology in Prague](http://www.vscht.cz/?jazyk=en), [Laboratory of chemistry and informatics](http://ich.vscht.cz/). I would like to thank my supervisor Daniel Svozil for leading the work and Martin Sicho for helping me with conda distribution of MolMiner.
+MolMiner was the job description of my diploma thesis at [University of Chemistry and Technology in Prague](http://www.vscht.cz/?jazyk=en), [Laboratory of chemistry and informatics](http://ich.vscht.cz/). I would like to thank my supervisor Daniel Svozil for leading the work and Martin Sicho for helping me with conda distribution of MolMiner.
 
 Citations of used software:
 - Rocktäschel, T., Weidlich, M., and Leser, U. (2012).  ChemSpot: A Hybrid System for Chemical Named Entity Recognition. Bioinformatics 28 (12): 1633-1640.
