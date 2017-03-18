@@ -21,22 +21,22 @@ To install MolMiner without dependencies just download this repository and run `
 --->
 ## From source (linux)
 ### Binaries
-You need all these binaries for MolMiner. They should be installed so path to them is in `$PATH` environment variable (like `/usr/local/bin`). I haven't tried to compile these dependencies on Windows, but that doesn't mean it's impossible.
+You need all these binaries for MolMiner. They should be installed so path to them is in `$PATH` environmental variable (like `/usr/local/bin`). I haven't tried to compile these dependencies on Windows, but that doesn't mean it's impossible.
 - [OSRA][2]. This is probably the most complicated binary. Official information is [here](https://sourceforge.net/p/osra/wiki/Dependencies/) and [here](https://github.com/gorgitko/molminer/blob/master/docs/osra-readme.txt). My installation notes are [here](https://github.com/gorgitko/molminer/blob/master/docs/osra-installation.txt).
   - Compile GraphicsMagick with as many supported image formats as possible ([dependencies](http://wiki.octave.org/GraphicsMagick#Main_dependencies)). It's also used for converting PDF to images and for image editing/transformation.
   - Use Tesseract version 4 and up.
   - [Patched version](https://sourceforge.net/projects/osra/files/openbabel-patched/) of OpenBabel is needed.
-  - Put OSRA data files (`spelling.txt`, `superatom.txt`) to some directory and add this directory to `$OSRA_DATA_PATH` environment variable.
+  - Put OSRA data files (`spelling.txt`, `superatom.txt`) to some directory and add this directory to `$OSRA_DATA_PATH` environmental variable.
 - [ChemSpot][1]. Just download it and:
   - Put ChemSpot JAR file to directory accesible from `$PATH` and rename it to `chemspot.jar`.
   - Also put there [this bash script](https://github.com/gorgitko/molminer/blob/master/scripts/chemspot). It's used for running ChemSpot. Its first argument is maximum amount of memory for ChemSpot process. Subsequent arguments are forwarded to ChemSpot CLI.
-  - Put ChemSpot data files (`dict.zip`, `ids.zip`, `multiclass.bin`) to some directory and add this directory to `$CHEMSPOT_DATA_PATH` environment variable.
+  - Put ChemSpot data files (`dict.zip`, `ids.zip`, `multiclass.bin`) to some directory and add this directory to `$CHEMSPOT_DATA_PATH` environmental variable.
 - [OPSIN][3]. Just download it and:
   - Put OPSIN JAR file to directory accesible from `$PATH` and rename it to `opsin.jar`.
   - Also put there [this bash script](https://github.com/gorgitko/molminer/blob/master/scripts/opsin). It's used for running ChemSpot. All arguments are forwarded to OPSIN CLI.
 - [GraphicsMagick][4]. OSRA needs it for compilation, but it's binary is also directly used by MolMiner. Compile it with as many supported image formats as possible ([dependencies](http://wiki.octave.org/GraphicsMagick#Main_dependencies).
 - [Tesseract][5]. OSRA needs it for compilation, but it's binary is also directly used by MolMiner. Use version 4 and up.
-  - Tesseract needs language data files. Download them [here](https://github.com/tesseract-ocr/tessdata), put them to some directory and this directory to `$TESSDATA_PREFIX` environment variable.
+  - Tesseract needs language data files. Download them [here](https://github.com/tesseract-ocr/tessdata), put them to some directory and this directory to `$TESSDATA_PREFIX` environmental variable.
 - [poppler-utils](https://en.wikipedia.org/wiki/Poppler_(software)#poppler-utils). Utils for PDF files built on top of [Poppler](https://poppler.freedesktop.org/) library.
   - Ubuntu (or any OS with `apt` packaging): `$ sudo apt-get install poppler-utils`
 - [libmagic](https://github.com/threatstack/libmagic). Reads the magic bytes of file and determine its MIME type.
