@@ -24,14 +24,15 @@ OPTS_COMMON_ALL = [
                       "See http://www.gnu.org/software/bash/manual/bashref.html#Single-Quotes for more info."),
     click.option("--no-header", show_default=True, default=False, is_flag=True,
                  help="Don't write CSV header."),
+    click.option("--no-standardize", show_default=True, default=False, is_flag=True,
+                 help="Don't standardize molecules using MolVS (https://github.com/mcs07/MolVS)."),
     click.option("-v", "--verbosity", show_default=True, default=1, type=click.IntRange(min=0, max=2, clamp=True),
                  help="0, 1 or 2")
 ]
 
 OPTS_COMMON_OCSR_NER_CONVERT = [
     click.option("--dry-run", show_default=True, is_flag=True,
-                 help="Only print shell commands which normally would be executed. Useful for debugging -- "
-                      "by using these commands in shell you can get raw stdout and stderr from individual SWs."),
+                 help="Only print shell commands which normally would be executed."),
     click.option("--raw-output", show_default=True, default=False, is_flag=True,
                  help="Print raw stdout and stderr (to stderr) of SW.")
 ]
@@ -75,8 +76,6 @@ OPTS_COMMON_OCSR_CONVERT = [
 ]
 
 OPTS_COMMON_OCSR_NER_EXTRACT = [
-    click.option("--no-standardize", show_default=True, default=False, is_flag=True,
-                 help="Don't standardize molecules using MolVS (https://github.com/mcs07/MolVS)."),
     click.option("--chemspider-token", type=click.STRING, default="", show_default=True,
                  help="Your personal token for accessing the ChemSpider API (needed for annotation). Make account there to obtain it."),
     click.option("--no-annotation", show_default=True, is_flag=True, default=False,
