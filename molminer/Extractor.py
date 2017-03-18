@@ -167,32 +167,32 @@ class Extractor(object):
         write_header : bool
             If True and if `output_file` is set and `output_format` is True, write a CSV write_header.
         separated_output : bool
-            If True, return OrderedDicts from each of OSRA, ChemSpot and OPSIN process methods.
-            If True and `output_file` is set, two separated CSV files will be written with suffixes ".ocsr", ".ner" and ".opsin".
+            | If True, return OrderedDicts from each of OSRA, ChemSpot and OPSIN process methods.
+            | If True and `output_file` is set, two separated CSV files will be written with suffixes ".ocsr", ".ner" and ".opsin".
         input_type : str
-            Type of input file. Values: "pdf", "pdf_scan", "image"
-            If "pdf", embedded text will be extracted by Poppler utils (pdftotext).
-            If "pdf_scan", PDF will be converted to images and text extracted by OCR (Tesseract).
-            If "image", text will be extracted by OCR (Tesseract).
-            If empty, input (MIME) type will be determined from magic bytes. Note that "pdf_scan" cannot be determined
-            from magic bytes, because it looks like a normal PDF.
+            | Type of input file. Values: "pdf", "pdf_scan", "image"
+            | If "pdf", embedded text will be extracted by Poppler utils (pdftotext).
+            | If "pdf_scan", PDF will be converted to images and text extracted by OCR (Tesseract).
+            | If "image", text will be extracted by OCR (Tesseract).
+            | If empty, input (MIME) type will be determined from magic bytes. Note that "pdf_scan" cannot be determined
+              from magic bytes, because it looks like a normal PDF.
         lang : str
-            Language which will Tesseract use for OCR. Available languages: https://github.com/tesseract-ocr/tessdata
-            Multiple languages can be specified with "+" character, i.e. "eng+bul+fra".
+            | Language which will Tesseract use for OCR. Available languages: https://github.com/tesseract-ocr/tessdata
+            | Multiple languages can be specified with "+" character, i.e. "eng+bul+fra".
         use_gm : bool
-            If True, use GraphicsMagick to convert PDF to images and then process each image with OSRA.
-            OSRA itself can handle PDF files, but some additional information is then
-            invalid and also some structures are wrongly recognised.
+            | If True, use GraphicsMagick to convert PDF to images and then process each image with OSRA.
+              OSRA itself can handle PDF files, but some additional information is then
+              invalid and also some structures are wrongly recognised.
         n_jobs : int
-            Number of jobs for parallel processing with OSRA.
-            If -1 all CPUs are used.
-            If 1 is given, no parallel computing code is used at all, which is useful for debugging.
-            For n_jobs below -1, (n_cpus + 1 + n_jobs) are used. Thus for n_jobs = -2, all CPUs but one are used.
+            | Number of jobs for parallel processing with OSRA.
+            | If -1 all CPUs are used.
+            | If 1 is given, no parallel computing code is used at all, which is useful for debugging.
+            | For n_jobs below -1, (n_cpus + 1 + n_jobs) are used. Thus for n_jobs = -2, all CPUs but one are used.
         opsin_types : list
-            List of ChemSpot entity types. Entities of types in this list will be converted with OPSIN.
-            OPSIN is designed to convert IUPAC names to linear notation (SMILES etc.) so default value of `opsin_types`
-            is ["SYSTEMATIC"] (these should be only IUPAC names).
-            ChemSpot entity types: "SYSTEMATIC", "IDENTIFIER", "FORMULA", "TRIVIAL", "ABBREVIATION", "FAMILY", "MULTIPLE"
+            | List of ChemSpot entity types. Entities of types in this list will be converted with OPSIN.
+            | OPSIN is designed to convert IUPAC names to linear notation (SMILES etc.) so default value of `opsin_types`
+              is ["SYSTEMATIC"] (these should be only IUPAC names).
+            | ChemSpot entity types: "SYSTEMATIC", "IDENTIFIER", "FORMULA", "TRIVIAL", "ABBREVIATION", "FAMILY", "MULTIPLE"
         convert_ions : bool
             If True, try to convert ion entities (e.g. "Ni(II)") to SMILES. Entities matching ion regex won't be converted
             with OPSIN.
@@ -204,11 +204,11 @@ class Extractor(object):
         csv_delimiter : str
             Delimiter for output CSV file.
         annotate : bool
-            If True, try to annotate entities in PubChem and ChemSpider. Compound IDs will be assigned by searching with
-            each identifier, separately for entity name, SMILES etc.
-            If entity has InChI key yet, prefer it in searching.
-            If "*" is present in SMILES, skip annotation.
-            If textual entity has single result in DB when searched by name, fill in missing identifiers (SMILES etc.).
+            | If True, try to annotate entities in PubChem and ChemSpider. Compound IDs will be assigned by searching with
+              each identifier, separately for entity name, SMILES etc.
+            | If entity has InChI key yet, prefer it in searching.
+            | If "*" is present in SMILES, skip annotation.
+            | If textual entity has single result in DB when searched by name, fill in missing identifiers (SMILES etc.).
         annotation_sleep: int
             How many seconds to sleep between annotation of each entity. It's for preventing overloading of databases.
         chemspider_token : str

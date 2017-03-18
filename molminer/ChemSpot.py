@@ -32,9 +32,10 @@ class ChemSpot(AbstractLinker):
     Represents the ChemSpot software and acts as a linker between Python and command-line interface of ChemSpot.
     ChemSpot version: 2.0
 
-    ChemSpot is a software for chemical Named Entity Recognition.
-    It assigns to each chemical entity one of this classes:
+    ChemSpot is a software for chemical Named Entity Recognition. It assigns to each chemical entity one of this classes:
+
     "SYSTEMATIC", "IDENTIFIER", "FORMULA", "TRIVIAL", "ABBREVIATION", "FAMILY", "MULTIPLE"
+
     More information here: https://www.informatik.hu-berlin.de/de/forschung/gebiete/wbi/resources/chemspot/chemspot
 
     ChemSpot is very memory-consuming so dictionary and ID lookup is disabled by default. Only CRF, OpenNLP sentence and
@@ -42,10 +43,11 @@ class ChemSpot(AbstractLinker):
     Maximum memory used by Java process is set to 8 GB by default. It is strongly recommended to use swap file on SSD disk when
     available memory is under 8 GB (see https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04 for more details).
 
-    To show the meaning of options:
-    chemspot = ChemSpot()
-    print(chemspot.help())  # this will show the output of "$ chemspot -h"
-    print(chemspot._OPTIONS_REAL)  # this will show the mapping between ChemSpot class and real ChemSpot parameters
+    **To show the meaning of options:** ::
+
+        chemspot = ChemSpot()
+        print(chemspot.help())  # this will show the output of "$ chemspot -h"
+        print(chemspot._OPTIONS_REAL)  # this will show the mapping between ChemSpot class and real ChemSpot parameters
 
     Attributes
     ----------
@@ -97,7 +99,7 @@ class ChemSpot(AbstractLinker):
         """
         Parameters
         ----------
-        path_to_binary
+        path_to_binary : str
         path_to_crf : str
             Path to a CRF model file (internal default model file will be used if not provided).
         path_to_nlp : str
@@ -207,12 +209,11 @@ class ChemSpot(AbstractLinker):
                 dry_run: bool = False,
                 csv_delimiter: str = ";",
                 normalize_text: bool = True,
-                #normalize_ent: bool = True,
                 remove_duplicates: bool = False,
                 annotate: bool = True,
                 annotation_sleep: int = 2,
                 chemspider_token: str = "") -> OrderedDict:
-        """
+        r"""
         Process the input file with ChemSpot.
 
         Parameters
@@ -228,24 +229,24 @@ class ChemSpot(AbstractLinker):
         sdf_append : bool
             If True, append new molecules to existing SDF file or create new one if doesn't exist. SDF is from OPSIN converted entities.
         input_type : str
-            When empty, input (MIME) type will be determined from magic bytes.
-            Or you can specify "pdf", "pdf_scan", "image" or "text" and magic bytes check will be skipped.
+            | When empty, input (MIME) type will be determined from magic bytes.
+            | Or you can specify "pdf", "pdf_scan", "image" or "text" and magic bytes check will be skipped.
         lang : str
-            Language which will Tesseract use for OCR. Available languages: https://github.com/tesseract-ocr/tessdata
-            Multiple languages can be specified with "+" character, i.e. "eng+bul+fra".
+            | Language which will Tesseract use for OCR. Available languages: https://github.com/tesseract-ocr/tessdata
+            | Multiple languages can be specified with "+" character, i.e. "eng+bul+fra".
         paged_text : bool
             If True and `input_type` is "text" or `input_text` is provided, try to assign pages to chemical entities.
-            ASCII control character 12 (Form Feed, "\f") is expected between pages.
+            ASCII control character 12 (Form Feed, '\f') is expected between pages.
         format_output : bool
-            If True, the value of "content" key of returned dict will be list of OrderedDicts.
-            If True and `output_file` is set, the CSV file will be written.
-            If False, the value of "content" key of returned dict will be None.
+            | If True, the value of "content" key of returned dict will be list of OrderedDicts.
+            | If True and `output_file` is set, the CSV file will be written.
+            | If False, the value of "content" key of returned dict will be None.
         opsin_types : list
-            List of ChemSpot entity types. Entities of types in this list will be converted with OPSIN. If you don't want
-            to convert entities, pass empty list.
-            OPSIN is designed to convert IUPAC names to linear notation (SMILES etc.) so default value of `opsin_types`
-            is ["SYSTEMATIC"] (these should be only IUPAC names).
-            ChemSpot entity types: "SYSTEMATIC", "IDENTIFIER", "FORMULA", "TRIVIAL", "ABBREVIATION", "FAMILY", "MULTIPLE"
+            | List of ChemSpot entity types. Entities of types in this list will be converted with OPSIN. If you don't want
+              to convert entities, pass empty list.
+            | OPSIN is designed to convert IUPAC names to linear notation (SMILES etc.) so default value of `opsin_types`
+              is ["SYSTEMATIC"] (these should be only IUPAC names).
+            | ChemSpot entity types: "SYSTEMATIC", "IDENTIFIER", "FORMULA", "TRIVIAL", "ABBREVIATION", "FAMILY", "MULTIPLE"
         standardize_mols : bool
             If True, use molvs (https://github.com/mcs07/MolVS) to standardize molecules converted by OPSIN.
         convert_ions : bool
@@ -253,7 +254,7 @@ class ChemSpot(AbstractLinker):
             with OPSIN.
         write_header : bool
             If True and if `output_file` is set and `output_format` is True, write a CSV write_header:
-                "smiles", "bond_length", "resolution", "confidence", "learn", "page", "coordinates"
+            "smiles", "bond_length", "resolution", "confidence", "learn", "page", "coordinates"
         iob_format : bool
             If True, output will be in IOB format.
         dry_run : bool
@@ -263,18 +264,15 @@ class ChemSpot(AbstractLinker):
         normalize_text : bool
             If True, normalize text before performing NER. It is strongly recommended to do so, because without normalization
             can ChemSpot produce unpredictable results which cannot be parsed.
-        NOT IMPLEMENTED | normalize_ent : bool
-            If True, normalize the found chemical entities (first letter to lowercase etc.).
         remove_duplicates : bool
             If True, remove duplicated chemical entities. Note that some entities-compounds can have different names, but
-            same notation (SMILES, InChI etc.). This will only remove entities with same names.
-            Not applicable for IOB format.
+            same notation (SMILES, InChI etc.). This will only remove entities with same names. Not applicable for IOB format.
         annotate : bool
-            If True, try to annotate entities in PubChem and ChemSpider. Compound IDs will be assigned by searching with
-            each identifier, separately for entity name, SMILES etc.
-            If entity has InChI key yet, prefer it in searching.
-            If "*" is present in SMILES, skip annotation.
-            If textual entity has single result in DB when searched by name, fill in missing identifiers (SMILES etc.).
+            | If True, try to annotate entities in PubChem and ChemSpider. Compound IDs will be assigned by searching with
+              each identifier, separately for entity name, SMILES etc.
+            | If entity has InChI key yet, prefer it in searching.
+            | If "*" is present in SMILES, skip annotation.
+            | If textual entity has single result in DB when searched by name, fill in missing identifiers (SMILES etc.).
         annotation_sleep: int
             How many seconds to sleep between annotation of each entity. It's for preventing overloading of databases.
         chemspider_token : str
@@ -284,13 +282,16 @@ class ChemSpot(AbstractLinker):
         -------
         dict
             Keys:
-                stdout: str ... standard output from ChemSpot
-                stderr: str ... standard error output from ChemSpot
-                exit_code: int ... exit code from ChemSpot
-                content:
-                    list of OrderedDicts ... when `format_output` is True
-                    None ... when `format_output` is False
-                normalized_text : str
+
+            - stdout: str ... standard output from ChemSpot
+            - stderr: str ... standard error output from ChemSpot
+            - exit_code: int ... exit code from ChemSpot
+            - content
+
+              - list of OrderedDicts ... when `format_output` is True
+              - None ... when `format_output` is False
+
+            - normalized_text : str
         """
 
         if opsin_types is None:
@@ -589,10 +590,11 @@ class ChemSpot(AbstractLinker):
     @staticmethod
     def normalize_text(input_file_path: str = "", text: str = "", output_file_path: str = "",
                        encoding: str = "utf-8") -> str:
-        """
+        r"""
         Normalize the text. Operations:
-            - remove numbers of entities which points somewhere in the text, e.g. "N-octyl- (2b)" -> "N-octyl-"
-            - replace "-\n" with ""
+
+        - remove numbers of entities which points somewhere in the text, e.g. "N-octyl- (2b)" -> "N-octyl-"
+        - replace "-\n " with ""
 
         Parameters
         ----------
@@ -644,9 +646,9 @@ class ChemSpot(AbstractLinker):
         Returns
         -------
         list
-            List of lists. Each sublist is one row from input file and contains:
-            start position, end position, name of entity, type
-            Type means a type of detected entity, e.g. SYSTEMATIC, FAMILY etc.
+            | List of lists. Each sublist is one row from input file and contains:
+            | start position, end position, name of entity, type
+            | Type means a type of detected entity, e.g. SYSTEMATIC, FAMILY etc.
         """
 
         if file_path:

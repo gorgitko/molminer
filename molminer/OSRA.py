@@ -30,9 +30,11 @@ class OSRA(AbstractLinker):
 
     OSRA is a software for extraction of 2D structures from various formats like PDF and images. It recognizes the
     position of structure in the source and then constructs its linear notation (SMILES, InCHI etc.).
+
     More information here: https://sourceforge.net/projects/osra/ (old website: https://cactus.nci.nih.gov/osra/)
 
-    To show the meaning of options:
+    **To show the meaning of options:** ::
+
         osra = OSRA()
         print(osra.help())  # this will show the output of "$ osra -h"
         print(osra._OPTIONS_REAL)  # this will show the mapping between OSRA class and real OSRA parameters
@@ -242,7 +244,7 @@ class OSRA(AbstractLinker):
                 annotate: bool = True,
                 chemspider_token: str = "",
                 custom_page: int = 0) -> OrderedDict:
-        """
+        r"""
         Process the input file with OSRA.
 
         Parameters
@@ -252,65 +254,74 @@ class OSRA(AbstractLinker):
         output_file : str
             File to write output in.
         output_file_sdf : str
-            File to write SDF output in. "sdf" output format hasn't to be in `output_formats` to write SDF output.
-            If "sdf_osra" output format is requested, suffix "-osra.sdf" will be added.
+            | File to write SDF output in. "sdf" output format hasn't to be in `output_formats` to write SDF output.
+            | If "sdf_osra" output format is requested, suffix "-osra.sdf" will be added.
         sdf_append : bool
             If True, append new molecules to existing SDF file or create new one if doesn't exist.
         NOT IMPLEMENTED | images_prefix : str
             Prefix for images of extracted compounds which will be written.
         format_output : bool
-            If True, the value of "content" key of returned dict will be list of OrderedDicts.
-            If True and `output_file` is set, the CSV file will be written.
-            If False, the value of "content" key of returned dict will be None.
+            | If True, the value of "content" key of returned dict will be list of OrderedDicts.
+            | If True and `output_file` is set, the CSV file will be written.
+            | If False, the value of "content" key of returned dict will be None.
         write_header : bool
             If True and if `output_file` is set and `output_format` is True, write a CSV write_header.
         osra_output_format : str
-            Output format from OSRA. Temporarily overrides the option `output_format` set during instantiation (in __init__).
-            Choices: "smi", "can", "sdf"
-            If "sdf", additional information like coordinates cannot be retrieved (not implemented yet).
+            | Output format from OSRA. Temporarily overrides the option `output_format` set during instantiation (in __init__).
+            | Choices: "smi", "can", "sdf"
+            | If "sdf", additional information like coordinates cannot be retrieved (not implemented yet).
         output_formats : list
-            If True and `format_output` is also True, this specifies which molecule formats will be output.
-            You can specify more than one format, but only one format from OSRA. This format must be also set with `output_format` in __init__
-            or with `osra_output_format` here.
-            When output produces by OSRA is unreadable by RDKit, you can at least have that output from OSRA.
-                <Value>            <Source>        <Note>
-                "smiles"           RDKit           canonical SMILES
-                "smiles_osra"      OSRA ("smi")    SMILES
-                "smiles_can_osra"  OSRA ("can")    canonical SMILES
-                "inchi"            RDKit           Not every molecule can be converted to InChI (it doesn`t support wildcard characters etc.)
-                "inchikey"         RDKit           The same applies as for "inchi".
-                "sdf"              RDKit           If present, an additional SDF file will be created.
-                "sdf_osra"         OSRA ("sdf")    If present, an additional SDF file will be created.
-            Default value: ["smiles"]
+            | If True and `format_output` is also True, this specifies which molecule formats will be output.
+            | You can specify more than one format, but only one format from OSRA. This format must be also set with `output_format` in __init__
+              or with `osra_output_format` here.
+            | When output produces by OSRA is unreadable by RDKit, you can at least have that output from OSRA.
+            | Default value: ["smiles"]
+            +-----------------+--------------+--------------------------------------------------------------------------------------------+
+            |      Value      |    Source    |                                            Note                                            |
+            +=================+==============+============================================================================================+
+            |      smiles     |     RDKit    |                                          canonical                                         |
+            +-----------------+--------------+--------------------------------------------------------------------------------------------+
+            |   smiles_osra   | OSRA ("smi") |                                           SMILES                                           |
+            +-----------------+--------------+--------------------------------------------------------------------------------------------+
+            | smiles_can_osra | OSRA ("can") |                                      canonical SMILES                                      |
+            +-----------------+--------------+--------------------------------------------------------------------------------------------+
+            |      inchi      |     RDKit    | Not every molecule can be converted to InChI (it doesn`t support wildcard characters etc.) |
+            +-----------------+--------------+--------------------------------------------------------------------------------------------+
+            |     inchikey    |     RDKit    |                              The same applies as for "inchi".                              |
+            +-----------------+--------------+--------------------------------------------------------------------------------------------+
+            |       sdf       |     RDKit    |                     If present, an additional SDF file will be created.                    |
+            +-----------------+--------------+--------------------------------------------------------------------------------------------+
+            |     sdf_osra    | OSRA ("sdf") |                     If present, an additional SDF file will be created.                    |
+            +-----------------+--------------+--------------------------------------------------------------------------------------------+
         dry_run : bool
             If True, only return list of commands to be called by subprocess.
         csv_delimiter : str
             Delimiter for output CSV file.
         use_gm : bool
-            If True, use GraphicsMagick to convert PDF to temporary PNG images before processing.
-            If False, OSRA will use it's own conversion of PDF to image.
-            Using gm is more reliable since OSRA (v2.1.0) is showing wrong information
-            when converting directly from PDF (namely: coordinates, bond length and possibly more ones) and also there are sometimes
-            incorrectly recognised structures.
+            | If True, use GraphicsMagick to convert PDF to temporary PNG images before processing.
+            | If False, OSRA will use it's own conversion of PDF to image.
+            | Using gm is more reliable since OSRA (v2.1.0) is showing wrong information
+              when converting directly from PDF (namely: coordinates, bond length and possibly more ones) and also there are sometimes
+              incorrectly recognised structures.
         gm_dpi : int
             How many DPI will temporary PNG images have.
         gm_trim : bool
             If True, gm will trim the temporary PNG images.
         n_jobs : int
-            If `use_gm` and input file is PDF, how many jobs to use for OSRA processing of temporary PNG images.
-            If -1 all CPUs are used.
-            If 1 is given, no parallel computing code is used at all, which is useful for debugging.
-            For n_jobs below -1, (n_cpus + 1 + n_jobs) are used. Thus for n_jobs = -2, all CPUs but one are used.
+            | If `use_gm` and input file is PDF, how many jobs to use for OSRA processing of temporary PNG images.
+            | If -1 all CPUs are used.
+            | If 1 is given, no parallel computing code is used at all, which is useful for debugging.
+            | For n_jobs below -1, (n_cpus + 1 + n_jobs) are used. Thus for n_jobs = -2, all CPUs but one are used.
         input_type : str
-            When empty, input (MIME) type will be determined from magic bytes.
-            Or you can specify "pdf" or "image" and magic bytes check will be skipped.
+            | When empty, input (MIME) type will be determined from magic bytes.
+            | Or you can specify "pdf" or "image" and magic bytes check will be skipped.
         standardize_mols : bool
             If True and `format_output` is also True, use molvs (https://github.com/mcs07/MolVS) to standardize molecules.
         annotate : bool
-            If True, try to annotate entities in PubChem and ChemSpider. Compound IDs will be assigned by searching with
-            each identifier, separately for SMILES, InChI etc.
-            If entity has InChI key yet, prefer it in searching.
-            If "*" is present in SMILES, skip annotation.
+            | If True, try to annotate entities in PubChem and ChemSpider. Compound IDs will be assigned by searching with
+              each identifier, separately for SMILES, InChI etc.
+            | If entity has InChI key yet, prefer it in searching.
+            | If "*" is present in SMILES, skip annotation.
         chemspider_token : str
             Your personal token for accessing the ChemSpider API. Make account there to obtain it.
         custom_page : bool
@@ -320,15 +331,18 @@ class OSRA(AbstractLinker):
         -------
         dict
             Keys:
-                stdout: str ... standard output from OSRA
-                stderr: str ... standard error output from OSRA
-                exit_code: int ... exit code from OSRA
-                content:
-                    list of OrderedDicts ... when `format_output` is True.
-                    None ... when `format_output` is False
-            If `osra_output_format` is "sdf", additional information like 'bond_length' cannot be retrieved.
-            If `use_gm` is True then stdout, stderr and exit_code will be lists containing items from each temporary image
-            extracted by OSRA.
+
+            - stdout: str ... standard output from OSRA
+            - stderr: str ... standard error output from OSRA
+            - exit_code: int ... exit code from OSRA
+            - content:
+
+                - list of OrderedDicts ... when `format_output` is True.
+                - None ... when `format_output` is False
+
+            | If `osra_output_format` is "sdf", additional information like 'bond_length' cannot be retrieved.
+            | If `use_gm` is True then stdout, stderr and exit_code will be lists containing items from each temporary image
+              extracted by OSRA.
 
         Notes
         -----

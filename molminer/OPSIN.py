@@ -26,11 +26,13 @@ class OPSIN(AbstractLinker):
 
     OPSIN is a software for converting IUPAC names to linear notation (SMILES, InCHI etc.). It reads names from stdin
     or from input file where on each line is one IUPAC name.
+
     More information here: http://opsin.ch.cam.ac.uk/
 
-    To show the meaning of options:
+    **To show the meaning of options:** ::
+
         opsin = OPSIN()
-        print(opsin.help())  # this will show the output of "$ opsin -h", resp. "$ java -jar <path_to_opsin.jar> -h"
+        print(opsin.help())  # this will show the output of "$ opsin -h"
         print(opsin._OPTIONS_REAL)  # this will show the mapping between OPSIN class and real OPSIN parameters
 
     Attributes
@@ -85,8 +87,8 @@ class OPSIN(AbstractLinker):
         detailed_failure_analysis : bool
             Enables reverse parsing to more accurately determine why parsing failed.
         output_format : str
-            Sets OPSIN's output format (default smi). Values: "cml", "smi", "extendedsmi", "inchi", "stdinchi", "stdinchikey"
-            Can be temporarily overriden in self.process method.
+            | Sets OPSIN's output format (default smi). Values: "cml", "smi", "extendedsmi", "inchi", "stdinchi", "stdinchikey"
+            | Can be temporarily overriden in self.process method.
         allow_radicals : bool
             Enables interpretation of radicals.
         allow_uninterpretable_stereo : bool
@@ -145,8 +147,9 @@ class OPSIN(AbstractLinker):
     def normalize_iupac(self, iupac_names: Union[str, list]) -> Union[str, list]:
         """
         Normalize IUPAC names:
-            - remove plurals ("nitrates" -> "nitrate")
-            - first letter lowercase ("Ammonium Nitrate" -> "ammonium nitrate")
+
+        - remove plurals ("nitrates" -> "nitrate")
+        - first letter lowercase ("Ammonium Nitrate" -> "ammonium nitrate")
 
         Parameters
         ----------
@@ -188,14 +191,14 @@ class OPSIN(AbstractLinker):
                 csv_delimiter: str = ";",
                 standardize_mols: bool = True,
                 normalize_plurals: bool = True) -> OrderedDict:
-        """
+        r"""
         Process the input file with OPSIN.
 
         Parameters
         ----------
         input : str or list
-            str: String with IUPAC names, one per line.
-            list: List of IUPAC names.
+            | str: String with IUPAC names, one per line.
+            | list: List of IUPAC names.
         input_file : str
             Path to file to be processed by OPSIN. One IUPAC name per line.
         output_file : str
@@ -203,34 +206,44 @@ class OPSIN(AbstractLinker):
         output_file_sdf : str
             File to write SDF output in.
         output_file_cml : str
-            File to write CML (Chemical Markup Language) output in. `opsin_output_format` must be "cml".
-            Not supported by RDKit so standardization and conversion to other formats cannot be done.
+            | File to write CML (Chemical Markup Language) output in. `opsin_output_format` must be "cml".
+            | Not supported by RDKit so standardization and conversion to other formats cannot be done.
         sdf_append : bool
             If True, append new molecules to existing SDF file or create new one if doesn't exist.
         format_output : bool
-            If True, the value of "content" key of returned dict will be list of OrderedDicts with keys:
-                "iupac", <output formats>, ..., "error"
-            If True and `output_file` is set it will be created as CSV file with columns: "iupac", <output formats>, ..., "error"
-            If False, the value of "content" key of returned dict will be None.
+            | If True, the value of "content" key of returned dict will be list of OrderedDicts with keys:
+            | "iupac", <output formats>, ..., "error"
+            | If True and `output_file` is set it will be created as CSV file with columns: "iupac", <output formats>, ..., "error"
+            | If False, the value of "content" key of returned dict will be None.
         opsin_output_format : str
-            Output format from OPSIN. Temporarily overrides the option `output_format` set during instantiation (in __init__).
-            Choices: "cml", "smi", "extendedsmi", "inchi", "stdinchi", "stdinchikey"
+            | Output format from OPSIN. Temporarily overrides the option `output_format` set during instantiation (in __init__).
+            | Choices: "cml", "smi", "extendedsmi", "inchi", "stdinchi", "stdinchikey"
         output_formats : list
-            If True and `format_output` is also True, this specifies which molecule formats will be output.
-            You can specify more than one format, but only one format from OPSIN. This format must be also set with `output_format` in __init__
-            or with `osra_output_format` here.
-                <Value>                  <Source>               <Note>
-                "smiles"                 RDKit                  canonical SMILES
-                "smiles_opsin"           OPSIN ("smi")          SMILES
-                "smiles_extended_opsin"  OPSIN ("extendedsmi")  Extended SMILES. Not supported by RDKit.
-                "inchi"                  RDKit                  Not every molecule can be converted to InChI (it doesn`t support wildcard characters etc.)
-                "inchi_opsin"            OPSIN ("inchi")        InChI
-                "stdinchi_opsin"         OPSIN ("stdinchi")     standard InChI
-                "inchikey"               RDKit                  The same applies as for "inchi". Also molecule cannot be created from InChI-key.
-                "stdinchikey_opsin"      OPSIN ("stdinchikey")  Standard InChI-key. Cannot be used by RDKit to create molecule.
-                "sdf"                    RDKit                  If present, an additional SDF file will be created.
-
-            Default value: ["smiles"]
+            | If True and `format_output` is also True, this specifies which molecule formats will be output.
+            | You can specify more than one format, but only one format from OPSIN. This format must be also set with `output_format` in __init__
+              or with `osra_output_format` here.
+            | Default value: ["smiles"]
+            +-----------------------+-----------------------+--------------------------------------------------------------------------------------------+
+            |         Value         |         Source        |                                            Note                                            |
+            +=======================+=======================+============================================================================================+
+            |         smiles        |         RDKit         |                                          canonical                                         |
+            +-----------------------+-----------------------+--------------------------------------------------------------------------------------------+
+            |      smiles_opsin     |     OPSIN ("smi")     |                                           SMILES                                           |
+            +-----------------------+-----------------------+--------------------------------------------------------------------------------------------+
+            | smiles_extended_opsin | OPSIN ("extendedsmi") |                          Extended SMILES. Not supported by RDKit.                          |
+            +-----------------------+-----------------------+--------------------------------------------------------------------------------------------+
+            |         inchi         |         RDKit         | Not every molecule can be converted to InChI (it doesn`t support wildcard characters etc.) |
+            +-----------------------+-----------------------+--------------------------------------------------------------------------------------------+
+            |      inchi_opsin      |    OPSIN ("inchi")    |                                            InChI                                           |
+            +-----------------------+-----------------------+--------------------------------------------------------------------------------------------+
+            |     stdinchi_opsin    |   OPSIN ("stdinchi")  |                                       standard InChI                                       |
+            +-----------------------+-----------------------+--------------------------------------------------------------------------------------------+
+            |        inchikey       |         RDKit         |      The same applies as for "inchi". Also molecule cannot be created from InChI-key.      |
+            +-----------------------+-----------------------+--------------------------------------------------------------------------------------------+
+            |   stdinchikey_opsin   | OPSIN ("stdinchikey") |               Standard InChI-key. Cannot be used by RDKit to create molecule.              |
+            +-----------------------+-----------------------+--------------------------------------------------------------------------------------------+
+            |          sdf          |         RDKit         |                     If present, an additional SDF file will be created.                    |
+            +-----------------------+-----------------------+--------------------------------------------------------------------------------------------+
         write_header : bool
             If True and if `output_file` is set and `output_format` is True, write a CSV write_header.
         dry_run : bool
@@ -240,19 +253,21 @@ class OPSIN(AbstractLinker):
         standardize_mols : bool
             If True and `format_output` is also True, use molvs (https://github.com/mcs07/MolVS) to standardize molecules.
         normalize_plurals : bool
-            If True, normalize plurals ("nitrates" -> "nitrate"). See OPSIN.PLURAL_PATTERNS for relating plurals. You can
-            set your own regex pattern with `plural_patterns` in __init__.
+            | If True, normalize plurals ("nitrates" -> "nitrate"). See OPSIN.PLURAL_PATTERNS for relating plurals. You can
+              set your own regex pattern with `plural_patterns` in __init__.
 
         Returns
         -------
         dict
             Keys:
-                stdout: str ... standard output from OPSIN
-                stderr: str ... standard error output from OPSIN
-                exit_code: int ... exit code from OPSIN
-                content:
-                    list of OrderedDicts ... when format_output is True. Fields: "iupac", <output formats>, ..., "error"
-                    None ... when format_output is False
+
+            - stdout: str ... standard output from OPSIN
+            - stderr: str ... standard error output from OPSIN
+            - exit_code: int ... exit code from OPSIN
+            - content:
+
+              - list of OrderedDicts ... when format_output is True. Fields: "iupac", <output formats>, ..., "error"
+              - None ... when format_output is False
         """
 
         options_internal = self.options_internal.copy()

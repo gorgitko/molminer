@@ -27,8 +27,7 @@ def common_subprocess(commands: Union[list, str], stdin: str = "", stdin_encodin
     Parameters
     ----------
     commands : list or str
-        List of commands to execute in shell, e.g. ["ls", "-a"]
-        If string is given, split it to list.
+        List of commands to execute in shell, e.g. ["ls", "-a"]. If string is given, split it to list.
     stdin : str
         Stdin to send to shell.
     stdin_encoding : str
@@ -55,7 +54,7 @@ def common_subprocess(commands: Union[list, str], stdin: str = "", stdin_encodin
 
 def get_text_from_pdf(input_file: str) -> str:
     """
-    Get embedded text from PDF using pdftotext binary (part of Poppler tools).
+    Get embedded text from PDF using pdftotext binary (part of poppler-utils).
 
     Parameters
     ----------
@@ -85,25 +84,26 @@ def get_text_from_pdf_scan(input_file: str,
     ----------
     input_file : str
     lang : str
-        Language which will Tesseract use for OCR. Available languages: https://github.com/tesseract-ocr/tessdata
-        Multiple languages can be specified with "+" character, e.g. "eng+bul+fra".
-        Language data files must be stored in directory defined in TESSDATA_PREFIX environmental variable.
+        | Language which will Tesseract use for OCR. Available languages: https://github.com/tesseract-ocr/tessdata
+        | Multiple languages can be specified with "+" character, e.g. "eng+bul+fra".
+        | Language data files must be stored in directory defined in TESSDATA_PREFIX environmental variable.
     tessdata_prefix : str
         Path to directory with Tesseract language data. If empty, the TESSDATA_PREFIX environment variable will be used.
     tesseract_engine : int
         OCR Engine modes:
-            0    Original Tesseract only.
-            1    Neural nets LSTM only.
-            2    Tesseract + LSTM.
-            3    Default, based on what is available.
+
+            | 0    Original Tesseract only.
+            | 1    Neural nets LSTM only.
+            | 2    Tesseract + LSTM.
+            | 3    Default, based on what is available.
     as_page_list : bool
         If True, return list of text of individual pages.
 
     Returns
     -------
     (str, TemporaryDirectory)
-        Text and TemporaryDirectory object, which contains name of temporary directory with converted images.
-        This directory will be deleted when script exits, when TemporaryDirectory object is deleted or its method cleanup() is called.
+        | Text and TemporaryDirectory object, which contains name of temporary directory with converted images.
+        | This directory will be deleted when script exits, when TemporaryDirectory object is deleted or its method cleanup() is called.
     """
 
     if tessdata_prefix:
@@ -149,8 +149,8 @@ def get_text_from_image(input_file: str,
     ----------
     input_file : str
     lang : str
-        Language which will Tesseract use for OCR. Available languages: https://github.com/tesseract-ocr/tessdata
-        Multiple languages can be specified with "+" character, i.e. "eng+bul+fra".
+        | Language which will Tesseract use for OCR. Available languages: https://github.com/tesseract-ocr/tessdata
+        | Multiple languages can be specified with "+" character, i.e. "eng+bul+fra".
     tessdata_prefix : str
         Path to directory with Tesseract language data. If empty, the TESSDATA_PREFIX environment variable will be used.
 
