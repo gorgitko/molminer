@@ -43,9 +43,9 @@ class ChemSpot(AbstractLinker):
     available memory is under 8 GB (see https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04 for more details).
 
     To show the meaning of options:
-        chemspot = ChemSpot()
-        print(chemspot.help())  # this will show the output of "$ chemspot -h"
-        print(chemspot._OPTIONS_REAL)  # this will show the mapping between ChemSpot class and real ChemSpot parameters
+    chemspot = ChemSpot()
+    print(chemspot.help())  # this will show the output of "$ chemspot -h"
+    print(chemspot._OPTIONS_REAL)  # this will show the mapping between ChemSpot class and real ChemSpot parameters
 
     Attributes
     ----------
@@ -406,7 +406,7 @@ class ChemSpot(AbstractLinker):
                     opsin = OPSIN(verbosity=self.verbosity)
                     opsin_converted = opsin.process(input=to_convert, output_formats=["smiles", "inchi", "inchikey"],
                                                     standardize_mols=standardize_mols, output_file_sdf=output_file_sdf,
-                                                    sdf_append=sdf_append)
+                                                    sdf)
                     opsin_converted = iter(opsin_converted["content"])
                 else:
                     self.logger.info("Nothing to convert with OPSIN.")
