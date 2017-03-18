@@ -59,11 +59,11 @@ To each command you can view its options with `$ molminer COMMAND --help`
 
 ## Input
 - Input can be single PDF, image or text file. Type of input file will be automatically determined, but you can specify it with `-i [pdf|pdf_scan|image|text]` option (`text` value is of course not supported by OSRA, resp. `ocsr` command). Only PDF containing scanned papers cannot be identified so you must pass `-i pdf_scan` option.
-- Input from stdin is also supported. You can use it together with `ner` and `convert` command. For `convert` a list of IUPAC names is expected, each name on single line.
+- Input from `stdin` is also supported. You can use it together with `ner` and `convert` command. For `convert` a list of IUPAC names is expected, each name on single line.
 - If you know that your text is paged, i.e. contains page separators -- ASCII control character 12 (Form Feed, '\f'), you can pass `--paged-text` flag and to each entity will be assigned page. This is automatically done when input is PDF file.
 
 ## Output
-- Result is a CSV file. Defaultly, MolMiner will write result to stdout. If you want to write result to file, use `-o <file>` option. To change CSV file delimiter use `-d <delimiter>` option.
+- Result is a CSV file. Defaultly, MolMiner will write result to `stdout`. If you want to write result directly to file, use `-o <file>` option. To change CSV file delimiter use `-d <delimiter>` option.
 - Chemical entities, which were successfully converted to computer-readable format, can be also written to SDF file by specifying `--sdf-output <file>` option. If you don't want to create new SDF file and just append to it, use `--sdf-append` flag.
 - When using `extract` command, you can also output CSV files separately from OSRA, ChemSpot and OPSIN by using the `--separated-output` flag.
 
@@ -109,6 +109,14 @@ pprint(extracted)
 
 # Notes
 - ChemSpot itself is very memory-consuming so dictionary and ID lookup is disabled by default. Only CRF, OpenNLP sentence and multiclass models will be used by default. Maximum memory used by Java process is set to 8 GB by default. It is strongly recommended to use swap file on SSD disk when available memory is under 8 GB (see https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04 for more details). If you want to use dictionary and ID lookop in ChemSpot, pass `--chs-dict dict.zip` and `--chs-ids ids.zip` options. If you are using MolMiner library, pass `path_to_dict="dict.zip"` and `path_to_ids="ids.zip"` to ChemSpot class constructor.
+
+# Acknowledgement
+MolMiner was the job description of my diploma thesis at [University of chemical technology in Prague](http://www.vscht.cz/?jazyk=en), [Laboratory of chemistry and informatics](http://ich.vscht.cz/). I would like to thank my supervisor Daniel Svozil for leading the work and Martin Sicho for helping me with conda distribution of MolMiner.
+
+Citations of used software:
+- Rocktäschel, T., Weidlich, M., and Leser, U. (2012).  ChemSpot: A Hybrid System for Chemical Named Entity Recognition. Bioinformatics 28 (12): 1633-1640.
+- "Optical Structure Recognition Software To Recover Chemical Information: OSRA, An Open Source Solution" J. Chem. Inf. Model., 2009, 49 (3), pp 740–743.
+- Chemical Name to Structure: OPSIN, an Open Source Solution Daniel. M. Lowe, Peter T. Corbett, Peter Murray-Rust, Robert C. Glen, Journal of Chemical Information and Modeling 2011 51 (3), 739-753
 
 [1]: https://www.informatik.hu-berlin.de/de/forschung/gebiete/wbi/resources/chemspot/chemspot
 [2]: https://sourceforge.net/p/osra/wiki/Home/
