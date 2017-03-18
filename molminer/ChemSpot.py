@@ -115,7 +115,7 @@ class ChemSpot(AbstractLinker):
         tessdata_path : str
             Path to directory with Tesseract language data. If empty, the TESSDATA_PREFIX environment variable will be used.
         max_memory : int
-            Maximum memory used by Java process.
+            Maximum amount of memory [GB] which can be used by Java process.
         verbosity : int
             This class's verbosity. Values: 0, 1, 2
         """
