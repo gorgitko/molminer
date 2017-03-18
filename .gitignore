@@ -7,3 +7,4 @@ molminer/__pycache__/
 molminer/temp/
 molminer/testdata/
 molminer/test_*
+/docs/sphinx/build/
