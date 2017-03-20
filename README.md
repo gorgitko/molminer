@@ -11,7 +11,7 @@ To install MolMiner without dependencies just download this repository and run `
 [Conda][6] is a package, dependency and environment management for any language including Python. MolMiner package includes precompiled dependencies and data files. It also manages all the needed envinronment variables and enables bash auto-completion.
 
 1. Download _conda_ from https://conda.io/miniconda.html
-2. Add my channel: `$ conda config --add channel jirinovo`
+2. Add channels: `$ conda config --add channel jirinovo; conda config --add channel bioconda; conda config --add channel rdkit`
 3. Create new virtual environment and install MolMiner: `$ conda create -n my_new_env molminer`
 4. Activate environment: `$ source activate my_new_env`
 5. Use MolMiner: `$ molminer --help`
