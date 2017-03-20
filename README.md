@@ -14,11 +14,14 @@ To install MolMiner without dependencies just download this repository and run `
 
 <!---
 1. Download _conda_ from https://conda.io/miniconda.html
-2. Create new environment: `$ conda create -n my_new_env python=3`
-3. Activate environment: `$ source activate my_new_env`
-4. Install MolMiner: `$ conda install -c lich molminer`
+2. Add my channel: `conda config --add channel jirinovo`
+3. Create new virtual environment and install MolMiner: `$ conda create -n my_new_env python=3.5 molminer molminer-data`
+4. Activate environment: `$ source activate my_new_env`
 5. Use MolMiner: `$ molminer --help`
 --->
+
+Note that you must always activate virtual environment in order to use MolMiner. That's because the activation script is also modifying the environmental variables storing the paths to MolMiner data files and shared libraries.
+
 ## From source (linux)
 ### Binaries
 You need all these binaries for MolMiner. They should be installed so path to them is in `PATH` environmental variable (like `/usr/local/bin`). I haven't tried to compile these dependencies on Windows, but that doesn't mean it's impossible.
@@ -56,6 +59,8 @@ MolMiner has four commands (you can view them with `$ molminer --help`):
 - `extract`: Combine all the previous commands.
 
 To each command you can view its options with `$ molminer COMMAND --help`
+
+Bash auto-completion is available when MolMiner is installed through _conda_ and virtual environment is activated. Then you can double-press TAB key to show MolMiner commands and options: `$ molminer <TAB><TAB>` to see commands and `$ molminer ocsr --<TAB><TAB>` to see options.
 
 ## Input
 - Input can be single PDF, image or text file. Type of input file will be automatically determined, but you can specify it with `-i [pdf|pdf_scan|image|text]` option (`text` value is of course not supported by OSRA, resp. `ocsr` command). Only PDF containing scanned papers cannot be identified so you must pass `-i pdf_scan` option.
