@@ -15,7 +15,7 @@ To install MolMiner without dependencies just download this repository and run `
 <!---
 1. Download _conda_ from https://conda.io/miniconda.html
 2. Add my channel: `conda config --add channel jirinovo`
-3. Create new virtual environment and install MolMiner: `$ conda create -n my_new_env python=3.5 molminer molminer-data`
+3. Create new virtual environment and install MolMiner: `$ conda create -n my_new_env molminer`
 4. Activate environment: `$ source activate my_new_env`
 5. Use MolMiner: `$ molminer --help`
 --->
@@ -44,23 +44,26 @@ You need all these binaries for MolMiner. They should be installed so path to th
   - Ubuntu (or any OS with `apt` packaging): `$ sudo apt-get install poppler-utils`
 - [libmagic](https://github.com/threatstack/libmagic). Reads the magic bytes of file and determine its MIME type.
   - Ubuntu (or any OS with `apt` packaging): `$ sudo apt-get install libmagic1 libmagic-dev`
-  
+- [OpenJDK](http://openjdk.java.net/). Java runtime environment. [Installation](http://openjdk.java.net/install/).
+
 Paths to data files can be also specified in both MolMiner CLI and library, but defining them in environment variables is the easiest way.
 ### Python dependencies
 Dependencies listed in `setup.py` will be installed automatically when you run `$ python setup.py install`. Unfortunately, there is a complicated dependency [RDKit](http://www.rdkit.org/). It's best to install it as a [conda package](https://anaconda.org/rdkit/rdkit).
 
 # Usage
-Basic syntax is: `molminer COMMAND [OPTIONS] [ARGS]`
+- Basic syntax is: `molminer COMMAND [OPTIONS] [ARGS]`
 
-MolMiner has four commands (you can view them with `$ molminer --help`):
-- `ocsr`: Extract 2D structures with OSRA. OCSR stands for _Optical Chemical Structure Recognition_.
-- `ner`: Extract textual chemical entities with ChemSpot. NER stands for _Named Entity Recognition_.
-- `convert`: Convert IUPAC names to computer-readable format with OPSIN.
-- `extract`: Combine all the previous commands.
+- MolMiner has four commands (you can view them with `$ molminer --help`):
+  - `ocsr`: Extract 2D structures with OSRA. OCSR stands for _Optical Chemical Structure Recognition_.
+  - `ner`: Extract textual chemical entities with ChemSpot. NER stands for _Named Entity Recognition_.
+  - `convert`: Convert IUPAC names to computer-readable format with OPSIN.
+  - `extract`: Combine all the previous commands.
 
-To each command you can view its options with `$ molminer COMMAND --help`
-
-Bash auto-completion is available when MolMiner is installed through _conda_ and virtual environment is activated. Then you can double-press TAB key to show MolMiner commands and options: `$ molminer <TAB><TAB>` to see commands and `$ molminer ocsr --<TAB><TAB>` to see options.
+- To each command you can view its options with `$ molminer COMMAND --help`
+- Bash auto-completion is automatically available when MolMiner is installed through _conda_ and virtual environment is activated. Then you can double-press TAB key to show MolMiner commands and options: `$ molminer <TAB><TAB>` to see commands and `$ molminer ocsr --<TAB><TAB>` to see options.
+  - To manually activate bash auto-completion: `eval "$(_MOLMINER_COMPLETE=source molminer)"`
+    You can put this to your `.bashrc` file at your home directory.
+    Internally, it's a feature of [click](http://click.pocoo.org/6/) library documented [here](http://click.pocoo.org/6/bashcomplete/).
 
 ## Input
 - Input can be single PDF, image or text file. Type of input file will be automatically determined, but you can specify it with `-i [pdf|pdf_scan|image|text]` option (`text` value is of course not supported by OSRA, resp. `ocsr` command). Only PDF containing scanned papers cannot be identified so you must pass `-i pdf_scan` option.
