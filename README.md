@@ -47,7 +47,7 @@ Paths to data files can be also specified in both MolMiner CLI and library, but 
 Dependencies listed in `setup.py` will be installed automatically when you run `$ python setup.py install`. Unfortunately, there is a complicated dependency [RDKit](http://www.rdkit.org/). It's best to install it as a [conda package](https://anaconda.org/rdkit/rdkit).
 
 # Usage
-- Basic syntax is: `molminer COMMAND [OPTIONS] [ARGS]`
+- Basic syntax is: `$ molminer COMMAND [OPTIONS] [ARGS]`
 
 - MolMiner has four commands (you can view them with `$ molminer --help`):
   - `ocsr`: Extract 2D structures with OSRA. OCSR stands for _Optical Chemical Structure Recognition_.
