@@ -10,15 +10,11 @@ To install MolMiner without dependencies just download this repository and run `
 ## Conda package (currently only for linux64)
 [Conda][6] is a package, dependency and environment management for any language including Python. MolMiner package includes precompiled dependencies and data files. It also manages all the needed envinronment variables and enables bash auto-completion.
 
-**TO BE DONE**
-
-<!---
 1. Download _conda_ from https://conda.io/miniconda.html
-2. Add my channel: `conda config --add channel jirinovo`
+2. Add my channel: `$ conda config --add channel jirinovo`
 3. Create new virtual environment and install MolMiner: `$ conda create -n my_new_env molminer`
 4. Activate environment: `$ source activate my_new_env`
 5. Use MolMiner: `$ molminer --help`
---->
 
 Note that you must always activate virtual environment in order to use MolMiner. That's because the activation script is also modifying the environmental variables storing the paths to MolMiner data files and shared libraries.
 
@@ -119,6 +115,7 @@ pprint(extracted)
 - ChemSpot itself is very memory-consuming so dictionary and ID lookup is disabled by default. Only CRF, OpenNLP sentence and multiclass models will be used by default. Maximum memory used by Java process is set to 8 GB by default. It is strongly recommended to use swap file on SSD disk when available memory is under 8 GB (see https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04 for more details). If you want to use dictionary and ID lookup in ChemSpot, pass `--chs-dict dict.zip` and `--chs-ids ids.zip` options. If you are using MolMiner library, pass `path_to_dict="dict.zip"` and `path_to_ids="ids.zip"` to ChemSpot class constructor.
 - Unfortunately, there wasn't enough time to write unit tests. I hope I will find time in future to do it.
 - We also wanted to test MolMiner's quality. That means mainly the completeness of extraction and ratio of false positives. Unfortunately, there aren't complex test data which will cover both textual and 2D structure chemical entities. We don't have enough time to prepare such a complex dataset manually, so for now you can separately look at [ChemSpot][1] and [OSRA](https://sourceforge.net/p/osra/wiki/Validation/) test results.
+- If you successfully compile all the dependencies for Windows, let me kindly know and I will add MolMiner package for Windows to Anaconda Cloud. Thank you!
 
 # Support
 Feel free to open issue ticket. This is the prefered way since we don't have mailing list.
