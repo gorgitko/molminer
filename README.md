@@ -61,7 +61,7 @@ Dependencies listed in `setup.py` will be installed automatically when you run `
 
 - To each command you can view its options with `$ molminer COMMAND --help`
 - Bash auto-completion is automatically available when MolMiner is installed through _conda_ and virtual environment is activated. Then you can double-press TAB key to show MolMiner commands and options: `$ molminer <TAB><TAB>` to see commands and `$ molminer ocsr --<TAB><TAB>` to see options.
-  - To manually activate bash auto-completion: `eval "$(_MOLMINER_COMPLETE=source molminer)"`
+  - To manually activate bash auto-completion: `$ eval "$(_MOLMINER_COMPLETE=source molminer)"`
     You can put this to your `.bashrc` file at your home directory.
     Internally, it's a feature of [click](http://click.pocoo.org/6/) library documented [here](http://click.pocoo.org/6/bashcomplete/).
 
