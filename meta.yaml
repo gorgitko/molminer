@@ -3,35 +3,41 @@ package:
   version: "1.0.0"
 
 source:
-    path: .  # [linux]
+    path: .
 
 build:
-  number: 0
-  script_env:
-    - MM_DEP
-  entry_points:
-    - molminer = molminer.cli:cli
+    number: 0
+    script_env:
+        - MM_DEP
+    entry_points:
+        - molminer = molminer.cli:cli
 
 requirements:
-  build:
+    build:
     - python 3.5*
     - setuptools
-
-  run:
+    run:
     - python 3.5*
-    - rdkit >=2016.09.4*
+    - rdkit
     - click
-    - joblib >=0.11*
+    - joblib
     - python-magic
-    - molvs >=0.0.9*
+    - molvs
+    - pubchempy
+    - chemspipy
 
 test:
-  imports:
-    - molminer
-  commands:
-    - molminer --version
-    - molminer --help
+    imports:
+        - molminer
+        - molminer.OSRA
+        - molminer.ChemSpot
+        - molminer.OPSIN
+        - molminer.Extractor
+    commands:
+        - molminer --version
+        - molminer --help
 
 about:
-  #home:
+  home: https://github.com/gorgitko/molminer
   license: MIT
+  summary: A command-line tool and library for extraction of chemical entities from text and 2D structures.

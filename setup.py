@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 if os.path.exists('README.rst'):
     long_description = open('README.rst').read()
 else:
-    long_description = '''A toolkit for extracting chemical information from the scientific literature.'''
+    long_description = '''A command-line tool and library for extraction of chemical entities from text and 2D structures.'''
 
 setup(
     name='MolMiner',
@@ -13,15 +13,15 @@ setup(
     author='Jiri Novotny',
     author_email='fg-42@seznam.cz',
     license='MIT',
-    #url='https://github.com/mcs07/ChemDataExtractor',
+    url='https://github.com/gorgitko/molminer',
     packages=find_packages(),
-    description='Library and CLI for extraction of chemical compounds from scientific papers.',
-    #long_description=long_description,
+    description='A command-line tool and library for extraction of chemical entities from text and 2D structures.',
+    long_description=long_description,
     keywords='text-mining mining chemistry cheminformatics nlp science scientific ocsr ner',
     zip_safe=False,
     entry_points={'console_scripts': ['molminer = molminer.cli:cli']},
     #tests_require=['pytest'],
-    install_requires=['joblib', 'molvs', 'python-magic', 'click'],
+    install_requires=['joblib', 'molvs', 'python-magic', 'click', 'pubchempy', 'chemspipy'],
     classifiers=[
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',
