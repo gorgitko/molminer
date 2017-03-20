@@ -223,6 +223,7 @@ class OPSIN(AbstractLinker):
             | You can specify more than one format, but only one format from OPSIN. This format must be also set with `output_format` in __init__
               or with `osra_output_format` here.
             | Default value: ["smiles"]
+
             +-----------------------+-----------------------+--------------------------------------------------------------------------------------------+
             |         Value         |         Source        |                                            Note                                            |
             +=======================+=======================+============================================================================================+
@@ -244,6 +245,7 @@ class OPSIN(AbstractLinker):
             +-----------------------+-----------------------+--------------------------------------------------------------------------------------------+
             |          sdf          |         RDKit         |                     If present, an additional SDF file will be created.                    |
             +-----------------------+-----------------------+--------------------------------------------------------------------------------------------+
+
         write_header : bool
             If True and if `output_file` is set and `output_format` is True, write a CSV write_header.
         dry_run : bool

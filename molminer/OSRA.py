@@ -276,6 +276,7 @@ class OSRA(AbstractLinker):
               or with `osra_output_format` here.
             | When output produces by OSRA is unreadable by RDKit, you can at least have that output from OSRA.
             | Default value: ["smiles"]
+
             +-----------------+--------------+--------------------------------------------------------------------------------------------+
             |      Value      |    Source    |                                            Note                                            |
             +=================+==============+============================================================================================+
@@ -293,6 +294,7 @@ class OSRA(AbstractLinker):
             +-----------------+--------------+--------------------------------------------------------------------------------------------+
             |     sdf_osra    | OSRA ("sdf") |                     If present, an additional SDF file will be created.                    |
             +-----------------+--------------+--------------------------------------------------------------------------------------------+
+
         dry_run : bool
             If True, only return list of commands to be called by subprocess.
         csv_delimiter : str
