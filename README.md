@@ -42,7 +42,7 @@ You need all these binaries for MolMiner. They should be installed so path to th
   - Ubuntu (or any OS with `apt` packaging): `$ sudo apt-get install libmagic1 libmagic-dev`
 - [OpenJDK](http://openjdk.java.net/). Java runtime environment. [Installation](http://openjdk.java.net/install/).
 
-Paths to data files can be also specified in both MolMiner CLI and library, but defining them in environment variables is the easiest way.
+Paths to data files can be also specified in both MolMiner CLI and library, but defining them in the environmental variables is the easiest way.
 ### Python dependencies
 Dependencies listed in `setup.py` will be installed automatically when you run `$ python setup.py install`. Unfortunately, there is a complicated dependency [RDKit](http://www.rdkit.org/). It's best to install it as a [conda package](https://anaconda.org/rdkit/rdkit).
 
