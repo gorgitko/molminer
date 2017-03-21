@@ -13,7 +13,7 @@ To install MolMiner without dependencies just download this repository and run `
 **TO BE DONE**
 <!--
 1. Download _conda_ from https://conda.io/miniconda.html
-2. Add channels: `$ conda config --add channel jirinovo; conda config --add channel bioconda; conda config --add channel rdkit`
+2. Add channels: `$ conda config --add channel conda-forge; conda config --add channel jirinovo; conda config --add channel bioconda; conda config --add channel rdkit`
 3. Create new virtual environment and install MolMiner: `$ conda create -n my_new_env molminer`
 4. Activate environment: `$ source activate my_new_env`
 5. Use MolMiner: `$ molminer --help`
