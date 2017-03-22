@@ -3,12 +3,12 @@ package:
   version: "1.0.0"
 
 source:
-    path: .
+    path: src/
 
 build:
     number: 0
     script_env:
-        - MM_DEP
+        - MOLMINER_DATA_PATH     # path to MolMiner activation scripts and dependencies: bin/, etc/, lib/, share/
     entry_points:
         - molminer = molminer.cli:cli
 
@@ -18,6 +18,7 @@ requirements:
     - setuptools
     run:
     - python 3.5*
+    - molminer-data
     - rdkit
     - click
     - joblib
@@ -25,6 +26,9 @@ requirements:
     - molvs
     - pubchempy
     - chemspipy
+    - openjdk
+    - ghostscript
+    #- graphicsmagick
 
 test:
     imports:

@@ -1,0 +1,15 @@
+package:
+  name: molminer-data
+  version: "1.0.0"
+
+build:
+    number: 0
+    script_env:
+        - MOLMINER_DATA_PATH    # path to dir with MolMiner data: share/
+    #noarch_python: True
+    #string: "py_0"
+
+about:
+  home: https://github.com/gorgitko/molminer
+  license: MIT
+  summary: Data files for ChemSpot and OSRA, the parts of MolMiner, a command-line tool and library for extraction of chemical entities from text and 2D structures.
