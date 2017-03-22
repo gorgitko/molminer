@@ -261,7 +261,7 @@
 
 <dl class="method">
 <dt>
-<code class="descname">process</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span> &#x2192; &lt;function namedtuple at 0x7efc09aec9d8&gt;</dt>
+<code class="descname">process</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span> &#x2192; &lt;function namedtuple at 0x7fb6788579d8&gt;</dt>
 <dd><p>Process the input with given SW.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -450,7 +450,7 @@ available memory is under 8 GB (see <a class="reference external" href="https://
 
 <dl class="method">
 <dt>
-<code class="descname">process</code><span class="sig-paren">(</span><em>input_text: str = ''</em>, <em>input_file: str = ''</em>, <em>output_file: str = ''</em>, <em>output_file_sdf: str = ''</em>, <em>sdf_append: bool = False</em>, <em>input_type: str = ''</em>, <em>lang: str = 'eng'</em>, <em>paged_text: bool = False</em>, <em>format_output: bool = True</em>, <em>opsin_types: list = None</em>, <em>standardize_mols: bool = True</em>, <em>convert_ions: bool = True</em>, <em>write_header: bool = True</em>, <em>iob_format: bool = False</em>, <em>dry_run: bool = False</em>, <em>csv_delimiter: str = ';'</em>, <em>normalize_text: bool = True</em>, <em>remove_duplicates: bool = False</em>, <em>annotate: bool = True</em>, <em>annotation_sleep: int = 2</em>, <em>chemspider_token: str = ''</em><span class="sig-paren">)</span> &#x2192; collections.OrderedDict</dt>
+<code class="descname">process</code><span class="sig-paren">(</span><em>input_text: str = ''</em>, <em>input_file: str = ''</em>, <em>output_file: str = ''</em>, <em>output_file_sdf: str = ''</em>, <em>sdf_append: bool = False</em>, <em>input_type: str = ''</em>, <em>lang: str = 'eng'</em>, <em>paged_text: bool = False</em>, <em>format_output: bool = True</em>, <em>opsin_types: list = None</em>, <em>standardize_mols: bool = True</em>, <em>convert_ions: bool = True</em>, <em>write_header: bool = True</em>, <em>iob_format: bool = False</em>, <em>dry_run: bool = False</em>, <em>csv_delimiter: str = ';'</em>, <em>normalize_text: bool = True</em>, <em>remove_duplicates: bool = False</em>, <em>annotate: bool = True</em>, <em>annotation_sleep: int = 2</em>, <em>chemspider_token: str = ''</em>, <em>continue_on_failure: bool = False</em><span class="sig-paren">)</span> &#x2192; collections.OrderedDict</dt>
 <dd><p>Process the input file with ChemSpot.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -510,6 +510,11 @@ each identifier, separately for entity name, SMILES etc.</div>
 </li>
 <li><strong>annotation_sleep</strong> (<em>int</em>) &#8211; How many seconds to sleep between annotation of each entity. It&#8217;s for preventing overloading of databases.</li>
 <li><strong>chemspider_token</strong> (<em>str</em>) &#8211; Your personal token for accessing the ChemSpider API (needed for annotation). Make account there to obtain it.</li>
+<li><strong>continue_on_failure</strong> (<em>bool</em>) &#8211; <div class="line-block">
+<div class="line">If True, continue running even if ChemSpot returns non-zero exit code.</div>
+<div class="line">If False and error occurs, print it and return.</div>
+</div>
+</li>
 </ul>
 </td>
 </tr>
@@ -571,7 +576,7 @@ each identifier, separately for entity name, SMILES etc.</div>
 <span id="molminer-extractor-module"></span><h2>molminer.Extractor module<a class="headerlink" href="#module-molminer.Extractor" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="molminer.Extractor.Extractor">
-<em class="property">class </em><code class="descclassname">molminer.Extractor.</code><code class="descname">Extractor</code><span class="sig-paren">(</span><em>opsin_options: dict = {'allow_uninterpretable_stereo': True</em>, <em>'detailed_failure_analysis': True</em>, <em>'wildcard_radicals': False</em>, <em>'allow_radicals': True</em>, <em>'allow_acids_without_acid': True}</em>, <em>osra_options: dict = {'jaggy': False</em>, <em>'spelling_config_path': ''</em>, <em>'unpaper': 0</em>, <em>'rotate': 0</em>, <em>'superatom_config_path': ''</em>, <em>'negate': False</em>, <em>'size': ''</em>, <em>'gray_threshold': 0.0</em>, <em>'resolution': 0</em>, <em>'adaptive': False}</em>, <em>chemspot_options: dict = {'path_to_ids': &quot;''&quot;</em>, <em>'path_to_nlp': ''</em>, <em>'max_memory': 8</em>, <em>'path_to_crf': ''</em>, <em>'path_to_dict': &quot;''&quot;</em>, <em>'path_to_multiclass': 'multiclass.bin'}</em>, <em>tessdata_path: str = ''</em>, <em>verbosity: int = 1</em>, <em>verbosity_classes: int = 1</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.Extractor.Extractor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">molminer.Extractor.</code><code class="descname">Extractor</code><span class="sig-paren">(</span><em>opsin_options: dict = {'allow_radicals': True</em>, <em>'allow_acids_without_acid': True</em>, <em>'detailed_failure_analysis': True</em>, <em>'allow_uninterpretable_stereo': True</em>, <em>'wildcard_radicals': False}</em>, <em>osra_options: dict = {'negate': False</em>, <em>'size': ''</em>, <em>'resolution': 0</em>, <em>'spelling_config_path': ''</em>, <em>'gray_threshold': 0.0</em>, <em>'adaptive': False</em>, <em>'jaggy': False</em>, <em>'superatom_config_path': ''</em>, <em>'rotate': 0</em>, <em>'unpaper': 0}</em>, <em>chemspot_options: dict = {'path_to_multiclass': 'multiclass.bin'</em>, <em>'path_to_dict': &quot;''&quot;</em>, <em>'path_to_nlp': ''</em>, <em>'max_memory': 8</em>, <em>'path_to_ids': &quot;''&quot;</em>, <em>'path_to_crf': ''}</em>, <em>tessdata_path: str = ''</em>, <em>verbosity: int = 1</em>, <em>verbosity_classes: int = 1</em><span class="sig-paren">)</span><a class="headerlink" href="#molminer.Extractor.Extractor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>Combines the OSRA, ChemSpot and OPSIN to extract chemical entities from article. These include 2D structures converted
 to linear notation and compounds found in text. Entities are converted to linear notation (SMILES etc.) with OPSIN
@@ -583,7 +588,7 @@ to linear notation and compounds found in text. Entities are converted to linear
 
 <dl class="attribute">
 <dt id="molminer.Extractor.Extractor.chemspot_default_options">
-<code class="descname">chemspot_default_options</code><em class="property"> = {'path_to_ids': &quot;''&quot;, 'path_to_nlp': '', 'max_memory': 8, 'path_to_crf': '', 'path_to_dict': &quot;''&quot;, 'path_to_multiclass': 'multiclass.bin'}</em><a class="headerlink" href="#molminer.Extractor.Extractor.chemspot_default_options" title="Permalink to this definition">¶</a></dt>
+<code class="descname">chemspot_default_options</code><em class="property"> = {'path_to_multiclass': 'multiclass.bin', 'path_to_dict': &quot;''&quot;, 'path_to_nlp': '', 'max_memory': 8, 'path_to_ids': &quot;''&quot;, 'path_to_crf': ''}</em><a class="headerlink" href="#molminer.Extractor.Extractor.chemspot_default_options" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -593,12 +598,12 @@ to linear notation and compounds found in text. Entities are converted to linear
 
 <dl class="attribute">
 <dt id="molminer.Extractor.Extractor.opsin_default_options">
-<code class="descname">opsin_default_options</code><em class="property"> = {'allow_uninterpretable_stereo': True, 'detailed_failure_analysis': True, 'wildcard_radicals': False, 'allow_radicals': True, 'allow_acids_without_acid': True}</em><a class="headerlink" href="#molminer.Extractor.Extractor.opsin_default_options" title="Permalink to this definition">¶</a></dt>
+<code class="descname">opsin_default_options</code><em class="property"> = {'allow_radicals': True, 'allow_acids_without_acid': True, 'detailed_failure_analysis': True, 'allow_uninterpretable_stereo': True, 'wildcard_radicals': False}</em><a class="headerlink" href="#molminer.Extractor.Extractor.opsin_default_options" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="molminer.Extractor.Extractor.osra_default_options">
-<code class="descname">osra_default_options</code><em class="property"> = {'jaggy': False, 'spelling_config_path': '', 'unpaper': 0, 'rotate': 0, 'superatom_config_path': '', 'negate': False, 'size': '', 'gray_threshold': 0.0, 'resolution': 0, 'adaptive': False}</em><a class="headerlink" href="#molminer.Extractor.Extractor.osra_default_options" title="Permalink to this definition">¶</a></dt>
+<code class="descname">osra_default_options</code><em class="property"> = {'negate': False, 'size': '', 'resolution': 0, 'spelling_config_path': '', 'gray_threshold': 0.0, 'adaptive': False, 'jaggy': False, 'superatom_config_path': '', 'rotate': 0, 'unpaper': 0}</em><a class="headerlink" href="#molminer.Extractor.Extractor.osra_default_options" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -791,7 +796,7 @@ or from input file where on each line is one IUPAC name.</p>
 
 <dl class="method">
 <dt>
-<code class="descname">process</code><span class="sig-paren">(</span><em>input: typing.Union[str</em>, <em>list] = ''</em>, <em>input_file: str = ''</em>, <em>output_file: str = ''</em>, <em>output_file_sdf: str = ''</em>, <em>output_file_cml: str = ''</em>, <em>sdf_append: bool = False</em>, <em>format_output: bool = True</em>, <em>opsin_output_format: str = ''</em>, <em>output_formats: list = None</em>, <em>write_header: bool = True</em>, <em>dry_run: bool = False</em>, <em>csv_delimiter: str = ';'</em>, <em>standardize_mols: bool = True</em>, <em>normalize_plurals: bool = True</em><span class="sig-paren">)</span> &#x2192; collections.OrderedDict</dt>
+<code class="descname">process</code><span class="sig-paren">(</span><em>input: typing.Union[str</em>, <em>list] = ''</em>, <em>input_file: str = ''</em>, <em>output_file: str = ''</em>, <em>output_file_sdf: str = ''</em>, <em>output_file_cml: str = ''</em>, <em>sdf_append: bool = False</em>, <em>format_output: bool = True</em>, <em>opsin_output_format: str = ''</em>, <em>output_formats: list = None</em>, <em>write_header: bool = True</em>, <em>dry_run: bool = False</em>, <em>csv_delimiter: str = ';'</em>, <em>standardize_mols: bool = True</em>, <em>normalize_plurals: bool = True</em>, <em>continue_on_failure: bool = False</em><span class="sig-paren">)</span> &#x2192; collections.OrderedDict</dt>
 <dd><p>Process the input file with OPSIN.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -889,6 +894,11 @@ or with <cite>osra_output_format</cite> here.</div>
 <li><strong>normalize_plurals</strong> (<em>bool</em>) &#8211; <div class="line-block">
 <div class="line">If True, normalize plurals (&#8220;nitrates&#8221; -&gt; &#8220;nitrate&#8221;). See OPSIN.PLURAL_PATTERNS for relating plurals. You can
 set your own regex pattern with <cite>plural_patterns</cite> in __init__.</div>
+</div>
+</li>
+<li><strong>continue_on_failure</strong> (<em>bool</em>) &#8211; <div class="line-block">
+<div class="line">If True, continue running even if OPSIN returns non-zero exit code.</div>
+<div class="line">If False and error occurs, print it and return.</div>
 </div>
 </li>
 </ul>
@@ -1020,7 +1030,7 @@ position of structure in the source and then constructs its linear notation (SMI
 
 <dl class="method">
 <dt>
-<code class="descname">process</code><span class="sig-paren">(</span><em>input_file: str</em>, <em>output_file: str = ''</em>, <em>output_file_sdf: str = ''</em>, <em>sdf_append: bool = False</em>, <em>format_output: bool = True</em>, <em>write_header: bool = True</em>, <em>osra_output_format: str = ''</em>, <em>output_formats: list = None</em>, <em>dry_run: bool = False</em>, <em>csv_delimiter: str = ';'</em>, <em>use_gm: bool = True</em>, <em>gm_dpi: int = 300</em>, <em>gm_trim: bool = True</em>, <em>n_jobs: int = -1</em>, <em>input_type: str = ''</em>, <em>standardize_mols: bool = True</em>, <em>annotate: bool = True</em>, <em>chemspider_token: str = ''</em>, <em>custom_page: int = 0</em><span class="sig-paren">)</span> &#x2192; collections.OrderedDict</dt>
+<code class="descname">process</code><span class="sig-paren">(</span><em>input_file: str</em>, <em>output_file: str = ''</em>, <em>output_file_sdf: str = ''</em>, <em>sdf_append: bool = False</em>, <em>format_output: bool = True</em>, <em>write_header: bool = True</em>, <em>osra_output_format: str = ''</em>, <em>output_formats: list = None</em>, <em>dry_run: bool = False</em>, <em>csv_delimiter: str = ';'</em>, <em>use_gm: bool = True</em>, <em>gm_dpi: int = 300</em>, <em>gm_trim: bool = True</em>, <em>n_jobs: int = -1</em>, <em>input_type: str = ''</em>, <em>standardize_mols: bool = True</em>, <em>annotate: bool = True</em>, <em>chemspider_token: str = ''</em>, <em>custom_page: int = 0</em>, <em>continue_on_failure: bool = False</em><span class="sig-paren">)</span> &#x2192; collections.OrderedDict</dt>
 <dd><p>Process the input file with OSRA.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1134,6 +1144,11 @@ each identifier, separately for SMILES, InChI etc.</div>
 </li>
 <li><strong>chemspider_token</strong> (<em>str</em>) &#8211; Your personal token for accessing the ChemSpider API. Make account there to obtain it.</li>
 <li><strong>custom_page</strong> (<em>bool</em>) &#8211; When <cite>use_gm</cite> is False, this will set the page for all extracted compounds.</li>
+<li><strong>continue_on_failure</strong> (<em>bool</em>) &#8211; <div class="line-block">
+<div class="line">If True, continue running even if OSRA returns non-zero exit code.</div>
+<div class="line">If False and error occurs, print it and return.</div>
+</div>
+</li>
 </ul>
 </td>
 </tr>
@@ -1246,7 +1261,7 @@ you will only get raw stdout from OSRA (which can also be written to file if <ci
 
 <dl class="data">
 <dt id="molminer.normalize.APOSTROPHES">
-<code class="descclassname">molminer.normalize.</code><code class="descname">APOSTROPHES</code><em class="property"> = {'՚', '’', 'ꞌ', 'Ꞌ', &quot;'&quot;, '＇'}</em><a class="headerlink" href="#molminer.normalize.APOSTROPHES" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">molminer.normalize.</code><code class="descname">APOSTROPHES</code><em class="property"> = {'’', 'ꞌ', '＇', &quot;'&quot;, '՚', 'Ꞌ'}</em><a class="headerlink" href="#molminer.normalize.APOSTROPHES" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apostrophe characters.</p>
 </dd></dl>
 
@@ -1278,49 +1293,49 @@ you will only get raw stdout from OSRA (which can also be written to file if <ci
 
 <dl class="data">
 <dt id="molminer.normalize.CONTROLS">
-<code class="descclassname">molminer.normalize.</code><code class="descname">CONTROLS</code><em class="property"> = {'\x02', '\x08', '\x03', '\x05', '\x07', '\x01', '\x06', '\x04'}</em><a class="headerlink" href="#molminer.normalize.CONTROLS" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">molminer.normalize.</code><code class="descname">CONTROLS</code><em class="property"> = {'\x06', '\x08', '\x03', '\x07', '\x01', '\x05', '\x04', '\x02'}</em><a class="headerlink" href="#molminer.normalize.CONTROLS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Control characters.</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="molminer.normalize.DOUBLE_QUOTES">
-<code class="descclassname">molminer.normalize.</code><code class="descname">DOUBLE_QUOTES</code><em class="property"> = {'“', '”', '‟', '&quot;', '„'}</em><a class="headerlink" href="#molminer.normalize.DOUBLE_QUOTES" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">molminer.normalize.</code><code class="descname">DOUBLE_QUOTES</code><em class="property"> = {'„', '&quot;', '‟', '“', '”'}</em><a class="headerlink" href="#molminer.normalize.DOUBLE_QUOTES" title="Permalink to this definition">¶</a></dt>
 <dd><p>Double quote characters.</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="molminer.normalize.GREEK">
-<code class="descclassname">molminer.normalize.</code><code class="descname">GREEK</code><em class="property"> = {'ε', 'ζ', 'π', 'χ', 'μ', 'Σ', 'Η', 'ν', 'Φ', 'Γ', 'Λ', 'ρ', 'Ξ', 'η', 'σ', 'Ω', 'α', 'Ρ', 'Ο', 'λ', 'Θ', 'ο', 'Μ', 'γ', 'Τ', 'ι', 'θ', 'β', 'Π', 'Υ', 'Κ', 'Ψ', 'φ', 'Ε', 'κ', 'Α', 'Ζ', 'Ν', 'υ', 'Β', 'ψ', 'Ι', 'Χ', 'ω', 'Δ', 'δ', 'ξ', 'τ'}</em><a class="headerlink" href="#molminer.normalize.GREEK" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">molminer.normalize.</code><code class="descname">GREEK</code><em class="property"> = {'ζ', 'η', 'κ', 'Δ', 'Ξ', 'υ', 'Η', 'Υ', 'Ι', 'Λ', 'Ε', 'δ', 'Χ', 'ψ', 'Κ', 'τ', 'Θ', 'Ω', 'θ', 'Α', 'Σ', 'ω', 'Ρ', 'π', 'Ο', 'Τ', 'ε', 'Ζ', 'Γ', 'λ', 'φ', 'Π', 'Ν', 'ρ', 'Μ', 'ι', 'ν', 'μ', 'β', 'Φ', 'γ', 'ξ', 'α', 'ο', 'Β', 'χ', 'Ψ', 'σ'}</em><a class="headerlink" href="#molminer.normalize.GREEK" title="Permalink to this definition">¶</a></dt>
 <dd><p>Uppercase and lowercase greek letters.</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="molminer.normalize.GREEK_WORDS">
-<code class="descclassname">molminer.normalize.</code><code class="descname">GREEK_WORDS</code><em class="property"> = {'epsilon', 'rho', 'Omicron', 'Mu', 'Kappa', 'mu', 'Omega', 'Phi', 'psi', 'xi', 'upsilon', 'omicron', 'Xi', 'Gamma', 'Iota', 'Chi', 'Theta', 'Beta', 'Sigma', 'Delta', 'Alpha', 'beta', 'tau', 'kappa', 'Psi', 'omega', 'Zeta', 'delta', 'pi', 'lamda', 'nu', 'sigma', 'iota', 'eta', 'Upsilon', 'Nu', 'Rho', 'Eta', 'theta', 'phi', 'zeta', 'chi', 'Pi', 'gamma', 'Epsilon', 'Tau', 'Lambda', 'alpha'}</em><a class="headerlink" href="#molminer.normalize.GREEK_WORDS" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">molminer.normalize.</code><code class="descname">GREEK_WORDS</code><em class="property"> = {'omega', 'Phi', 'Sigma', 'mu', 'sigma', 'kappa', 'rho', 'Chi', 'Lambda', 'phi', 'theta', 'psi', 'Omega', 'Omicron', 'iota', 'delta', 'beta', 'xi', 'upsilon', 'Xi', 'alpha', 'Nu', 'omicron', 'nu', 'Theta', 'Gamma', 'Eta', 'Mu', 'Delta', 'lamda', 'pi', 'epsilon', 'Psi', 'Kappa', 'Beta', 'zeta', 'Upsilon', 'Iota', 'tau', 'Pi', 'Rho', 'Zeta', 'chi', 'eta', 'gamma', 'Epsilon', 'Tau', 'Alpha'}</em><a class="headerlink" href="#molminer.normalize.GREEK_WORDS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Names of greek letters spelled out as words.</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="molminer.normalize.HYPHENS">
-<code class="descclassname">molminer.normalize.</code><code class="descname">HYPHENS</code><em class="property"> = {'⁃', '‒', '‑', '-', '—', '―', '–', '‐'}</em><a class="headerlink" href="#molminer.normalize.HYPHENS" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">molminer.normalize.</code><code class="descname">HYPHENS</code><em class="property"> = {'–', '―', '‐', '‑', '‒', '⁃', '—', '-'}</em><a class="headerlink" href="#molminer.normalize.HYPHENS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hyphen and dash characters.</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="molminer.normalize.MINUSES">
-<code class="descclassname">molminer.normalize.</code><code class="descname">MINUSES</code><em class="property"> = {'−', '－', '⁻', '-'}</em><a class="headerlink" href="#molminer.normalize.MINUSES" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">molminer.normalize.</code><code class="descname">MINUSES</code><em class="property"> = {'－', '⁻', '−', '-'}</em><a class="headerlink" href="#molminer.normalize.MINUSES" title="Permalink to this definition">¶</a></dt>
 <dd><p>Minus characters.</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="molminer.normalize.NAME_SMALL">
-<code class="descclassname">molminer.normalize.</code><code class="descname">NAME_SMALL</code><em class="property"> = {'bon', 'di', 'dal', 'dí', 'y', 'vel', 'der', 'da', 'abu', 'la', 'von', 'de', 'bin', 'ibn', 'st', 'san', 'ste', 'del', 'le', 'van'}</em><a class="headerlink" href="#molminer.normalize.NAME_SMALL" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">molminer.normalize.</code><code class="descname">NAME_SMALL</code><em class="property"> = {'le', 'del', 'di', 'abu', 'y', 'la', 'von', 'de', 'ste', 'bin', 'st', 'vel', 'san', 'bon', 'dal', 'ibn', 'da', 'dí', 'van', 'der'}</em><a class="headerlink" href="#molminer.normalize.NAME_SMALL" title="Permalink to this definition">¶</a></dt>
 <dd><p>Words that should not be capitalized in names.</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="molminer.normalize.NUMBERS">
-<code class="descclassname">molminer.normalize.</code><code class="descname">NUMBERS</code><em class="property"> = {'twelve', 'seventeen', 'thousand', 'eight', 'thirty', 'ninety', 'fifteen', 'one', 'seven', 'sixty', 'million', 'nine', 'sixteen', 'two', 'seventy', 'forty', 'thirteen', 'billion', 'ten', 'five', 'eighty', 'trillion', 'zero', 'eleven', 'twenty', 'nineteen', 'fifty', 'fourteen', 'three', 'eighteen', 'six', 'hundred', 'four'}</em><a class="headerlink" href="#molminer.normalize.NUMBERS" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">molminer.normalize.</code><code class="descname">NUMBERS</code><em class="property"> = {'ninety', 'fifteen', 'thousand', 'thirty', 'five', 'billion', 'eighty', 'eighteen', 'twenty', 'four', 'fourteen', 'ten', 'six', 'million', 'nineteen', 'one', 'eight', 'nine', 'seven', 'fifty', 'forty', 'seventy', 'sixteen', 'twelve', 'seventeen', 'trillion', 'hundred', 'two', 'sixty', 'eleven', 'thirteen', 'three', 'zero'}</em><a class="headerlink" href="#molminer.normalize.NUMBERS" title="Permalink to this definition">¶</a></dt>
 <dd><p>A variety of numbers, spelled out as words.</p>
 </dd></dl>
 
@@ -1351,43 +1366,43 @@ on normal forms: <a class="reference external" href="http://docs.python.org/2/li
 
 <dl class="data">
 <dt id="molminer.normalize.PLUSES">
-<code class="descclassname">molminer.normalize.</code><code class="descname">PLUSES</code><em class="property"> = {'+', '⁺', '＋'}</em><a class="headerlink" href="#molminer.normalize.PLUSES" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">molminer.normalize.</code><code class="descname">PLUSES</code><em class="property"> = {'⁺', '+', '＋'}</em><a class="headerlink" href="#molminer.normalize.PLUSES" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plus characters.</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="molminer.normalize.PRIMES">
-<code class="descclassname">molminer.normalize.</code><code class="descname">PRIMES</code><em class="property"> = {'‴', '‶', '′', '‷', '″', '⁗', '‵'}</em><a class="headerlink" href="#molminer.normalize.PRIMES" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">molminer.normalize.</code><code class="descname">PRIMES</code><em class="property"> = {'‷', '″', '‴', '′', '‵', '‶', '⁗'}</em><a class="headerlink" href="#molminer.normalize.PRIMES" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prime characters.</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="molminer.normalize.QUOTES">
-<code class="descclassname">molminer.normalize.</code><code class="descname">QUOTES</code><em class="property"> = {'‴', '„', '´', '“', '′', '″', '‘', '⁗', '‵', '”', '՚', '‟', '‶', '&quot;', '’', 'ꞌ', 'Ꞌ', '‛', '‷', &quot;'&quot;, '‚', '＇', '`'}</em><a class="headerlink" href="#molminer.normalize.QUOTES" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">molminer.normalize.</code><code class="descname">QUOTES</code><em class="property"> = {'’', &quot;'&quot;, '‟', '´', '&quot;', '”', '‘', '„', '‵', '⁗', '“', '‚', 'Ꞌ', '‶', '‷', '‛', '″', '‴', '＇', '՚', '′', 'ꞌ', '`'}</em><a class="headerlink" href="#molminer.normalize.QUOTES" title="Permalink to this definition">¶</a></dt>
 <dd><p>Quote characters, including apostrophes, single quotes, double quotes, accents and primes.</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="molminer.normalize.SINGLE_QUOTES">
-<code class="descclassname">molminer.normalize.</code><code class="descname">SINGLE_QUOTES</code><em class="property"> = {'‚', '’', '‛', '‘', &quot;'&quot;}</em><a class="headerlink" href="#molminer.normalize.SINGLE_QUOTES" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">molminer.normalize.</code><code class="descname">SINGLE_QUOTES</code><em class="property"> = {'‚', '’', '‘', '‛', &quot;'&quot;}</em><a class="headerlink" href="#molminer.normalize.SINGLE_QUOTES" title="Permalink to this definition">¶</a></dt>
 <dd><p>Single quote characters.</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="molminer.normalize.SLASHES">
-<code class="descclassname">molminer.normalize.</code><code class="descname">SLASHES</code><em class="property"> = {'/', '∕', '⁄'}</em><a class="headerlink" href="#molminer.normalize.SLASHES" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">molminer.normalize.</code><code class="descname">SLASHES</code><em class="property"> = {'⁄', '∕', '/'}</em><a class="headerlink" href="#molminer.normalize.SLASHES" title="Permalink to this definition">¶</a></dt>
 <dd><p>Slash characters.</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="molminer.normalize.SMALL">
-<code class="descclassname">molminer.normalize.</code><code class="descname">SMALL</code><em class="property"> = {'the', 'or', 'via', 'for', 'at', 'an', 'in', 'if', 'and', 'on', 'en', 'but', 'as', 'a', 'v', 'of', 'by', 'to', 'vs'}</em><a class="headerlink" href="#molminer.normalize.SMALL" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">molminer.normalize.</code><code class="descname">SMALL</code><em class="property"> = {'to', 'and', 'of', 'at', 'or', 'if', 'but', 'the', 'on', 'en', 'for', 'v', 'in', 'as', 'vs', 'via', 'an', 'by', 'a'}</em><a class="headerlink" href="#molminer.normalize.SMALL" title="Permalink to this definition">¶</a></dt>
 <dd><p>Words that should not be capitalized in titles.</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="molminer.normalize.TILDES">
-<code class="descclassname">molminer.normalize.</code><code class="descname">TILDES</code><em class="property"> = {'~', '˜', '∿', '〜', '⁓', '∼', '∽', '～'}</em><a class="headerlink" href="#molminer.normalize.TILDES" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">molminer.normalize.</code><code class="descname">TILDES</code><em class="property"> = {'〜', '～', '˜', '⁓', '~', '∿', '∽', '∼'}</em><a class="headerlink" href="#molminer.normalize.TILDES" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tilde characters.</p>
 </dd></dl>
 
@@ -1433,7 +1448,7 @@ on normal forms: <a class="reference external" href="http://docs.python.org/2/li
 
 <dl class="function">
 <dt id="molminer.utils.common_subprocess">
-<code class="descclassname">molminer.utils.</code><code class="descname">common_subprocess</code><span class="sig-paren">(</span><em>commands: typing.Union[list, str], stdin: str = '', stdin_encoding: str = 'utf-8'</em><span class="sig-paren">)</span> &#x2192; &lt;function namedtuple at 0x7efc09aec9d8&gt;<a class="headerlink" href="#molminer.utils.common_subprocess" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">molminer.utils.</code><code class="descname">common_subprocess</code><span class="sig-paren">(</span><em>commands: typing.Union[list, str], stdin: str = '', stdin_encoding: str = 'utf-8'</em><span class="sig-paren">)</span> &#x2192; &lt;function namedtuple at 0x7fb6788579d8&gt;<a class="headerlink" href="#molminer.utils.common_subprocess" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the namedtuple with stdout, stderr and exit code from shell command.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
