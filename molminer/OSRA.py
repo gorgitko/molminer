@@ -560,7 +560,7 @@ class OSRA(AbstractLinker):
             to_return["content"] = sorted(compounds, key=lambda x: x["page"])
 
             if annotate:
-                chemspider = ChemSpider(chemspider_token)
+                chemspider = ChemSpider(chemspider_token) if chemspider_token else None
 
                 for i, ent in enumerate(to_return["content"]):
                     self.logger.info("Annotating entity {}/{}...".format(i + 1, len(to_return["content"])))
@@ -587,7 +587,7 @@ class OSRA(AbstractLinker):
                         except (BadRequestError, NotFoundError, PubChemHTTPError, ResponseParseError, ServerError, TimeoutError, PubChemPyError):
                             pass
 
-                        results = chemspider.search(ent["inchikey"])
+                        results = chemspider.search(ent["inchikey"]) if chemspider_token else []
                         if results:
                             if len(results) == 1:
                                 result = results[0]
@@ -604,13 +604,13 @@ class OSRA(AbstractLinker):
                                     results_pch = get_compounds(ent["smiles"], "smiles")
                                 except (BadRequestError, NotFoundError, PubChemHTTPError, ResponseParseError, ServerError, TimeoutError, PubChemPyError):
                                     pass
-                                results_chs = chemspider.search(ent["smiles"])
+                                results_chs = chemspider.search(ent["smiles"]) if chemspider_token else []
                             elif search_field == "inchi" and "inchi" in ent and ent["inchi"]:
                                 try:
                                     results_pch = get_compounds(ent["inchi"], "inchi")
                                 except (BadRequestError, NotFoundError, PubChemHTTPError, ResponseParseError, ServerError, TimeoutError, PubChemPyError):
                                     pass
-                                results_chs = chemspider.search(ent["inchi"])
+                                results_chs = chemspider.search(ent["inchi"]) if chemspider_token else []
 
                             if results_pch:
                                 ent[col_pch] = "\"{}\"".format(",".join([str(c.cid) for c in results_pch]))

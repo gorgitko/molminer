@@ -413,7 +413,7 @@ class ChemSpot(AbstractLinker):
                     self.logger.info("Nothing to convert with OPSIN.")
 
             if annotate:
-                chemspider = ChemSpider(chemspider_token)
+                chemspider = ChemSpider(chemspider_token) if chemspider_token else None
 
             for i, ent in enumerate(to_return["content"]):
                 if input_type in ["pdf", "pdf_scan"] or paged_text:
@@ -496,7 +496,7 @@ class ChemSpot(AbstractLinker):
                             except (BadRequestError, NotFoundError, PubChemHTTPError, ResponseParseError, ServerError, TimeoutError, PubChemPyError):
                                 pass
 
-                            results = chemspider.search(ent["inchikey"])
+                            results = chemspider.search(ent["inchikey"]) if chemspider_token else []
                             if results:
                                 if len(results) == 1:
                                     result = results[0]
@@ -528,7 +528,7 @@ class ChemSpot(AbstractLinker):
                                     pass
 
                             if (not found_in_pch and not found_in_chs) or (found_in_pch and not found_in_chs):
-                                results = chemspider.search(ent["entity"] or ent["abbreviation"])
+                                results = chemspider.search(ent["entity"] or ent["abbreviation"]) if chemspider_token else []
                                 if results:
                                     if len(results) == 1:
                                         found_in_chs = True
@@ -553,7 +553,7 @@ class ChemSpot(AbstractLinker):
                                         except (BadRequestError, NotFoundError, PubChemHTTPError, ResponseParseError, ServerError, TimeoutError, PubChemPyError):
                                             pass
                                     if (not found_in_pch and not found_in_chs) or (found_in_pch and not found_in_chs):
-                                        results_chs = chemspider.search(ent["smiles"])
+                                        results_chs = chemspider.search(ent["smiles"]) if chemspider_token else []
                                 elif search_field == "inchi" and "inchi" in ent and ent["inchi"]:
                                     if (not found_in_pch and not found_in_chs) or (not found_in_pch and found_in_chs):
                                         try:
@@ -561,7 +561,7 @@ class ChemSpot(AbstractLinker):
                                         except (BadRequestError, NotFoundError, PubChemHTTPError, ResponseParseError, ServerError, TimeoutError, PubChemPyError):
                                             pass
                                     if (not found_in_pch and not found_in_chs) or (found_in_pch and not found_in_chs):
-                                        results_chs = chemspider.search(ent["inchi"])
+                                        results_chs = chemspider.search(ent["inchi"]) if chemspider_token else []
                                 elif search_field == "formula":
                                     if (not found_in_pch and not found_in_chs) or (not found_in_pch and found_in_chs):
                                         try:
