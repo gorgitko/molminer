@@ -1,5 +1,5 @@
 from .AbstractLinker import AbstractLinker
-from .utils import common_subprocess, dict_to_csv, write_empty_file
+from .utils import common_subprocess, dict_to_csv, write_empty_file, eprint
 
 from rdkit.Chem import MolFromSmiles, MolToSmiles, MolFromInchi, MolToInchi, InchiToInchiKey, SDWriter, MolToMolBlock
 from molvs import Standardizer
@@ -190,7 +190,8 @@ class OPSIN(AbstractLinker):
                 dry_run: bool = False,
                 csv_delimiter: str = ";",
                 standardize_mols: bool = True,
-                normalize_plurals: bool = True) -> OrderedDict:
+                normalize_plurals: bool = True,
+                continue_on_failure: bool = False) -> OrderedDict:
         r"""
         Process the input file with OPSIN.
 
@@ -257,6 +258,9 @@ class OPSIN(AbstractLinker):
         normalize_plurals : bool
             | If True, normalize plurals ("nitrates" -> "nitrate"). See OPSIN.PLURAL_PATTERNS for relating plurals. You can
               set your own regex pattern with `plural_patterns` in __init__.
+        continue_on_failure : bool
+            | If True, continue running even if OPSIN returns non-zero exit code.
+            | If False and error occurs, print it and return.
 
         Returns
         -------
@@ -336,6 +340,11 @@ class OPSIN(AbstractLinker):
             return " ".join(commands)
 
         to_return = {"stdout": stdout, "stderr": stderr, "exit_code": exit_code, "content": None}
+
+        if not continue_on_failure and exit_code > 0:
+            self.logger.warning("OPSIN error:")
+            eprint("\n\t".join("\n{}".format(stderr).splitlines()))
+            return to_return
 
         if output_file_cml and opsin_output_format == "cml":
             with open(output_file_cml, mode="w", encoding="utf-8") as f:

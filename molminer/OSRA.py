@@ -1,5 +1,5 @@
 from .AbstractLinker import AbstractLinker
-from .utils import common_subprocess, get_input_file_type, dict_to_csv, write_empty_file, pdf_to_images, get_temp_images
+from .utils import common_subprocess, get_input_file_type, dict_to_csv, write_empty_file, pdf_to_images, get_temp_images, eprint
 
 from rdkit.Chem import MolToInchi, MolToSmiles, InchiToInchiKey, MolFromSmiles, MolFromMolBlock, SDWriter, MolToMolBlock
 from joblib import Parallel, delayed
@@ -243,7 +243,8 @@ class OSRA(AbstractLinker):
                 standardize_mols: bool = True,
                 annotate: bool = True,
                 chemspider_token: str = "",
-                custom_page: int = 0) -> OrderedDict:
+                custom_page: int = 0,
+                continue_on_failure: bool = False) -> OrderedDict:
         r"""
         Process the input file with OSRA.
 
@@ -328,6 +329,9 @@ class OSRA(AbstractLinker):
             Your personal token for accessing the ChemSpider API. Make account there to obtain it.
         custom_page : bool
             When `use_gm` is False, this will set the page for all extracted compounds.
+        continue_on_failure : bool
+            | If True, continue running even if OSRA returns non-zero exit code.
+            | If False and error occurs, print it and return.
 
         Returns
         -------
@@ -434,13 +438,22 @@ class OSRA(AbstractLinker):
                                            for temp_image_file, page in get_temp_images(temp_dir))
 
         # summarize OSRA results
-        to_return = {"stdout": [], "stderr" :[], "exit_code": [], "content": None, "pages": []}
+        to_return = {"stdout": [], "stderr": [], "exit_code": [], "content": None, "pages": []}
         for result in osra_output_list:
             if result["stdout"]:
                 to_return["stdout"].append(result["stdout"])
                 to_return["stderr"].append(result["stderr"])
                 to_return["exit_code"].append(result["exit_code"])
                 to_return["pages"].append(result["page"])
+
+        if not continue_on_failure:
+            errors = [(page + 1, error) for page, (exit_code, error) in enumerate(zip(to_return["exit_code"], to_return["stderr"])) if exit_code > 0]
+            if errors:
+                self.logger.warning("OSRA errors:")
+                for page, error in errors:
+                    eprint("\tError on page {}:".format(page))
+                    eprint("\n\t\t".join("\n{}".format(error).splitlines()))
+                return to_return
 
         if not format_output:
             if output_file:

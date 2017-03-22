@@ -1,5 +1,5 @@
 from .AbstractLinker import AbstractLinker
-from .utils import common_subprocess, get_input_file_type, get_text, dict_to_csv
+from .utils import common_subprocess, get_input_file_type, get_text, dict_to_csv, eprint
 from .normalize import Normalizer
 from .OPSIN import OPSIN
 
@@ -212,7 +212,8 @@ class ChemSpot(AbstractLinker):
                 remove_duplicates: bool = False,
                 annotate: bool = True,
                 annotation_sleep: int = 2,
-                chemspider_token: str = "") -> OrderedDict:
+                chemspider_token: str = "",
+                continue_on_failure: bool = False) -> OrderedDict:
         r"""
         Process the input file with ChemSpot.
 
@@ -277,6 +278,9 @@ class ChemSpot(AbstractLinker):
             How many seconds to sleep between annotation of each entity. It's for preventing overloading of databases.
         chemspider_token : str
             Your personal token for accessing the ChemSpider API (needed for annotation). Make account there to obtain it.
+        continue_on_failure : bool
+            | If True, continue running even if ChemSpot returns non-zero exit code.
+            | If False and error occurs, print it and return.
 
         Returns
         -------
@@ -370,6 +374,11 @@ class ChemSpot(AbstractLinker):
 
         to_return = {"stdout": stdout, "stderr": stderr, "exit_code": exit_code, "content": None,
                      "normalized_text": input_text if normalize_text else None}
+
+        if not continue_on_failure and exit_code > 0:
+            self.logger.warning("ChemSpot error:")
+            eprint("\n\t".join("\n{}".format(stderr).splitlines()))
+            return to_return
 
         if normalize_text:
             to_return["normalized_text"] = input_text
