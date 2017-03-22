@@ -44,7 +44,7 @@ You need all these binaries for MolMiner. They should be installed so path to th
   - Also put there [this bash script](https://github.com/gorgitko/molminer/blob/master/scripts/opsin). It's used for running OPSIN. All arguments are forwarded to OPSIN CLI.
 - [GraphicsMagick][4]. OSRA needs it for compilation, but its binary is also directly used by MolMiner. Compile it with as many supported image formats as possible ([dependencies](http://wiki.octave.org/GraphicsMagick#Main_dependencies)).
 - [Tesseract][5]. OSRA needs it for compilation, but its binary is also directly used by MolMiner. Use version 4 and up.
-  - Tesseract needs language data files. Download them [here](https://github.com/tesseract-ocr/tessdata), put them to some directory and this directory to `TESSDATA_PREFIX` environmental variable.
+  - Tesseract needs language data files. Download them [here](https://github.com/tesseract-ocr/tessdata), put them to some directory and add this directory to `TESSDATA_PREFIX` environmental variable.
 - [poppler-utils](https://en.wikipedia.org/wiki/Poppler_(software)#poppler-utils). Utils for PDF files built on top of [Poppler](https://poppler.freedesktop.org/) library.
   - Ubuntu (or any OS with `apt` packaging): `$ sudo apt-get install poppler-utils`
 - [libmagic](https://github.com/threatstack/libmagic). Reads the magic bytes of file and determine its MIME type.
