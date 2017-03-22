@@ -10,16 +10,23 @@ To install MolMiner without dependencies just download this repository and run `
 ## Conda package (currently only for linux64)
 [Conda][6] is a package, dependency and environment management for any language including Python. MolMiner package includes precompiled dependencies and data files. It also manages all the needed envinronment variables and enables bash auto-completion.
 
-**TO BE DONE**
-<!--
-1. Download _conda_ from https://conda.io/miniconda.html
-2. Add channels: `$ conda config --add channel conda-forge; conda config --add channel jirinovo; conda config --add channel bioconda; conda config --add channel rdkit`
-3. Create new virtual environment and install MolMiner: `$ conda create -n my_new_env molminer`
-4. Activate environment: `$ source activate my_new_env`
-5. Use MolMiner: `$ molminer --help`
+1. [Download](https://conda.io/miniconda.html) and install _conda_.
+2. Add channels:
+   
+   `$ conda config --add channel conda-forge; conda config --add channel jirinovo; conda config --add channel bioconda;     
+   conda config --add channel rdkit`
+3. Create new virtual environment and install MolMiner:
+   
+   `$ conda create -n my_new_env molminer`
+4. Activate environment:
+   
+   `$ source activate my_new_env`
+5. Use MolMiner:
+   
+   `$ molminer --help`
 
-Note that you must always activate virtual environment in order to use MolMiner. That's because the activation script is also modifying the environmental variables storing the paths to MolMiner data files and shared libraries.
--->
+Note that you must always activate virtual environment before using MolMiner. That's because the activation script is also modifying the environmental variables storing the paths to MolMiner data files.
+
 ## From source (linux)
 ### Binaries
 You need all these binaries for MolMiner. They should be installed so path to them is in `PATH` environmental variable (like `/usr/local/bin`). I haven't tried to compile these dependencies on Windows, but that doesn't mean it's impossible.
