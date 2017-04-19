@@ -171,7 +171,17 @@ def get_text_from_image(input_file: str,
 
 
 def get_input_file_type(input_file: str) -> str:
-    mime_type = magic.Magic(magic_file="{}/share/misc/magic.mgc".format(os.environ["CONDA_PREFIX"]), mime=True).from_file(input_file)
+    if os.environ.get("CONDA_PREFIX"):
+        magic_file = "{}/share/misc/magic.mgc".format(os.environ["CONDA_PREFIX"])
+    else:
+        magic_file = os.environ.get("LIBMAGIC_FILE_PATH")
+    
+    if magic_file:
+        mime_type = magic.Magic(magic_file=magic_file, mime=True).from_file(input_file)
+    else:
+        eprint("Magic file was not found so python-magic will probably fail. Set LIBMAGIC_FILE_PATH environment variable with path to 'magic.mgc' file (usually '/usr/share/misc/magic.mgc'.")
+        mime_type = magic.Magic(mime=True).from_file(input_file)
+
     input_type = mime_type.split("/")
 
     if input_type[1] == "pdf":
