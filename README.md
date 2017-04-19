@@ -1,9 +1,9 @@
 # MolMiner
-MolMiner is a library and command-line interface for extracting compounds (called "_chemical entities_") from scientific literature. It's written in Python (currently supporting only Python 3). It should work on all platforms, but problem is that some dependencies are very hard to compile on Windows. Actually it's a wrapper around several open-source tools for chemical information retrieval, namely [ChemSpot][1], [OSRA][2] and [OPSIN][3], using their command-line interface and adding some extended functionality.
+MolMiner is a library and command-line interface for extracting compounds (called "_chemical entities_") from scientific literature. It extracts chemical entities both from text (_Chemical Named Entity Recognition_) and 2D structures (_Optical Chemical Structure Recognition_). It's written in Python (currently supporting only Python 3). It should work on all platforms, but problem is that some dependencies are very hard to compile on Windows. Actually it's a wrapper around several open-source tools for chemical information retrieval, namely [ChemSpot][1], [OSRA][2] and [OPSIN][3], using their command-line interface and adding some extended functionality.
 # Overview
 MolMiner is able to extract chemical entities from scientific literature in various formats including PDF and scanned images. It extracts entities both from text and 2D structures. Text is normalized using part of code from [ChemDataExtractor](https://github.com/mcs07/ChemDataExtractor/blob/master/chemdataextractor/text/normalize.py). Text entities are assigned by [ChemSpot][1] to one of classes: "SYSTEMATIC", "IDENTIFIER", "FORMULA", "TRIVIAL", "ABBREVIATION", "FAMILY", "MULTIPLE". IUPAC names are converted to computer-readable format like SMILES or InChI with [OPSIN][3]. 2D stuctures are recognised in document and converted to computer-readable format with [OSRA][2]. Entities successfully converted to computer-readable format are standardized using [MolVS](https://github.com/mcs07/MolVS) library. Entities are also annotated in PubChem and ChemSpider databases using [PubChemPy](https://github.com/mcs07/PubChemPy) and [ChemSpiPy](https://github.com/mcs07/ChemSpiPy). For processing of PDF files is used [GraphicsMagick][4] and for OCR [Tesseract][5].
 # Installation
-MolMiner self is written in Python, but it uses several binaries and some of them have complicated compilation dependencies. So the easiest way is to install MolMiner including dependencies as a [conda][6] package hosted on [Anaconda Cloud](https://anaconda.org/).
+MolMiner self is written in Python, but it uses several binaries and some of them have complicated compilation dependencies. So the easiest way is to install MolMiner including dependencies as a [conda package](https://anaconda.org/jirinovo/molminer) hosted on [Anaconda Cloud](https://anaconda.org/).
 
 To install MolMiner without dependencies just download this repository and run `$ python setup.py install`. MolMiner will be then available from shell as `molminer` and also as a Python library.
 
@@ -13,8 +13,8 @@ To install MolMiner without dependencies just download this repository and run `
 1. [Download](https://conda.io/miniconda.html) and install _conda_.
 2. Add channels:
    
-   `$ conda config --add channel conda-forge; conda config --add channel jirinovo; conda config --add channel bioconda;     
-   conda config --add channel rdkit`
+   `$ conda config --add channels conda-forge; conda config --add channels jirinovo; conda config --add channels bioconda;     
+   conda config --add channels rdkit`
 3. Create new virtual environment and install MolMiner:
    
    `$ conda create -n my_new_env molminer`
@@ -44,7 +44,7 @@ You need all these binaries for MolMiner. They should be installed so path to th
   - Also put there [this bash script](https://github.com/gorgitko/molminer/blob/master/scripts/opsin). It's used for running OPSIN. All arguments are forwarded to OPSIN CLI.
 - [GraphicsMagick][4]. OSRA needs it for compilation, but its binary is also directly used by MolMiner. Compile it with as many supported image formats as possible ([dependencies](http://wiki.octave.org/GraphicsMagick#Main_dependencies)).
 - [Tesseract][5]. OSRA needs it for compilation, but its binary is also directly used by MolMiner. Use version 4 and up.
-  - Tesseract needs language data files. Download them [here](https://github.com/tesseract-ocr/tessdata), put them to some directory and this directory to `TESSDATA_PREFIX` environmental variable.
+  - Tesseract needs language data files. Download them [here](https://github.com/tesseract-ocr/tessdata), put them to some directory and add this directory to `TESSDATA_PREFIX` environmental variable.
 - [poppler-utils](https://en.wikipedia.org/wiki/Poppler_(software)#poppler-utils). Utils for PDF files built on top of [Poppler](https://poppler.freedesktop.org/) library.
   - Ubuntu (or any OS with `apt` packaging): `$ sudo apt-get install poppler-utils`
 - [libmagic](https://github.com/threatstack/libmagic). Reads the magic bytes of file and determine its MIME type.
@@ -92,7 +92,7 @@ By default, these features are enabled:
 [Autogenerated API documentation][7]
 
 ## Wrapper classes
-For each of OSRA, ChemSpot and OPSIN there is a wrapper class. Some general options can be set in constructor. Each class has a `process()` method which takes path to input file or string and do the desired job with it. It returns an OrderedDict instance with results and can also write a CSV file. Classes, methods and their parameters are well documented in [autogenerated API documentation][7].
+For each of OSRA, ChemSpot and OPSIN there is a wrapper class. Some general options can be set in constructor. Each class has a `process()` method which takes path to input file or string and do the desired job with it. It returns an OrderedDict instance with results and can also write a CSV file. Classes, methods and their parameters are well documented in [autogenerated API documentation][7]. Unfortunately, the documentation builder ([Sphinxdoc](http://www.sphinx-doc.org/en/stable/)) is skipping the Python magic methods, which is besides the class constructor (`__init__`). For now, please refer directly to `__init__` method docstrings in source code. They should be well-readable, because they are using [numpydoc](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt) style.
 
 Example:
 
