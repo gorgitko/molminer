@@ -171,7 +171,7 @@ def get_text_from_image(input_file: str,
 
 
 def get_input_file_type(input_file: str) -> str:
-    mime_type = magic.from_file(input_file, mime=True)
+    mime_type = magic.Magic(magic_file="{}/share/misc/magic.mgc".format(os.environ["CONDA_PREFIX"]), mime=True).from_file(input_file)
     input_type = mime_type.split("/")
 
     if input_type[1] == "pdf":
