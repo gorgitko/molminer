@@ -6,7 +6,7 @@ source:
     path: src/
 
 build:
-    number: 0
+    number: 2
     script_env:
         - MOLMINER_DATA_PATH     # path to MolMiner activation scripts and dependencies: bin/, etc/, lib/, share/
     entry_points:
@@ -28,6 +28,7 @@ requirements:
     - chemspipy
     - openjdk
     - ghostscript
+    - libmagic
     #- graphicsmagick
 
 test:
