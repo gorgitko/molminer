@@ -1,3 +1,30 @@
+# Repository has been archived
+
+Due to missing time for this project, the repository has been archived, and thus it is read-only now.
+Most of the issues seem to come from broken dependencies in the `conda` recipe,
+such as `libtiff` reported [here](https://github.com/gorgitko/molminer/issues/2#issuecomment-447867470).
+The `molminer` conda package contains all needed shared libraries, and so no extra packages should be installed
+into a virtual environment, as conflicts may arise.
+If there are problems after installation of the `molminer` package, such as `segmentation fault` or `illegal instruction`,
+you can check `conda list` output and try to uninstall some library packages (`lib*`) with
+`conda uninstall <library package> --force`.
+
+This is probably against the philosophy of `conda`, where dependencies, such as shared libraries, should be
+installed as extra packages, but `OSRA` compilation was so complicated that
+at that time I have decided to keep all dependencies in one package.
+Beside "third-party" shared libraries, `OSRA` in the `conda` package is linked against quite old `glibc` to ensure compatibility on older distros (can't remember exactly now, but I think the compilation was done under Ubuntu 12).
+
+Also, included tools (`ChemSpot`, `OPSIN` and Python libraries) were probably updated over the time,
+and it is definitely possible to use their newer versions (see [installing from source](#binaries)).
+You can also try to compile a newer version of `OSRA`,
+as there are notes ([1](https://github.com/gorgitko/molminer/blob/master/docs/osra-installation.txt),
+[2](https://github.com/gorgitko/molminer/blob/master/docs/osra-readme.txt)) I have made from my experience
+(however, there might be different requirements in the new version).
+
+I hope `molminer` can still serve well :slightly_smiling_face:
+
+---
+
 # MolMiner
 MolMiner is a library and command-line interface for extracting compounds (called "_chemical entities_") from scientific literature. It extracts chemical entities both from text (_Chemical Named Entity Recognition_) and 2D structures (_Optical Chemical Structure Recognition_). It's written in Python (currently supporting only Python 3). It should work on all platforms, but problem is that some dependencies are very hard to compile on Windows. Actually it's a wrapper around several open-source tools for chemical information retrieval, namely [ChemSpot][1], [OSRA][2] and [OPSIN][3], using their command-line interface and adding some extended functionality.
 # Overview
